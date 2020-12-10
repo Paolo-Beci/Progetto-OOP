@@ -6,11 +6,16 @@ public class Domain {
 	private String createDate;
 	private String updateDate;
 	private String country;
-	private boolean isDead;
+	private String isDead;
 	
 	public Domain(String name, String createDate, String updateDate,
-			String country, boolean isDead) {
+			String country, String isDead) {
 		
+		this.name= name;
+		this.createDate= createDate;
+		this.updateDate= updateDate;
+		this.country= country;
+		this.isDead= isDead;		
 	}
 
 	public String getName() {
@@ -45,11 +50,11 @@ public class Domain {
 		this.country = country;
 	}
 
-	public boolean isDead() {
+	public String getIsDead() {
 		return isDead;
 	}
 
-	public void setDead(boolean isDead) {
+	public void setIsDead(String isDead) {
 		this.isDead = isDead;
 	}
 }
