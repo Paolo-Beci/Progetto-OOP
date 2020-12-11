@@ -29,71 +29,15 @@ import it.univpm.ProgettoOOP.service.DownloadDomains;
 @RestController
 public class Controller {
 	
+	@Autowired
+	DomainService d;
+	
+	/**
+	 * Rotta per visualizzare i domini commerciali contenenti la parola chiave "facebook" (limite 50)
+	 * @return il Vector di domain
+	 */
 	@RequestMapping(value= "/domains", method= RequestMethod.GET) //specifico la richiesta da fare con Postman
 	public ResponseEntity<Object> getDomains(){
-
-		Vector<Domain> v= new Vector<Domain>();
-		
-		JSONParser parser = new JSONParser(); {
-
-		try {        
-			
-	        URL oracle = new URL("https://api.domainsdb.info/v1/domains/search?limit=100&domain=facebook&zone=com"); // URL to Parse
-	        HttpsURLConnection yc = (HttpsURLConnection) oracle.openConnection();
-			yc.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
-	        
-	        BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-	       
-	        String inputLine;
-	        while ((inputLine = in.readLine()) != null) { 
-	        	
-	        	//analizzo tutta la risposta dell'api
-	        	JSONObject stats = (JSONObject) parser.parse(inputLine);
-	        	
-	        	//vado a cercare domains nella risposta e lo casto a JSONArray
-	        	JSONArray a = (JSONArray) stats.get("domains");
-	            
-	            int counter= 0;
-	            // Loop through each item
-	            for (Object o : a) {
-	      
-	            	
-	                JSONObject domain = (JSONObject) o;
-
-	                String name = (String) domain.get("domain");
-	                //System.out.println("Domain : " + name);
-	                
-	                String createDate = (String) domain.get("create_date");
-	                //System.out.println("create_date : " + createDate);
-	                
-	                String updateDate = (String) domain.get("update_date");
-	                //System.out.println("update_date : " + updateDate);
-	                
-	                String country = (String) domain.get("country");
-	                //System.out.println("Country : " + country);
-	                
-	                String isDead = (String) domain.get("isDead");
-	                //System.out.println("IsDead : " + isDead);
-	                
-	                Domain d= new Domain(name, createDate, updateDate, country, isDead);
-	                System.out.println("isDead "+ counter+ " "+ d.getIsDead());
-	                v.add(d);
-	                counter++;
-	            }
-	            
-	        }
-	        
-	        in.close();
-	    } catch (FileNotFoundException e) {
-	        e.printStackTrace();
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    } catch (ParseException e) {
-	        e.printStackTrace();
-	    }
-
-	 }
-		return new ResponseEntity<>(v, HttpStatus.OK);
+		return new ResponseEntity<>(d.getDomains(), HttpStatus.OK);
 	}
-
 }
