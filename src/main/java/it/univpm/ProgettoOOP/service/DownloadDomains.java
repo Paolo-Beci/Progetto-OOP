@@ -18,17 +18,32 @@ import org.springframework.http.ResponseEntity;
 
 import it.univpm.ProgettoOOP.model.Domain;
 
+/**
+ * Classe che gestisce il download e i relativi dati dei domini forniti dall'API
+ * @author Beci Paolo
+ * @author Izzi Giuseppe
+ * @author Grieco Emilio Joseph
+ */
 public class DownloadDomains {
-	
+
+	public static String url = "https://api.domainsdb.info/v1/domains/search?limit=50&domain=facebook&zone=com";// URL to Parse
+
+	/**
+	 * Metodo che effettua il download dei domini dall'api e che li elabora in formato stringa in modo tale da essere elaborati
+	 * dalle classi di filtri e statistiche.
+	 * @return Ritorna il vettore downloadedDomains
+	 */
 	public Vector<Domain> Download() {
-		
 		Vector<Domain> downloadedDomains= new Vector<Domain>();
 		JSONParser parser = new JSONParser();
-		try {        
-			
-	        URL oracle = new URL("https://api.domainsdb.info/v1/domains/search?limit=50&domain=facebook&zone=com"); // URL to Parse
+
+		try {
+	        URL oracle = new URL(url);
 	        HttpsURLConnection yc = (HttpsURLConnection) oracle.openConnection();
 			yc.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
+
+			// DA FARE: Inserire una possibilità di accesso al database anche offline in caso di errore delle righe qua sopra tramite
+			//			un file JAR precaricato nel pacchetto.
 	        
 	        BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
 	       

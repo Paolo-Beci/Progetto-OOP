@@ -1,5 +1,11 @@
 package it.univpm.ProgettoOOP.model;
 
+/**
+ * Classe che modella il dominio con i suoi dati
+ * @author Beci Paolo
+ * @author Izzi Giuseppe
+ * @author Grieco Emilio Joseph
+ */
 public class Domain {
 	
 	private String name;
@@ -8,8 +14,7 @@ public class Domain {
 	private String country;
 	private String isDead;
 	
-	public Domain(String name, String createDate, String updateDate,
-			String country, String isDead) {
+	public Domain(String name, String createDate, String updateDate,String country, String isDead) {
 		
 		this.name= name;
 		this.createDate= createDate;

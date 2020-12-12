@@ -6,6 +6,12 @@ import org.springframework.stereotype.Service;
 
 import it.univpm.ProgettoOOP.model.Domain;
 
+/**
+ * ...
+ * @author Beci Paolo
+ * @author Izzi Giuseppe
+ * @author Grieco Emilio Joseph
+ */
 @Service
 public class DomainServiceImpl implements DomainService{
 
@@ -18,5 +24,13 @@ public class DomainServiceImpl implements DomainService{
 	
 	public Vector<Domain> getDomains(){
 		return this.domains;		
+	}
+
+	// implementazione interf. ??
+	public Vector<Domain> getStats(){
+		return this.domains;
+	}
+	public Vector<Domain> getFilters(){
+		return this.domains;
 	}
 }

@@ -6,8 +6,18 @@ import org.json.simple.JSONArray;
 
 import it.univpm.ProgettoOOP.model.Domain;
 
+/**
+ * Interfaccia implementata da DomainServiceImpl
+ * @author Beci Paolo
+ * @author Izzi Giuseppe
+ * @author Grieco Emilio Joseph
+ */
 public interface DomainService {
 	
 	public Vector<Domain> getDomains();
-	
+
+
+	// IPOTESI ?? FUNZIONA??
+	public Vector<Domain> getStats();
+	public Vector<Domain> getFilters();
 }
