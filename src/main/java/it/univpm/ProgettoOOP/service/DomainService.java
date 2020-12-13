@@ -17,7 +17,4 @@ public interface DomainService {
 	public Vector<Domain> getDomains();
 
 
-	// IPOTESI ?? FUNZIONA??
-	public Vector<Domain> getStats();
-	public Vector<Domain> getFilters();
 }

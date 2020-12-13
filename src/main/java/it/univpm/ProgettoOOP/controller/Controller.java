@@ -48,18 +48,21 @@ public class Controller {
 	 * Rotta per visualizzare le statistiche elaborate sui domini forniti dall'API
 	 * @return Statistiche sui domini
 	 */
+	/*
 	@GetMapping("/stats")
 		public ResponseEntity<Object> getStats(){
-			return new ResponseEntity<>(d.getStats(), HttpStatus.OK);
+			return new ResponseEntity<>(d.getStats(), HttpStatus.OK); // return statistiche  formato:(JSONObject)
 		}
+	*/
 
 	/**
 	 * Rotta per visualizzare i domini o le informazioni filtrate
 	 * @return Filtri sui domini
 	 */
+	/*
 	@PostMapping("/filter")
-		public ResponseEntity<Object> getFilters(){
-			return new ResponseEntity<>(d.getFilters(), HttpStatus.OK);
+		public ResponseEntity<Object> getFilters() {
+			return new ResponseEntity<>(d.getFilters(), HttpStatus.OK); // return filtri  formato:(JSONObject)
 		}
-
+	*/
 }

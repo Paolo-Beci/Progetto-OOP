@@ -26,11 +26,4 @@ public class DomainServiceImpl implements DomainService{
 		return this.domains;		
 	}
 
-	// implementazione interf. ??
-	public Vector<Domain> getStats(){
-		return this.domains;
-	}
-	public Vector<Domain> getFilters(){
-		return this.domains;
-	}
 }
