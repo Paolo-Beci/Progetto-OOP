@@ -21,7 +21,7 @@ public class FilterIsDead extends Filter {
 		Vector<Domain> domainToRemove= new Vector<Domain>();
 		
 		for(Domain d: domainsToFilter) {
-			if(!d.getCreateDate().contains(value))
+			if(!d.getIsDead().contains(value))
 				domainToRemove.add(d);
 		}
 		domainsToFilter.removeAll(domainToRemove);			

@@ -31,7 +31,8 @@ public class Filter {
 		}	
 			
 		if(bodyFilter.containsKey("country")) {
-			Filter f= new FilterCountry((String)bodyFilter.get("country"));
+			String loc = (String)bodyFilter.get("country");
+			Filter f= new FilterCountry(loc.toUpperCase());
 			filters.add(f);
 		}
 			
@@ -46,7 +47,15 @@ public class Filter {
 		}
 			
 		if(bodyFilter.containsKey("isDead")) {
-			Filter f= new FilterIsDead((String)bodyFilter.get("isDead"));
+			String d = (String)bodyFilter.get("isDead");
+			// Controllo correttezza inserimento
+			if(d.contains("TRUE")||d.contains("true")){
+				d = "True";
+			}
+			if(d.contains("FALSE")||d.contains("false")){
+				d = "False";
+			}
+			Filter f= new FilterIsDead(d);
 			filters.add(f);
 		}
 	}
