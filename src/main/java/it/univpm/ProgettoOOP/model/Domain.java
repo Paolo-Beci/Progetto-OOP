@@ -15,12 +15,16 @@ public class Domain {
 	private String isDead;
 	
 	public Domain(String name, String createDate, String updateDate,String country, String isDead) {
-		
 		this.name= name;
 		this.createDate= createDate;
 		this.updateDate= updateDate;
 		this.country= country;
 		this.isDead= isDead;		
+	}
+	
+	public String toString() {
+		return "\nname: "+name+"\ncreateDate: "+createDate+"\nupdateDate: "+updateDate
+				+"\ncountry: "+country+"\nisDead: "+isDead;
 	}
 
 	public String getName() {
@@ -48,7 +52,9 @@ public class Domain {
 	}
 
 	public String getCountry() {
-		return country;
+		if(this.country!=null)
+			return country;
+		return "null";
 	}
 
 	public void setCountry(String country) {

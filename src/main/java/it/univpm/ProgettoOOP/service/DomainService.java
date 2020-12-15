@@ -1,8 +1,8 @@
 package it.univpm.ProgettoOOP.service;
 
-import java.util.Vector;
+import java.util.Vector; 
 
-import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import it.univpm.ProgettoOOP.model.Domain;
 
@@ -15,6 +15,5 @@ import it.univpm.ProgettoOOP.model.Domain;
 public interface DomainService {
 	
 	public Vector<Domain> getDomains();
-
-
+	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter);
 }

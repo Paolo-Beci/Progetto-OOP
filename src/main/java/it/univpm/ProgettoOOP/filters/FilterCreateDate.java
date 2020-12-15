@@ -1,14 +1,27 @@
 package it.univpm.ProgettoOOP.filters;
 
-public class FilterCreateDate {
+import java.util.Vector;
 
-	private String filtro;
+import it.univpm.ProgettoOOP.model.Domain;
+
+public class FilterCreateDate extends Filter {
 	
-	public FilterCreateDate(String filtro) {
-		this.filtro= filtro;
+	public FilterCreateDate(String value) {
+		super(value);
 	}
 	
-	public void filtraggio() {
+	public String toString() {
+		return "\ntipoEffettivo: FilterCreateDate \nvalue: "+value;
+	}
+	
+	public void filtra(Vector<Domain> dominiDaFiltrare) {
+
+		Vector<Domain> domainToRemove= new Vector<Domain>();
 		
+		for(Domain d: dominiDaFiltrare) {
+			if(!d.getCreateDate().contains(value))
+				domainToRemove.add(d);
+		}
+		dominiDaFiltrare.removeAll(domainToRemove);
 	}
 }

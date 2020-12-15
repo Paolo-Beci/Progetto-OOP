@@ -42,7 +42,7 @@ public class DownloadDomains {
 	        HttpsURLConnection yc = (HttpsURLConnection) oracle.openConnection();
 			yc.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
 
-			// DA FARE: Inserire una possibilità di accesso al database anche offline in caso di errore delle righe qua sopra tramite
+			// to-do: Inserire una possibilità di accesso al database anche offline in caso di errore delle righe qua sopra tramite
 			//			un file JAR precaricato nel pacchetto.
 	        
 	        BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));

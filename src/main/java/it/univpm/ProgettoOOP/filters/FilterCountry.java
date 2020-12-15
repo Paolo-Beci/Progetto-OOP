@@ -1,14 +1,28 @@
 package it.univpm.ProgettoOOP.filters;
 
-public class FilterCountry {
+import java.util.Vector;
 
-	private String filtro;
+import it.univpm.ProgettoOOP.model.Domain;
+
+public class FilterCountry extends Filter {
 	
-	public FilterCountry(String filtro) {
-		this.filtro= filtro;
+	public FilterCountry(String value) {
+		super(value);
 	}
 	
-	public void filtraggio() {
+	public String toString() {
+		return "\ntipoEffettivo: FilterCountry \nvalue: "+value;
+	}
+	
+	public void filtra(Vector<Domain> dominiDaFiltrare) {
 		
+		Vector<Domain> domainsToRemove= new Vector<Domain>();
+		
+		for(Domain d: dominiDaFiltrare) {
+			if(!d.getCountry().equals(value))
+				domainsToRemove.add(d);
+		}
+		dominiDaFiltrare.removeAll(domainsToRemove);
 	}
+	
 }
