@@ -14,14 +14,14 @@ public class FilterUpdateDate extends Filter {
 		return "\ntipoEffettivo: FilterUpdateDate \nvalue: "+value;
 	}
 	
-	public void filtra(Vector<Domain> dominiDaFiltrare) {
+	public void filtra(Vector<Domain> domainsToFilter) {
 		
 		Vector<Domain> domainToRemove= new Vector<Domain>();
 		
-		for(Domain d: dominiDaFiltrare) {
+		for(Domain d: domainsToFilter) {
 			if(!d.getUpdateDate().contains(value))
 				domainToRemove.add(d);
 		}
-		dominiDaFiltrare.removeAll(domainToRemove);
+		domainsToFilter.removeAll(domainToRemove);
 	}
 }

@@ -14,7 +14,7 @@ public class FilterName extends Filter {
 		return "\ntipoEffettivo: FilterName \nvalue: "+value;
 	}
 	
-	public void filtra(Vector<Domain> dominiDaFiltrare) {
+	public void filtra(Vector<Domain> domainsToFilter) {
 		
 		Vector<Domain> domainsToRemove= new Vector<Domain>();
 		
@@ -23,33 +23,33 @@ public class FilterName extends Filter {
 		 * i suoi elementi verranno poi completamente rimossi dal vettore domainsToFilter
 		 */
 		System.out.println("\n################### PRIMA:");
-		for(Domain d2: dominiDaFiltrare)
+		for(Domain d2: domainsToFilter)
 			System.out.println(d2);
 		
-		for(Domain d: dominiDaFiltrare) {
+		for(Domain d: domainsToFilter) {
 			if(!d.getName().contains(value))
 				domainsToRemove.add(d);
 		}
-		dominiDaFiltrare.removeAll(domainsToRemove);
+		domainsToFilter.removeAll(domainsToRemove);
 		
 		System.out.println("\n################### DOPO:");
-			for(Domain d1: dominiDaFiltrare) {
+			for(Domain d1: domainsToFilter) {
 				System.out.println(d1);
 			}
 			
 		/**
 		 * Ciclo for senza Iteratore
 		 * 
-		 * for(int i=0; i< dominiDaFiltrare.size(); i++) {
-		 *  	if(dominiDaFiltrare.get(i).getName().contains(value))
-		 *   		dominiDaFiltrare.remove(i);
+		 * for(int i=0; i< domainsToFilter.size(); i++) {
+		 *  	if(domainsToFilter.get(i).getName().contains(value))
+		 *   		domainsToFilter.remove(i);
 		 * }
 		 */
 		
 		/**
 		 * Ciclo con Iteratore
 		 * 
-		 *Iterator<Domain> it= dominiDaFiltrare.iterator();
+		 *Iterator<Domain> it= domainsToFilter.iterator();
 		 * while(it.hasNext()) {
 		 * 		Domain d= (Domain) it.next();
 		 *		if(!d.getName().contains(value))
@@ -59,7 +59,7 @@ public class FilterName extends Filter {
 		
 		/**
 		 * Ciclo for-each che aggiunge anziche rimuovere
-		 * for(Domain d: dominiDaFiltrare) {
+		 * for(Domain d: domainsToFilter) {
 		 *	 	if(d.getUpdateDate().contains(value))
 		 *			filteredDomains.add(d);
 		 * }

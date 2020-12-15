@@ -6,7 +6,6 @@ import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import it.univpm.ProgettoOOP.filters.Filter;
-import it.univpm.ProgettoOOP.filters.FilterName;
 import it.univpm.ProgettoOOP.model.Domain;
 
 /**
@@ -33,9 +32,9 @@ public class DomainServiceImpl implements DomainService {
 
 	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter) {
 
-		Vector<Domain> dominiDaFiltrare= new Vector<Domain>();
+		Vector<Domain> domainsToFilter= new Vector<Domain>();
 		DownloadDomains d= new DownloadDomains();
-		dominiDaFiltrare= d.Download();
+		domainsToFilter= d.Download();
 		
 		this.filteredDomains.clear();
 		Filter f0= new Filter();
@@ -48,10 +47,10 @@ public class DomainServiceImpl implements DomainService {
 		}
 
 		for(Filter f : f0.getFilters()) {
-			f.filtra(dominiDaFiltrare);
+			f.filtra(domainsToFilter);
 		}
 		
-		filteredDomains= dominiDaFiltrare;
+		filteredDomains= domainsToFilter;
 		return this.filteredDomains;
 	}
 

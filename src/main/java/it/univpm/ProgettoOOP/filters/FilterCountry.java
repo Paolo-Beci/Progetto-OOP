@@ -14,15 +14,15 @@ public class FilterCountry extends Filter {
 		return "\ntipoEffettivo: FilterCountry \nvalue: "+value;
 	}
 	
-	public void filtra(Vector<Domain> dominiDaFiltrare) {
+	public void filtra(Vector<Domain> domainsToFilter) {
 		
 		Vector<Domain> domainsToRemove= new Vector<Domain>();
 		
-		for(Domain d: dominiDaFiltrare) {
+		for(Domain d: domainsToFilter) {
 			if(!d.getCountry().equals(value))
 				domainsToRemove.add(d);
 		}
-		dominiDaFiltrare.removeAll(domainsToRemove);
+		domainsToFilter.removeAll(domainsToRemove);
 	}
 	
 }

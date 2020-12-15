@@ -1,8 +1,5 @@
 package it.univpm.ProgettoOOP.controller;
 
-import java.util.Vector; 
-
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import it.univpm.ProgettoOOP.filters.Filter;
-import it.univpm.ProgettoOOP.model.Domain;
 import it.univpm.ProgettoOOP.service.DomainService;
-import it.univpm.ProgettoOOP.service.DomainServiceImpl;
-
 /**
  * Rappresenta la classe che gestisce tutte le chiamate al Server
  * @author Beci Paolo
@@ -53,7 +46,7 @@ public class Controller {
 	 */
 	
 	@PostMapping("/filter")
-		public ResponseEntity<Object> getFilters(@RequestBody JSONObject bodyFilter) {
+		public ResponseEntity<Object> getFilteredDomains(@RequestBody JSONObject bodyFilter) {
 			return new ResponseEntity<>(d.getFilteredDomains(bodyFilter), HttpStatus.OK); // return filtri  formato:(JSONObject)
 		}
 	
