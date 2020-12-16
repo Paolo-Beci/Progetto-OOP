@@ -15,6 +15,11 @@ public abstract class Stats {
     	return 0;
     }
     
+    //metodo che torna una statistica di tipo "double"
+    public double getDouble() {
+    	return 0;
+    }
+    
     //metodo che torna una statistica di tipo "struttura dati"
     public JSONObject getJSONObject() {
     	return null;
@@ -33,7 +38,6 @@ public abstract class Stats {
      *
      * Le statistiche vengono calcolate sul vettore dei domini (eventualmente filtrati)
      *
-     * Utilizzare libreria esterna (GregorianCalendar) per prendere la data del giorno
      */
     
     

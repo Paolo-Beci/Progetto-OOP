@@ -1,19 +1,23 @@
 package it.univpm.ProgettoOOP.stats;
 
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+
 public class TempoMedioVita extends Stats{
-	private int tMV;
+	private double tMVDoms;
 	
 	public TempoMedioVita() {
 		super();
-		this.tMV = 0;
+		this.tMVDoms = 0;
 	}
 
-	public int getInt() {
-		return tMV;
+	public double getDouble() {
+		return tMVDoms;
 	}
 
-	public void setTMV(int tMV) {
-		this.tMV = tMV;
+	public void setTMV(double tMVDoms) {
+		this.tMVDoms = tMVDoms;
 	}
 	
     /**
@@ -21,12 +25,14 @@ public class TempoMedioVita extends Stats{
 	 * @return tempoMedioVita Ritorna il tempo medio di vita dei domini.
 	 */
    public void calcoloStatistica() {
-   	int tVDom, tvDoms = 0;
-   	for(int i = 0; i < super.dsi.getDomains().size(); i++) {
-   		//tVDom = dataodierna - this.dsi.getDomains().get(i).getCreateDate()
-   		//tvDoms += tVDom;
-   	}
-   	//this.tMV = tvDoms / this.s.quantitaDoms;
-   }
+	LocalDateTime today = LocalDateTime.now();
+	long tVDom, tVDoms = 0;
 	
+   	for(int i = 0; i < super.dsi.getDomains().size(); i++) {
+   		LocalDateTime createDate = LocalDateTime.parse(super.dsi.getDomains().get(i).getCreateDate());
+   		tVDom = ChronoUnit.DAYS.between(createDate, today);
+   		tVDoms += tVDom;
+    }
+   	this.tMVDoms = tVDoms / super.dsi.getDomains().size();
+   }
 }
