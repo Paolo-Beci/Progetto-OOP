@@ -6,10 +6,7 @@ import org.json.simple.JSONObject;
 
 public abstract class Stats {
 	
-	protected DomainService dsi = new DomainServiceImpl();
-	
-	public Quantita q;
-	public TempoMedioUpdate tMU;
+    protected DomainService dsi = new DomainServiceImpl();
 	
     public Stats() {}
     
