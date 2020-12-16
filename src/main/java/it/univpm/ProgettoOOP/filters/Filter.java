@@ -16,8 +16,9 @@ public class Filter {
 	public Filter(String value) {
 		this.value= value;
 	}
-	
 	public void filtra(Vector<Domain> domainsToFilter) {}
+	
+	public void filtra(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) {}
 	
 	/**
 	 * Non è possibile inserire piu di un filtro dello stesso tipo
@@ -25,16 +26,40 @@ public class Filter {
 	 */
 	public void parsingFilters(JSONObject bodyFilter) {
 		
-		if(bodyFilter.containsKey("name")) { //<-------QUI
-			Filter f= new FilterName((String)bodyFilter.get("name"));
-			filters.add(f);
+		if(bodyFilter.containsKey("||name")) { //Filtraggio OR
+			Filter f= new Filter();
+			
+			for(String s: f.parseString((String)bodyFilter.get("||name"))){
+				Filter f1= new FilterName(s, true);
+				filters.add(f1);
+			}
+		}	
+		
+		if(bodyFilter.containsKey("name")) { //Filtraggio AND
+			Filter f= new Filter();
+			
+			for(String s: f.parseString((String)bodyFilter.get("name"))){
+				Filter f1= new FilterName(s, false);
+				filters.add(f1);
+			}
+		}	
+		
+		if(bodyFilter.containsKey("||country")) { //Filtraggio OR
+			Filter f= new Filter();
+			
+			for(String s: f.parseString((String)bodyFilter.get("||country"))){
+				Filter f1= new FilterCountry(s, true);
+				filters.add(f1);
+			}
 		}	
 			
-		if(bodyFilter.containsKey("country")) {
-			String loc = (String)bodyFilter.get("country");
-			Filter f= new FilterCountry(loc.toUpperCase());
-			filters.add(f);
-		}
+		if(bodyFilter.containsKey("country")) { //Filtraggio AND
+			Filter f= new Filter();
+			for(String s: f.parseString((String)bodyFilter.get("country"))){
+				Filter f1= new FilterCountry(s, false);
+				filters.add(f1);
+			}
+		}	
 			
 		if(bodyFilter.containsKey("createDate")) {
 			Filter f= new FilterCreateDate((String)bodyFilter.get("createDate"));
@@ -58,6 +83,12 @@ public class Filter {
 			Filter f= new FilterIsDead(d);
 			filters.add(f);
 		}
+	}
+	
+	public String[] parseString(String riga) {
+		
+		String[] rigaSplitted= riga.split(";");	
+		return rigaSplitted;
 	}
 	
 	public Vector<Filter> getFilters() {

@@ -63,16 +63,3 @@ public class Controller{
 		return "IL BODY DELLA CHIAMATA POST NON CONTIENE NESSUN FILTRO";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

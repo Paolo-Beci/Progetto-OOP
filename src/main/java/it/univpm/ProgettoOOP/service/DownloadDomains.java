@@ -25,7 +25,7 @@ import it.univpm.ProgettoOOP.model.Domain;
 public class DownloadDomains {
 
 	// URL dell'API
-	public static String url = "https://api.domainsdb.info/v1/domains/search?limit=50&domain=facebook&zone=com";
+	public static String url = "https://api.domainsdb.info/v1/domains/search?domain=facebook&zone=com&pages=2";
 
 	/**
 	 * Metodo che effettua il download dei domini dall'api e che li elabora in formato stringa in modo tale da essere elaborati

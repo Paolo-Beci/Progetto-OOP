@@ -42,18 +42,12 @@ public class DomainServiceImpl implements DomainService {
 		Filter f0= new Filter();
 		
 		f0.parsingFilters(bodyFilter);
-		
-		System.out.println("\n################## FILTRI");
-		for(Filter f : f0.getFilters()) {
-			System.out.println(f);
-		}
 
 		for(Filter f : f0.getFilters()) {
-			f.filtra(domainsToFilter);
+			f.filtra(domainsToFilter, filteredDomains);
 		}
 		
-		filteredDomains= domainsToFilter;
-		return this.filteredDomains;
+		return filteredDomains;
 	}
 
 	@SuppressWarnings("unchecked")

@@ -3,41 +3,46 @@ package it.univpm.ProgettoOOP.filters;
 import java.util.Vector;
 
 import it.univpm.ProgettoOOP.model.Domain;
+import it.univpm.ProgettoOOP.service.DomainService;
+import it.univpm.ProgettoOOP.service.DomainServiceImpl;
 
 public class FilterName extends Filter {
 	
-	public FilterName(String value) {
+	private boolean type; //True OR, False AND
+	
+	public FilterName(String value, boolean type) {
 		super(value);
+		this.type= type;
 	}
 	
 	public String toString() {
 		return "\ntipoEffettivo: FilterName \nvalue: "+value;
 	}
 	
-	public void filtra(Vector<Domain> domainsToFilter) {
+	public void filtra(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) {
 		
 		Vector<Domain> domainsToRemove= new Vector<Domain>();
-		
+		DomainService d0= new DomainServiceImpl();
 		/**
 		 * Ciclo che aggiunge elementi al vector domainsToRemove
 		 * i suoi elementi verranno poi completamente rimossi dal vettore domainsToFilter
 		 */
-		System.out.println("\n################### PRIMA:");
-		for(Domain d2: domainsToFilter)
-			System.out.println(d2);
-		
-		for(Domain d: domainsToFilter) {
-			if(!d.getName().contains(value))
-				domainsToRemove.add(d);
-		}
-		domainsToFilter.removeAll(domainsToRemove);
-		
-		System.out.println("\n################### DOPO:");
-			for(Domain d1: domainsToFilter) {
-				System.out.println(d1);
-			}
+		if(!this.type) {
 			
-		/**
+			for(Domain d: domainsToFilter) {
+				if(!d.getName().contains(value))
+					domainsToRemove.add(d);
+			}
+			domainsToFilter.removeAll(domainsToRemove);
+			filteredDomains.addAll(domainsToFilter);
+		}
+		else 
+			
+		  for(Domain d: domainsToFilter) {
+		 	 	if(d.getName().contains(value))
+		 			filteredDomains.add(d);
+		  }
+		 		/**
 		 * Ciclo for senza Iteratore
 		 * 
 		 * for(int i=0; i< domainsToFilter.size(); i++) {
@@ -56,15 +61,5 @@ public class FilterName extends Filter {
 		 *			it.remove();
 		 * }
 		 */
-		
-		/**
-		 * Ciclo for-each che aggiunge anziche rimuovere
-		 * for(Domain d: domainsToFilter) {
-		 *	 	if(d.getUpdateDate().contains(value))
-		 *			filteredDomains.add(d);
-		 * }
-		 */
-		
-		
 	}
 }
