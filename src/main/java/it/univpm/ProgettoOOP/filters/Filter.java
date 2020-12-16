@@ -25,7 +25,7 @@ public class Filter {
 	 */
 	public void parsingFilters(JSONObject bodyFilter) {
 		
-		if(bodyFilter.containsKey("name")) {
+		if(bodyFilter.containsKey("name")) { //<-------QUI
 			Filter f= new FilterName((String)bodyFilter.get("name"));
 			filters.add(f);
 		}	

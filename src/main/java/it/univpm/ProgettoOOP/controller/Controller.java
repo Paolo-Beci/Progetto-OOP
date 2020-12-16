@@ -60,7 +60,7 @@ public class Controller{
 	}
 	public <Object> String Error()
 	{
-		return "IL BODY DEL POST NON CONTIENE NESSUN FILTRO";
+		return "IL BODY DELLA CHIAMATA POST NON CONTIENE NESSUN FILTRO";
 	}
 }
 
