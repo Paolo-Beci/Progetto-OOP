@@ -14,6 +14,7 @@ import it.univpm.ProgettoOOP.service.DomainService;
  * @author Beci Paolo
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph
+ * @throws BodyIsEmptyException Eccezione personalizzata la gestione del body vuoto nella richiesta di post
  */
 @RestController
 public class Controller{
