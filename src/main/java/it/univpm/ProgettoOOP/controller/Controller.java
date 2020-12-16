@@ -44,12 +44,19 @@ public class Controller{
 	 * Rotta per visualizzare i domini o le informazioni filtrate
 	 * @return Filtri sui domini
 	 */
-	@PostMapping("/filter") //Prova Paolo
+	@PostMapping("/filter") //eshfafkefewufwkuef
 	public Object getFilteredDomains (@RequestBody JSONObject bodyFilter) {
 		try {
 			if(bodyFilter.isEmpty())
+			/**
+			 * Rotta per visualizzare le statistiche elaborate sui domini forniti dall'API
+			 * @return Statistiche sui domini
+			 */
 				throw new BodyIsEmptyException();
-
+/**
+ * Rotta per visualizzare le statistiche elaborate sui domini forniti dall'API
+ * @return Statistiche sui domini
+ */
 			return new ResponseEntity<>(d.getFilteredDomains(bodyFilter), HttpStatus.OK); // return filtri  formato:(JSONObject) ?
 
 		} catch (BodyIsEmptyException e) {
