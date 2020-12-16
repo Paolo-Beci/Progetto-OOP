@@ -1,5 +1,6 @@
 package it.univpm.ProgettoOOP.controller;
 
+import it.univpm.ProgettoOOP.exception.BodyIsEmptyException;
 import org.json.simple.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import it.univpm.ProgettoOOP.service.DomainService;
  * @author Grieco Emilio Joseph
  */
 @RestController
-public class Controller {
+public class Controller{
 
 	@Autowired
 	DomainService d;
@@ -44,12 +45,24 @@ public class Controller {
 	 * Rotta per visualizzare i domini o le informazioni filtrate
 	 * @return Filtri sui domini
 	 */
-	
 	@PostMapping("/filter")
-		public ResponseEntity<Object> getFilteredDomains(@RequestBody JSONObject bodyFilter) {
-			return new ResponseEntity<>(d.getFilteredDomains(bodyFilter), HttpStatus.OK); // return filtri  formato:(JSONObject)
+	public Object getFilteredDomains (@RequestBody JSONObject bodyFilter) {
+		try {
+			if(bodyFilter.isEmpty())
+				throw new BodyIsEmptyException();
+
+			return new ResponseEntity<>(d.getFilteredDomains(bodyFilter), HttpStatus.OK); // return filtri  formato:(JSONObject) ?
+
+		} catch (BodyIsEmptyException e) {
+			System.out.println("MESSAGGIO: " + e.getMessage());
+			System.out.println("CAUSA: " + e.getCause());
+			return Error();
 		}
-	
+	}
+	public <Object> String Error()
+	{
+		return "IL BODY DEL POST NON CONTIENE NESSUN FILTRO";
+	}
 }
 
 
