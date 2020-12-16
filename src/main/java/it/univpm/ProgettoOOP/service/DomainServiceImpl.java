@@ -34,7 +34,7 @@ public class DomainServiceImpl implements DomainService {
 
 	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter) {
 
-		Vector<Domain> domainsToFilter= new Vector<Domain>();
+		Vector<Domain> domainsToFilter= new Vector<>();
 		DownloadDomains d= new DownloadDomains();
 		domainsToFilter= d.Download();
 		
@@ -61,7 +61,7 @@ public class DomainServiceImpl implements DomainService {
 		JSONObject jo = new JSONObject();
 		
 		//VERSIONE 1
-		//QuantitÃ 
+		//Quantità
 	    Stats q = new Quantita();
 	    q.calcoloStatistica();
 	    jo.put("Quantità", q.getInt());
@@ -93,10 +93,10 @@ public class DomainServiceImpl implements DomainService {
 		for(int i = 0; i < 5; i++) {
 			
 			switch(i) {
-			case 0: //QuantitÃ 
+			case 0: //Quantità
 					q = new Quantita();
 					q.calcoloStatistica();
-					jo.put("QuantitÃ ", q.getInt());
+					jo.put("Quantità", q.getInt());
 					break;	    
 					    
 		    case 1: //Tempo medio di vita
