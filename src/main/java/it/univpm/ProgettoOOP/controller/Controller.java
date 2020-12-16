@@ -44,7 +44,7 @@ public class Controller{
 	 * Rotta per visualizzare i domini o le informazioni filtrate
 	 * @return Filtri sui domini
 	 */
-	@PostMapping("/filter") //eshfafkefewufwkuef
+	@PostMapping("/filter")
 	public Object getFilteredDomains (@RequestBody JSONObject bodyFilter) {
 		try {
 			if(bodyFilter.isEmpty())
