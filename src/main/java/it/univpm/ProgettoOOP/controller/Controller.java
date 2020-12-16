@@ -48,15 +48,8 @@ public class Controller{
 	public Object getFilteredDomains (@RequestBody JSONObject bodyFilter) {
 		try {
 			if(bodyFilter.isEmpty())
-			/**
-			 * Rotta per visualizzare le statistiche elaborate sui domini forniti dall'API
-			 * @return Statistiche sui domini
-			 */
 				throw new BodyIsEmptyException();
-/**
- * Rotta per visualizzare le statistiche elaborate sui domini forniti dall'API
- * @return Statistiche sui domini
- */
+
 			return new ResponseEntity<>(d.getFilteredDomains(bodyFilter), HttpStatus.OK); // return filtri  formato:(JSONObject) ?
 
 		} catch (BodyIsEmptyException e) {
