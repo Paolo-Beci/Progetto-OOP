@@ -34,12 +34,10 @@ public class Controller{
 	 * Rotta per visualizzare le statistiche elaborate sui domini forniti dall'API
 	 * @return Statistiche sui domini
 	 */
-	/*
 	@GetMapping("/stats")
 		public ResponseEntity<Object> getStats(){
 			return new ResponseEntity<>(d.getStats(), HttpStatus.OK); // return statistiche  formato:(JSONObject)
 		}
-	*/
 
 	/**
 	 * Rotta per visualizzare i domini o le informazioni filtrate

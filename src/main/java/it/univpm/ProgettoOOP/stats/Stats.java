@@ -1,15 +1,32 @@
 package it.univpm.ProgettoOOP.stats;
 
-import it.univpm.ProgettoOOP.model.Domain;
+import it.univpm.ProgettoOOP.service.*;
 
-import java.util.Vector;
+import org.json.simple.JSONObject;
 
-public class Stats {
-    private Vector<Domain> domains= new Vector<Domain>();
-    public Vector<Domain> getStats(){
-        return this.domains;
+public abstract class Stats {
+	
+	protected DomainService dsi = new DomainServiceImpl();
+	
+	public Quantita q;
+	public TempoMedioUpdate tMU;
+	
+    public Stats() {}
+    
+    //metodo che torna una statistica di tipo "intero"
+    public int getInt() {
+    	return 0;
     }
-
+    
+    //metodo che torna una statistica di tipo "struttura dati"
+    public JSONObject getJSONObject() {
+    	return null;
+    }
+    
+    //metodo che calcola una statistica
+    public abstract void calcoloStatistica();
+    
+    
     /** statistiche da elaborare:
      * - Quantità di domini  (sono sempre 50?)
      * - Tempo medio di vita
@@ -21,4 +38,7 @@ public class Stats {
      *
      * Utilizzare libreria esterna (GregorianCalendar) per prendere la data del giorno
      */
-}
+    
+    
+    
+    }
