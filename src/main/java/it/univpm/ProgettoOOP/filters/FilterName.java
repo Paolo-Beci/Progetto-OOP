@@ -8,58 +8,35 @@ import it.univpm.ProgettoOOP.service.DomainServiceImpl;
 
 public class FilterName extends Filter {
 	
-	private boolean type; //True OR, False AND
-	
-	public FilterName(String value, boolean type) {
+	public FilterName(String value) {
 		super(value);
-		this.type= type;
+	}
+	
+	public FilterName(String value, boolean or) {
+		super(value, or);
 	}
 	
 	public String toString() {
-		return "\ntipoEffettivo: FilterName \nvalue: "+value;
+		return "\ntipoEffettivo: FilterName \nvalue: "+value+"\nor: "+or;
 	}
 	
-	public void filtra(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) {
+	public void filtra(Vector<Domain> domainsToFilter) { //FILTRAGGIO AND
 		
 		Vector<Domain> domainsToRemove= new Vector<Domain>();
-		DomainService d0= new DomainServiceImpl();
-		/**
-		 * Ciclo che aggiunge elementi al vector domainsToRemove
-		 * i suoi elementi verranno poi completamente rimossi dal vettore domainsToFilter
-		 */
-		if(!this.type) {
 			
-			for(Domain d: domainsToFilter) {
-				if(!d.getName().contains(value))
-					domainsToRemove.add(d);
-			}
-			domainsToFilter.removeAll(domainsToRemove);
-			filteredDomains.addAll(domainsToFilter);
+		for(Domain d: domainsToFilter) {
+			if(!d.getName().contains(value))
+				domainsToRemove.add(d);
 		}
-		else 
-			
-		  for(Domain d: domainsToFilter) {
-		 	 	if(d.getName().contains(value))
-		 			filteredDomains.add(d);
-		  }
-		 		/**
-		 * Ciclo for senza Iteratore
-		 * 
-		 * for(int i=0; i< domainsToFilter.size(); i++) {
-		 *  	if(domainsToFilter.get(i).getName().contains(value))
-		 *   		domainsToFilter.remove(i);
-		 * }
-		 */
+		domainsToFilter.removeAll(domainsToRemove);
+	}
+	
+	public void filtra(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) { //FILTRAGGIO OR
+	
+		for(Domain d: domainsToFilter) {
+		 	 if(d.getName().contains(value) && !filteredDomains.contains(d))
+		 		filteredDomains.add(d);
+		}
 		
-		/**
-		 * Ciclo con Iteratore
-		 * 
-		 *Iterator<Domain> it= domainsToFilter.iterator();
-		 * while(it.hasNext()) {
-		 * 		Domain d= (Domain) it.next();
-		 *		if(!d.getName().contains(value))
-		 *			it.remove();
-		 * }
-		 */
 	}
 }

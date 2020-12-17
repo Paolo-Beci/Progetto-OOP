@@ -6,41 +6,37 @@ import it.univpm.ProgettoOOP.model.Domain;
 
 public class FilterCountry extends Filter {
 	
-	private boolean type;
-	
-	public FilterCountry(String value, boolean type) {
+	public FilterCountry(String value) {
 		super(value);
-		this.type= type;
+	}
+	
+	public FilterCountry(String value, boolean or) {
+		super(value, or);
 	}
 	
 	public String toString() {
-		return "\ntipoEffettivo: FilterCountry \nvalue: "+value;
+		return "\ntipoEffettivo: FilterCountry \nvalue: "+value+"\nor: "+or;
 	}
 	
-public void filtra(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) {
+	public void filtra(Vector<Domain> domainsToFilter) { //FILTRAGGIO AND
 		
 		Vector<Domain> domainsToRemove= new Vector<Domain>();
-		
-		/**
-		 * Ciclo che aggiunge elementi al vector domainsToRemove
-		 * i suoi elementi verranno poi completamente rimossi dal vettore domainsToFilter
-		 */
-		if(!this.type) {
 			
-			for(Domain d: domainsToFilter) {
-				if(!d.getCountry().equals(value))
-					domainsToRemove.add(d);
-			}
-			domainsToFilter.removeAll(domainsToRemove);
-			filteredDomains= domainsToFilter;
+		for(Domain d: domainsToFilter) {
+			if(!d.getCountry().equals(value))
+				domainsToRemove.add(d);
 		}
-		else 
-			
-		  for(Domain d: domainsToFilter) {
-		 	 	if(d.getCountry().equals(value))
-		 			filteredDomains.add(d);
-		  }
+		domainsToFilter.removeAll(domainsToRemove);
+	}
+	
+	public void filtra(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) { //FILTRAGGIO OR
+	
+		for(Domain d: domainsToFilter) {
+		 	 if(d.getCountry().equals(value) && !filteredDomains.contains(d))
+		 		filteredDomains.add(d);
+		}
 		
 	}
+
 	
 }

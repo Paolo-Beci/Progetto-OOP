@@ -10,12 +10,20 @@ public class Filter {
 	
 	protected Vector<Filter> filters= new Vector<Filter>();
 	protected String value;
+	protected boolean or;
 		
 	public Filter() {}
 	
 	public Filter(String value) {
 		this.value= value;
+		this.or= false;
 	}
+	
+	public Filter(String value, boolean or) { //COSTRUTTORE PER FILTRI MULTIPLI
+		this.value= value;
+		this.or= or;
+	}
+	
 	public void filtra(Vector<Domain> domainsToFilter) {}
 	
 	public void filtra(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) {}
@@ -34,11 +42,11 @@ public class Filter {
 				filters.add(f1);
 			}
 		}	
-		
-		if(bodyFilter.containsKey("name")) { //Filtraggio AND
+
+		if(bodyFilter.containsKey("&name")) { //Filtraggio AND
 			Filter f= new Filter();
 			
-			for(String s: f.parseString((String)bodyFilter.get("name"))){
+			for(String s: f.parseString((String)bodyFilter.get("&name"))){
 				Filter f1= new FilterName(s, false);
 				filters.add(f1);
 			}
@@ -53,9 +61,9 @@ public class Filter {
 			}
 		}	
 			
-		if(bodyFilter.containsKey("country")) { //Filtraggio AND
+		if(bodyFilter.containsKey("&country")) { //Filtraggio AND
 			Filter f= new Filter();
-			for(String s: f.parseString((String)bodyFilter.get("country"))){
+			for(String s: f.parseString((String)bodyFilter.get("&country"))){
 				Filter f1= new FilterCountry(s, false);
 				filters.add(f1);
 			}
@@ -97,5 +105,9 @@ public class Filter {
 	
 	public String getValue() {
 		return this.value;
+	}
+	
+	public boolean getOr() {
+		return this.or;
 	}
 }

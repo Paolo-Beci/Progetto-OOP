@@ -37,14 +37,23 @@ public class DomainServiceImpl implements DomainService {
 		Vector<Domain> domainsToFilter= new Vector<>();
 		DownloadDomains d= new DownloadDomains();
 		domainsToFilter= d.Download();
-		
+		boolean or= false;
 		this.filteredDomains.clear();
 		Filter f0= new Filter();
 		
 		f0.parsingFilters(bodyFilter);
 
 		for(Filter f : f0.getFilters()) {
-			f.filtra(domainsToFilter, filteredDomains);
+			System.out.println(f);
+			if(f.getOr()) {
+				f.filtra(domainsToFilter, filteredDomains);
+				or= true;
+			}	
+			else
+				f.filtra(domainsToFilter);
+		}
+		if(!or) {
+			filteredDomains= domainsToFilter;
 		}
 		
 		return filteredDomains;
