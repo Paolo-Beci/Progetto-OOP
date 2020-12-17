@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import it.univpm.ProgettoOOP.filters.Filter;
 import it.univpm.ProgettoOOP.model.Domain;
-//import it.univpm.ProgettoOOP.stats.*;
+import it.univpm.ProgettoOOP.stats.*;
 
 
 /**
@@ -22,13 +22,6 @@ public class DomainServiceImpl implements DomainService {
 
 	private Vector<Domain> domains= new Vector<Domain>();
 	private Vector<Domain> filteredDomains= new Vector<Domain>();
-
-	/*
-	public DomainServiceImpl(String url) {
-		DownloadDomains d= new DownloadDomains(url);
-		this.domains = d.Download();
-	}
-	 */
 
 	public DomainServiceImpl() { }
 
@@ -64,7 +57,7 @@ public class DomainServiceImpl implements DomainService {
 		
 		return filteredDomains;
 	}
-	/*
+
 	@SuppressWarnings("unchecked")
 	public JSONObject getStats(){ 
 		JSONObject jo = new JSONObject();
@@ -98,7 +91,6 @@ public class DomainServiceImpl implements DomainService {
 	    
 	    return jo;
 	}
-	*/
 }
 /*
 //parsing da String a JSON

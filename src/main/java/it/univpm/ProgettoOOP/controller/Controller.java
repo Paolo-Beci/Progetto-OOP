@@ -28,42 +28,26 @@ public class Controller{
 	 * Rotta per visualizzare i domini commerciali contenenti la parola chiave "facebook" (limite 50)
 	 * @return il Vector contenente i domain
 	 */
-
 	@GetMapping("/domains")
 		public ResponseEntity<Object> getDomains(@RequestParam(required = true) String domain, @RequestParam(required = true) String zone){
 				url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
 			return new ResponseEntity<>(d.getDomains(url), HttpStatus.OK);
 		}
-	/*
-	@GetMapping("/domains")
-	public ResponseEntity<Object> getDomains(@RequestParam(required = true) String domain, @RequestParam(required = true) String zone){
 
-			String url;
-			if(!domain.equals("facebook") && !zone.equals("com")) {
-				url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
-				d = new DomainServiceImpl(url);
-			}
-		return new ResponseEntity<>(d.getDomains(), HttpStatus.OK);
-	}
-	 */
 
 	/**
 	 * Rotta per visualizzare le statistiche elaborate sui domini forniti dall'API
 	 * @return Statistiche sui domini
 	 */
-
-	/*
 	@GetMapping("/stats")
 		public ResponseEntity<Object> getStats(){
 			return new ResponseEntity<>(d.getStats(), HttpStatus.OK); // return statistiche  formato:(JSONObject)
 		}
-	 */
 
 	/**
 	 * Rotta per visualizzare i domini o le informazioni filtrate
 	 * @return Filtri sui domini
 	 */
-
 	@PostMapping("/filter")
 	public Object getFilteredDomains (@RequestBody JSONObject bodyFilter) {
 		try {
