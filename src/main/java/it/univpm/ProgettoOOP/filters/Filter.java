@@ -36,7 +36,6 @@ public class Filter {
 		
 		if(bodyFilter.containsKey("||name")) { //Filtraggio OR
 			Filter f= new Filter();
-			
 			for(String s: f.parseString((String)bodyFilter.get("||name"))){
 				Filter f1= new FilterName(s, true);
 				filters.add(f1);
@@ -64,6 +63,7 @@ public class Filter {
 		if(bodyFilter.containsKey("&country")) { //Filtraggio AND
 			Filter f= new Filter();
 			for(String s: f.parseString((String)bodyFilter.get("&country"))){
+				
 				Filter f1= new FilterCountry(s, false);
 				filters.add(f1);
 			}
