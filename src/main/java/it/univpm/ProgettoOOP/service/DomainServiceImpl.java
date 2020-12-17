@@ -33,28 +33,54 @@ public class DomainServiceImpl implements DomainService {
 
 	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url) {
 
-		Vector<Domain> domainsToFilter= new Vector<>();
+		Vector<Domain> domainsToFilter1= new Vector<>();
+		Vector<Domain> domainsToFilter2= new Vector<>();
 		DownloadDomains d= new DownloadDomains();
-		domainsToFilter= d.Download(url);
-		boolean or= false;
+		domainsToFilter1= d.Download(url);
+
 		this.filteredDomains.clear();
 		Filter f0= new Filter();
 		
 		f0.parsingFilters(bodyFilter);
-
-		for(Filter f : f0.getFilters()) {
-			System.out.println(f);
-			if(f.getOr()) {
-				f.filtra(domainsToFilter, filteredDomains);
-				or= true;
-			}	
-			else
-				f.filtra(domainsToFilter);
+		
+		//Aggiungo in OR tutti i Domini con quei nomi
+		if(f0.getFiltriNome().size()!=0 && f0.getFiltriCountry().size()!=0) {
+			
+			System.out.println("## CASO 1");
+			for(Filter f: f0.getFiltriNome()) {
+				System.out.println(f);
+				f.filtra(domainsToFilter1, domainsToFilter2);
+			}
+			//Aggiungo in OR tutti i Domini con quei country
+			for(Filter f: f0.getFiltriCountry()) {
+				System.out.println(f);
+				f.filtra(domainsToFilter2, filteredDomains);
+			}
 		}
-		if(!or) {
-			filteredDomains= domainsToFilter;
+		if(f0.getFiltriNome().size()==0 && f0.getFiltriCountry().size()!=0) {
+			System.out.println("## CASO 2");
+			for(Filter f: f0.getFiltriCountry()) {
+				System.out.println(f);
+				f.filtra(domainsToFilter1, filteredDomains);
+			}
+		}
+		if(f0.getFiltriNome().size()!=0 && f0.getFiltriCountry().size()==0) {
+			System.out.println("## CASO 3");
+			for(Filter f: f0.getFiltriNome()) {
+				System.out.println(f);
+				f.filtra(domainsToFilter1, filteredDomains);
+			}
+		}
+		if(f0.getFiltriNome().size()==0 && f0.getFiltriCountry().size()!=0) {
+			System.out.println("## CASO 4");
+			filteredDomains= domainsToFilter1;
 		}
 		
+		for(Filter f : f0.getFilters()) {
+			System.out.println(f);
+				f.filtra(filteredDomains);
+		}
+
 		return filteredDomains;
 	}
 

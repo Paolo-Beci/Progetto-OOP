@@ -10,10 +10,6 @@ public class FilterCountry extends Filter {
 		super(value);
 	}
 	
-	public FilterCountry(String value, boolean or) {
-		super(value, or);
-	}
-	
 	public String toString() {
 		return "\ntipoEffettivo: FilterCountry \nvalue: "+value+"\nor: "+or;
 	}

@@ -9,6 +9,8 @@ import it.univpm.ProgettoOOP.model.Domain;
 public class Filter {
 	
 	protected Vector<Filter> filters= new Vector<Filter>();
+	protected Vector<Filter> filtriNome= new Vector<Filter>();
+	protected Vector<Filter> filtriCountry= new Vector<Filter>();
 	protected String value;
 	protected boolean or;
 		
@@ -16,12 +18,6 @@ public class Filter {
 	
 	public Filter(String value) {
 		this.value= value;
-		this.or= false;
-	}
-	
-	public Filter(String value, boolean or) { //COSTRUTTORE PER FILTRI MULTIPLI
-		this.value= value;
-		this.or= or;
 	}
 	
 	public void filtra(Vector<Domain> domainsToFilter) {}
@@ -34,38 +30,20 @@ public class Filter {
 	 */
 	public void parsingFilters(JSONObject bodyFilter) {
 		
-		if(bodyFilter.containsKey("||name")) { //Filtraggio OR
+		if(bodyFilter.containsKey("name")) { //Filtraggio OR
 			Filter f= new Filter();
-			for(String s: f.parseString((String)bodyFilter.get("||name"))){
-				Filter f1= new FilterName(s, true);
-				filters.add(f1);
-			}
-		}	
-
-		if(bodyFilter.containsKey("&name")) { //Filtraggio AND
-			Filter f= new Filter();
-			
-			for(String s: f.parseString((String)bodyFilter.get("&name"))){
-				Filter f1= new FilterName(s, false);
-				filters.add(f1);
+			for(String s: f.parseString((String)bodyFilter.get("name"))){
+				Filter f1= new FilterName(s);
+				filtriNome.add(f1);
 			}
 		}	
 		
-		if(bodyFilter.containsKey("||country")) { //Filtraggio OR
+		if(bodyFilter.containsKey("country")) { //Filtraggio OR
 			Filter f= new Filter();
 			
-			for(String s: f.parseString((String)bodyFilter.get("||country"))){
-				Filter f1= new FilterCountry(s, true);
-				filters.add(f1);
-			}
-		}	
-			
-		if(bodyFilter.containsKey("&country")) { //Filtraggio AND
-			Filter f= new Filter();
-			for(String s: f.parseString((String)bodyFilter.get("&country"))){
-				
-				Filter f1= new FilterCountry(s, false);
-				filters.add(f1);
+			for(String s: f.parseString((String)bodyFilter.get("country"))){
+				Filter f1= new FilterCountry(s);
+				filtriCountry.add(f1);
 			}
 		}	
 			
@@ -92,7 +70,15 @@ public class Filter {
 			filters.add(f);
 		}
 	}
-	
+
+	public Vector<Filter> getFiltriNome() {
+		return filtriNome;
+	}
+
+	public Vector<Filter> getFiltriCountry() {
+		return filtriCountry;
+	}
+
 	public String[] parseString(String riga) {
 		
 		String[] rigaSplitted= riga.split(";");	
@@ -107,7 +93,4 @@ public class Filter {
 		return this.value;
 	}
 	
-	public boolean getOr() {
-		return this.or;
-	}
 }

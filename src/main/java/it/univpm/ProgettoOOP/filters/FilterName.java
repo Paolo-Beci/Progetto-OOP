@@ -12,10 +12,6 @@ public class FilterName extends Filter {
 		super(value);
 	}
 	
-	public FilterName(String value, boolean or) {
-		super(value, or);
-	}
-	
 	public String toString() {
 		return "\ntipoEffettivo: FilterName \nvalue: "+value+"\nor: "+or;
 	}
