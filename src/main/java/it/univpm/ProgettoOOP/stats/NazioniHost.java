@@ -25,12 +25,12 @@ public class NazioniHost extends Stats{
 	 * @return nazioniHost Ritorna il numero di nazioni di hosting dei domini.
 	*/ 
     @SuppressWarnings("unchecked")
-	public void calcoloStatistica() {
+	public void calcoloStatistica(String url) {
     	
     	int contUS = 0, contJP = 0, contNL = 0, contDE = 0, contTR = 0, contIT = 0;
     	int contNull = 0, contAltro = 0;
     	
-    	for(Domain d: dsi.getDomains()) {
+    	for(Domain d: dsi.getDomains(url)) {
     		switch(d.getCountry()) {
     	
     		case "US": contUS++;

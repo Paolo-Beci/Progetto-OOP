@@ -20,8 +20,8 @@ public class Quantita extends Stats{
 	 * Getter del numero dei domini.
 	 * @return quantitaDoms Ritorna il numero dei domini.
 	 */
-    public void calcoloStatistica() {
-    	this.quantita = super.dsi.getDomains().size();
+    public void calcoloStatistica(String url) {
+    	this.quantita = super.dsi.getDomains(url).size();
     }
 	
 	

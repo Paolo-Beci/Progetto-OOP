@@ -23,16 +23,16 @@ public class TempoMedioUpdate extends Stats{
 	 * Getter del tempo medio di update dei domini.
 	 * @return tempoMedioUpdate Ritorna il tempo medio di update dei domini.
 	 */
-    public void calcoloStatistica() {
+    public void calcoloStatistica(String url) {
     	LocalDateTime today = LocalDateTime.now();
     	long tUDom, tUDoms = 0;
     	
-       	for(int i = 0; i < super.dsi.getDomains().size(); i++) {
-       		LocalDateTime updateDate = LocalDateTime.parse(super.dsi.getDomains().get(i).getCreateDate());
+       	for(int i = 0; i < super.dsi.getDomains(url).size(); i++) {
+       		LocalDateTime updateDate = LocalDateTime.parse(super.dsi.getDomains(url).get(i).getCreateDate());
        		tUDom = ChronoUnit.DAYS.between(updateDate, today);
        		tUDoms += tUDom;
         }
-       	this.tMUDoms = tUDoms / super.dsi.getDomains().size();
+       	this.tMUDoms = tUDoms / super.dsi.getDomains(url).size();
     }
 	
 	

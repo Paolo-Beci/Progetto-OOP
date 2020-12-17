@@ -59,34 +59,34 @@ public class DomainServiceImpl implements DomainService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public JSONObject getStats(){ 
+	public JSONObject getStats(String url){
 		JSONObject jo = new JSONObject();
 		Stats q;
 		
 		//VERSIONE 1
 		//Quantità
 	    q = new Quantita();
-	    q.calcoloStatistica();
+	    q.calcoloStatistica(url);
 	    jo.put("Quantità", q.getInt());
 	    
 	    //Tempo medio di vita
 	    q = new TempoMedioVita();
-	    q.calcoloStatistica();
+	    q.calcoloStatistica(url);
 	    jo.put("Tempo medio di vita(in giorni)", q.getDouble());
 	    
 	    //Tempo medio di update
 	    q = new TempoMedioUpdate();
-	    q.calcoloStatistica();
+	    q.calcoloStatistica(url);
 	    jo.put("Tempo medio di update(in giorni)", q.getDouble());
 	    
 		//Nazioni di Hosting
 	    q = new NazioniHost();
-	    q.calcoloStatistica();
+	    q.calcoloStatistica(url);
 	    jo.put("Nazioni di Hosting", q.getJSONObject());
 	    
 	    //ParoleChiave
 	    q = new ParoleChiave();
-	    q.calcoloStatistica();
+	    q.calcoloStatistica(url);
 	    jo.put("Parole chiave", q.getJSONObject());
 	    
 	    return jo;

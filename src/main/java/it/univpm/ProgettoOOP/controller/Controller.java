@@ -30,7 +30,7 @@ public class Controller{
 	 */
 	@GetMapping("/domains")
 		public ResponseEntity<Object> getDomains(@RequestParam(required = true) String domain, @RequestParam(required = true) String zone){
-				url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
+			url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
 			return new ResponseEntity<>(d.getDomains(url), HttpStatus.OK);
 		}
 
@@ -40,8 +40,9 @@ public class Controller{
 	 * @return Statistiche sui domini
 	 */
 	@GetMapping("/stats")
-		public ResponseEntity<Object> getStats(){
-			return new ResponseEntity<>(d.getStats(), HttpStatus.OK); // return statistiche  formato:(JSONObject)
+		public ResponseEntity<Object> getStats(@RequestParam(required = true) String domain, @RequestParam(required = true) String zone){
+			url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
+			return new ResponseEntity<>(d.getStats(url), HttpStatus.OK); // return statistiche  formato:(JSONObject)
 		}
 
 	/**

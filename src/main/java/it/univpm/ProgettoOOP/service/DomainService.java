@@ -16,5 +16,5 @@ public interface DomainService {
 	
 	public Vector<Domain> getDomains(String url);
 	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url);
-	public JSONObject getStats();
+	public JSONObject getStats(String url);
 }

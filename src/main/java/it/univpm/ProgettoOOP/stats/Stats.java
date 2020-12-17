@@ -26,7 +26,7 @@ public abstract class Stats {
     }
     
     //metodo che calcola una statistica
-    public abstract void calcoloStatistica();
+    public abstract void calcoloStatistica(String url);
     
     
     /** statistiche da elaborare:

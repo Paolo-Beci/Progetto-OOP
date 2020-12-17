@@ -24,15 +24,15 @@ public class TempoMedioVita extends Stats{
 	 * Getter del tempo medio di vita dei domini.
 	 * @return tempoMedioVita Ritorna il tempo medio di vita dei domini.
 	 */
-   public void calcoloStatistica() {
+   public void calcoloStatistica(String url) {
 	LocalDateTime today = LocalDateTime.now();
 	long tVDom, tVDoms = 0;
 	
-   	for(int i = 0; i < super.dsi.getDomains().size(); i++) {
-   		LocalDateTime createDate = LocalDateTime.parse(super.dsi.getDomains().get(i).getCreateDate());
+   	for(int i = 0; i < super.dsi.getDomains(url).size(); i++) {
+   		LocalDateTime createDate = LocalDateTime.parse(super.dsi.getDomains(url).get(i).getCreateDate());
    		tVDom = ChronoUnit.DAYS.between(createDate, today);
    		tVDoms += tVDom;
     }
-   	this.tMVDoms = tVDoms / super.dsi.getDomains().size();
+   	this.tMVDoms = tVDoms / super.dsi.getDomains(url).size();
    }
 }
