@@ -14,7 +14,7 @@ import it.univpm.ProgettoOOP.model.Domain;
  */
 public interface DomainService {
 	
-	public Vector<Domain> getDomains();
-	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter);
-	public JSONObject getStats();
+	public Vector<Domain> getDomains(String url);
+	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url);
+	//public JSONObject getStats();
 }

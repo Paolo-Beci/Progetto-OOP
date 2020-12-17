@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import it.univpm.ProgettoOOP.filters.Filter;
 import it.univpm.ProgettoOOP.model.Domain;
-import it.univpm.ProgettoOOP.stats.*;
+//import it.univpm.ProgettoOOP.stats.*;
 
 
 /**
@@ -23,20 +23,26 @@ public class DomainServiceImpl implements DomainService {
 	private Vector<Domain> domains= new Vector<Domain>();
 	private Vector<Domain> filteredDomains= new Vector<Domain>();
 
-	public DomainServiceImpl() {
-		DownloadDomains d= new DownloadDomains();
+	/*
+	public DomainServiceImpl(String url) {
+		DownloadDomains d= new DownloadDomains(url);
 		this.domains = d.Download();
 	}
-	
-	public Vector<Domain> getDomains(){
+	 */
+
+	public DomainServiceImpl() { }
+
+	public Vector<Domain> getDomains(String url){
+		DownloadDomains d= new DownloadDomains();
+		this.domains = d.Download(url);
 		return this.domains;		
 	}
 
-	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter) {
+	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url) {
 
 		Vector<Domain> domainsToFilter= new Vector<>();
 		DownloadDomains d= new DownloadDomains();
-		domainsToFilter= d.Download();
+		domainsToFilter= d.Download(url);
 		boolean or= false;
 		this.filteredDomains.clear();
 		Filter f0= new Filter();
@@ -58,7 +64,7 @@ public class DomainServiceImpl implements DomainService {
 		
 		return filteredDomains;
 	}
-
+	/*
 	@SuppressWarnings("unchecked")
 	public JSONObject getStats(){ 
 		JSONObject jo = new JSONObject();
@@ -92,8 +98,8 @@ public class DomainServiceImpl implements DomainService {
 	    
 	    return jo;
 	}
+	*/
 }
-
 /*
 //parsing da String a JSON
 ObjectMapper obj = new ObjectMapper();

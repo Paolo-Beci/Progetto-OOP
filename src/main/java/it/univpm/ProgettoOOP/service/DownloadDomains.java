@@ -2,9 +2,10 @@ package it.univpm.ProgettoOOP.service;
 
 import java.io.*;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.Vector;
+
+import it.univpm.ProgettoOOP.controller.*;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -24,8 +25,14 @@ import it.univpm.ProgettoOOP.model.Domain;
  */
 public class DownloadDomains {
 
-	// URL dell'API
-	public static String url = "https://api.domainsdb.info/v1/domains/search?domain=facebook&zone=com&pages=2";
+	//private String url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=facebook&zone=com&limit=50";
+
+	/*
+	public DownloadDomains(String url) {
+		this.url = url;
+	}
+	public DownloadDomains() {}
+	*/
 
 	/**
 	 * Metodo che effettua il download dei domini dall'api e che li elabora in formato stringa in modo tale da essere elaborati
@@ -33,7 +40,7 @@ public class DownloadDomains {
 	 * @return Ritorna il vettore downloadedDomains.
 	 * @throws NoConnectionException Eccezione personalizzata che carica il database da locale nel caso di mancata connessione
 	 */
-	public Vector<Domain> Download() {
+	public Vector<Domain> Download(String url) {
 		Vector<Domain> downloadedDomains= new Vector<Domain>();
 		JSONParser parser = new JSONParser();
 
@@ -46,11 +53,11 @@ public class DownloadDomains {
 			BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
 
 	        String inputLine;
-	        while ((inputLine = in.readLine()) != null) { 
-	        	
+	        while ((inputLine = in.readLine()) != null) {
+
 	        	//analizzo tutta la risposta dell'api
 	        	JSONObject stats = (JSONObject) parser.parse(inputLine);
-	        	
+
 	        	//vado a cercare domains nella risposta e lo casto a JSONArray
 				BuildDomains(stats, downloadedDomains);
 				if(downloadedDomains == null)
