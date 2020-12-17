@@ -7,9 +7,9 @@ public class ParoleChiave extends Stats{
 	private JSONObject jo = new JSONObject();
 	
 	public ParoleChiave() {
-		super();
+			super();
 	}
-	
+
 	public JSONObject getJSONObject() {
 		return this.jo;
 	}
@@ -23,11 +23,11 @@ public class ParoleChiave extends Stats{
 	 * @return quantitaDoms Ritorna il numero di parole chiave nei domini.
 	 */
     @SuppressWarnings("unchecked")
-	public void calcoloStatistica(String url) {
+	public void calcoloStatistica() {
     	int contBusiness = 0, contVacances = 0, contPages = 0, contLogin = 0, contMarketing = 0;
     	int contAltro = 0;
     	
-    	for(Domain d: dsi.getDomains(url)) {
+    	for(Domain d: super.domainsStats) {
     		if(d.getName().contains("business") | d.getName().contains("vacances") 
     				| d.getName().contains("pages") | d.getName().contains("login")
     				| d.getName().contains("marketing")) {

@@ -1,5 +1,9 @@
 package it.univpm.ProgettoOOP.stats;
 
+import it.univpm.ProgettoOOP.model.Domain;
+
+import java.util.Vector;
+
 public class Quantita extends Stats{
 	private int quantita;
 	
@@ -20,8 +24,8 @@ public class Quantita extends Stats{
 	 * Getter del numero dei domini.
 	 * @return quantitaDoms Ritorna il numero dei domini.
 	 */
-    public void calcoloStatistica(String url) {
-    	this.quantita = super.dsi.getDomains(url).size();
+    public void calcoloStatistica() {
+    	this.quantita = super.domainsStats.size();
     }
 	
 	

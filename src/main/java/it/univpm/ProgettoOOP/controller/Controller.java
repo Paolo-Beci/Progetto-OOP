@@ -29,8 +29,11 @@ public class Controller{
 	 * @return il Vector contenente i domain
 	 */
 	@GetMapping("/domains")
-		public ResponseEntity<Object> getDomains(@RequestParam(required = true) String domain, @RequestParam(required = true) String zone){
-			url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
+		public ResponseEntity<Object> getDomains(@RequestParam(name = "domain", defaultValue = "facebook") String domain,
+												 	@RequestParam(name = "zone", defaultValue = "com") String zone)
+		{
+			domain.toLowerCase();zone.toLowerCase();
+				url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
 			return new ResponseEntity<>(d.getDomains(url), HttpStatus.OK);
 		}
 
@@ -40,7 +43,10 @@ public class Controller{
 	 * @return Statistiche sui domini
 	 */
 	@GetMapping("/stats")
-		public ResponseEntity<Object> getStats(@RequestParam(required = true) String domain, @RequestParam(required = true) String zone){
+		public ResponseEntity<Object> getStats(@RequestParam(name = "domain", defaultValue = "facebook") String domain,
+											   		@RequestParam(name = "zone", defaultValue = "com") String zone)
+		{
+			domain.toLowerCase();zone.toLowerCase();
 			url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
 			return new ResponseEntity<>(d.getStats(url), HttpStatus.OK); // return statistiche  formato:(JSONObject)
 		}
@@ -54,7 +60,7 @@ public class Controller{
 		try {
 			if(bodyFilter.isEmpty())
 				throw new BodyIsEmptyException();
-
+				url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=facebook&zone=com&limit=50";
 			return new ResponseEntity<>(d.getFilteredDomains(bodyFilter, url), HttpStatus.OK); // return filtri  formato:(JSONObject) ?
 
 		} catch (BodyIsEmptyException e) {

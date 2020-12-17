@@ -60,33 +60,41 @@ public class DomainServiceImpl implements DomainService {
 
 	@SuppressWarnings("unchecked")
 	public JSONObject getStats(String url){
+		//Vector<Domain> domainsStats= new Vector<>();
+		DownloadDomains d= new DownloadDomains();
+		domains= d.Download(url);
+
 		JSONObject jo = new JSONObject();
 		Stats q;
-		
-		//VERSIONE 1
+
 		//Quantità
 	    q = new Quantita();
-	    q.calcoloStatistica(url);
+	    q.setVector(domains);
+	    q.calcoloStatistica();
 	    jo.put("Quantità", q.getInt());
 	    
 	    //Tempo medio di vita
 	    q = new TempoMedioVita();
-	    q.calcoloStatistica(url);
+		q.setVector(domains);
+	    q.calcoloStatistica();
 	    jo.put("Tempo medio di vita(in giorni)", q.getDouble());
 	    
 	    //Tempo medio di update
 	    q = new TempoMedioUpdate();
-	    q.calcoloStatistica(url);
+		q.setVector(domains);
+	    q.calcoloStatistica();
 	    jo.put("Tempo medio di update(in giorni)", q.getDouble());
 	    
 		//Nazioni di Hosting
 	    q = new NazioniHost();
-	    q.calcoloStatistica(url);
+		q.setVector(domains);
+	    q.calcoloStatistica();
 	    jo.put("Nazioni di Hosting", q.getJSONObject());
 	    
 	    //ParoleChiave
 	    q = new ParoleChiave();
-	    q.calcoloStatistica(url);
+		q.setVector(domains);
+	    q.calcoloStatistica();
 	    jo.put("Parole chiave", q.getJSONObject());
 	    
 	    return jo;
