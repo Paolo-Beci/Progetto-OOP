@@ -14,7 +14,7 @@ public class FilterCountry extends Filter {
 		return "\ntipoEffettivo: FilterCountry \nvalue: "+value+"\n";
 	}
 	
-	public void filtra(Vector<Domain> domainsToFilter) { //FILTRAGGIO AND
+	public void toFilter(Vector<Domain> domainsToFilter) { //FILTRAGGIO AND
 		
 		Vector<Domain> domainsToRemove= new Vector<>();
 			
@@ -25,7 +25,7 @@ public class FilterCountry extends Filter {
 		domainsToFilter.removeAll(domainsToRemove);
 	}
 	
-	public void filtra(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) { //FILTRAGGIO OR
+	public void toFilter(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) { //FILTRAGGIO OR
 	
 		for(Domain d: domainsToFilter) {
 		 	 if(d.getCountry().equals(value) && !filteredDomains.contains(d))

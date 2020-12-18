@@ -31,6 +31,7 @@ public class DownloadDomains {
 	 * dalle classi di filtri e statistiche.
 	 * @return Ritorna il vettore downloadedDomains.
 	 * @throws NoDataException Eccezione personalizzata che carica il database da locale nel caso di mancata connessione
+	 * @see
 	 */
 	public Vector<Domain> Download(String url) {
 		Vector<Domain> downloadedDomains= new Vector<Domain>();
@@ -78,27 +79,25 @@ public class DownloadDomains {
 
 					//analizzo tutta la risposta dell'api
 					JSONObject stats = (JSONObject) parser.parse(inputLine);
-					System.out.println(inputLine);
 					//vado a cercare domains nella risposta e lo casto a JSONArray
 					BuildDomains(stats, downloadedDomains);
-					//if(downloadedDomains == null)
-					//throw new NoConnectionException();
+
+					for(Domain d :downloadedDomains)
+					{
+						System.out.println(d);
+					}
 				}
-					
 				in.close();
 			}catch(IOException | ParseException f) {
 				System.out.println("ERRORE: OPERAZIONE INTERROTTA NELLA GESTIONE DEL FILE DA LOCAL RESOURCES");
 				System.out.println("MESSAGGI: " + f.getMessage());
 				System.out.println("CAUSA: " + f.getCause());
 			}
-	    } 
-		catch (Exception e) {
-			System.out.println("ERRORE GENERICO.");
-			System.out.println("MESSAGGIO: " + e.getMessage());
-			System.out.println("CAUSA: " + e.getCause());
+	    }
+		catch (ParseException e) {
+			System.out.println("ERRORE: ParseException line 99");
 			e.printStackTrace();
 		}
-		
 		return downloadedDomains;
 	}
 

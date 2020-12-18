@@ -32,7 +32,7 @@ public class Controller{
 												 	@RequestParam(name = "zone", defaultValue = "com") String zone)
 		{
 			domain.toLowerCase();zone.toLowerCase();
-				url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
+				url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=";
 			return new ResponseEntity<>(d.getDomains(url), HttpStatus.OK);
 		}
 

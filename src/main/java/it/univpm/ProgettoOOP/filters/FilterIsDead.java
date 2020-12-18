@@ -16,7 +16,7 @@ public class FilterIsDead extends Filter {
 	/**
 	 * E' importante inserire True o False con l'iniziale maiuscola nel bodyFilter
 	 */
-	public void filtra(Vector<Domain> domainsToFilter) { 
+	public void toFilter(Vector<Domain> domainsToFilter) {
 
 		Vector<Domain> domainToRemove= new Vector<>();
 		

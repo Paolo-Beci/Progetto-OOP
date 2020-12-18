@@ -14,7 +14,7 @@ public class FilterCreateDate extends Filter {
 		return "\ntipoEffettivo: FilterCreateDate \nvalue: "+value;
 	}
 	
-	public void filtra(Vector<Domain> domainsToFilter) {
+	public void toFilter(Vector<Domain> domainsToFilter) {
 
 		Vector<Domain> domainToRemove= new Vector<>();
 		

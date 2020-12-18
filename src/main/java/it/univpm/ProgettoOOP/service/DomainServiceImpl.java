@@ -39,7 +39,7 @@ public class DomainServiceImpl implements DomainService {
 		}
 		catch (Exception e)
 		{
-			System.out.println("ERRORE: GENERICO");
+			System.out.println("ERRORE: GENERICO getDomain");
 			System.out.println("MESSAGGI: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
 		}
@@ -78,26 +78,26 @@ public class DomainServiceImpl implements DomainService {
 				System.out.println("## CASO 1");
 				for (Filter f : f0.getFiltriNome()) {
 					System.out.println(f);
-					f.filtra(domainsToFilter1, domainsToFilter2);
+					f.toFilter(domainsToFilter1, domainsToFilter2);
 				}
 				//Aggiungo in OR tutti i Domini con quei country
 				for (Filter f : f0.getFiltriCountry()) {
 					System.out.println(f);
-					f.filtra(domainsToFilter2, filteredDomains);
+					f.toFilter(domainsToFilter2, filteredDomains);
 				}
 			}
 			if (f0.getFiltriNome().size() == 0 && f0.getFiltriCountry().size() != 0) {
 				System.out.println("## CASO 2");
 				for (Filter f : f0.getFiltriCountry()) {
 					System.out.println(f);
-					f.filtra(domainsToFilter1, filteredDomains);
+					f.toFilter(domainsToFilter1, filteredDomains);
 				}
 			}
 			if (f0.getFiltriNome().size() != 0 && f0.getFiltriCountry().size() == 0) {
 				System.out.println("## CASO 3");
 				for (Filter f : f0.getFiltriNome()) {
 					System.out.println(f);
-					f.filtra(domainsToFilter1, filteredDomains);
+					f.toFilter(domainsToFilter1, filteredDomains);
 				}
 			}
 			if (f0.getFiltriNome().size() == 0 && f0.getFiltriCountry().size() != 0) {
@@ -107,7 +107,7 @@ public class DomainServiceImpl implements DomainService {
 
 			for (Filter f : f0.getFilters()) {
 				System.out.println(f);
-				f.filtra(filteredDomains);
+				f.toFilter(filteredDomains);
 			}
 		}catch(Exception e){
 			System.out.println("ERRORE: GENERICO");

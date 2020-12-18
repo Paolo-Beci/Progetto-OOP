@@ -19,8 +19,8 @@ public class Filter {
 		this.value= value;
 	}
 	
-	public void filtra(Vector<Domain> domainsToFilter) {}
-	public void filtra(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) {}
+	public void toFilter(Vector<Domain> domainsToFilter) {}
+	public void toFilter(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) {}
 	
 	/**
 	 * Non è possibile inserire piu di un filtro dello stesso tipo
