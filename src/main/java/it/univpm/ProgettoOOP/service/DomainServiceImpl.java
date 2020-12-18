@@ -100,7 +100,7 @@ public class DomainServiceImpl implements DomainService {
 					f.filtra(domainsToFilter1, filteredDomains);
 				}
 			}
-			if (f0.getFiltriNome().size() == 0 && f0.getFiltriCountry().size() != 0) {
+			if (f0.getFiltriNome().size() == 0 && f0.getFiltriCountry().size() == 0) {
 				System.out.println("## CASO 4");
 				filteredDomains = domainsToFilter1;
 			}

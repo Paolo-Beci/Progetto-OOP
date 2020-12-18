@@ -40,7 +40,7 @@ public class Filter {
 			Filter f= new Filter();
 			
 			for(String s: f.parseString((String)bodyFilter.get("country"))){
-				Filter f1= new FilterCountry(s.toUpperCase());
+				Filter f1= new FilterCountry(s);
 				filtriCountry.add(f1);
 			}
 		}	
