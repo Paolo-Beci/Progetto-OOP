@@ -4,26 +4,20 @@ import org.json.simple.JSONObject;
 
 import it.univpm.ProgettoOOP.model.Domain;
 
-
 public class NazioniHost extends Stats{
-	private JSONObject jo = new JSONObject();
+	private final JSONObject jo = new JSONObject();
 	
 	public NazioniHost() {
 		super();
-
 	}
 
 	public JSONObject getJSONObject() {
 		return this.jo;
 	}
 	
-	public void setJo(JSONObject jo) {
-		this.jo = jo;
-	}
-	
 	/**
 	 * Getter del numero di nazioni di hosting dei domini.
-	 * @return nazioniHost Ritorna il numero di nazioni di hosting dei domini.
+	 * nazioniHost Ritorna il numero di nazioni di hosting dei domini.
 	*/ 
     @SuppressWarnings("unchecked")
 	public void calcoloStatistica() {

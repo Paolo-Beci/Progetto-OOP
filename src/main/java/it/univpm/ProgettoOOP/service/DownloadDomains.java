@@ -2,20 +2,21 @@ package it.univpm.ProgettoOOP.service;
 
 import java.io.*;
 import java.net.URL;
+//import java.net.http.HttpTimeoutException;
 import java.util.Scanner;
 import java.util.Vector;
 
-import it.univpm.ProgettoOOP.controller.*;
-
 import javax.net.ssl.HttpsURLConnection;
 
-import it.univpm.ProgettoOOP.exception.NoConnectionException;
+import it.univpm.ProgettoOOP.exception.NoDataException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import it.univpm.ProgettoOOP.model.Domain;
+
+import java.io.IOException;
 
 /**
  * Classe che gestisce il download e i relativi dati dei domini forniti dall'API
@@ -25,20 +26,11 @@ import it.univpm.ProgettoOOP.model.Domain;
  */
 public class DownloadDomains {
 
-	//private String url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=facebook&zone=com&limit=50";
-
-	/*
-	public DownloadDomains(String url) {
-		this.url = url;
-	}
-	public DownloadDomains() {}
-	*/
-
 	/**
 	 * Metodo che effettua il download dei domini dall'api e che li elabora in formato stringa in modo tale da essere elaborati
 	 * dalle classi di filtri e statistiche.
 	 * @return Ritorna il vettore downloadedDomains.
-	 * @throws NoConnectionException Eccezione personalizzata che carica il database da locale nel caso di mancata connessione
+	 * @throws NoDataException Eccezione personalizzata che carica il database da locale nel caso di mancata connessione
 	 */
 	public Vector<Domain> Download(String url) {
 		Vector<Domain> downloadedDomains= new Vector<Domain>();
@@ -60,32 +52,11 @@ public class DownloadDomains {
 
 	        	//vado a cercare domains nella risposta e lo casto a JSONArray
 				BuildDomains(stats, downloadedDomains);
-				if(downloadedDomains == null)
-					throw new NoConnectionException();
+				//if(downloadedDomains == null)
+					//throw new NoConnectionException();
 			}
 	        in.close();
-	    }catch(NoConnectionException e)
-		{
-			// NON FUNZIA --> Da chiedere se si può forzare springboot ad avviarsi anche senza connessione
-			try{
-				Scanner in = new Scanner(new BufferedReader(new FileReader("\\Progetto-OOP\\src\\main\\resources\\BackupData.jar")));
-				while ((in.hasNext())) {
-
-					//analizzo il file jar in input
-					JSONObject stats = (JSONObject) parser.parse(String.valueOf(in));
-
-					//vado a cercare domains nella risposta e lo casto a JSONArray
-					BuildDomains(stats, downloadedDomains);
-				}
-				in.close();
-			}catch(IOException | ParseException f) {
-				System.out.println("ERRORE: OPERAZIONE INTERROTTA NELLA GESTIONE DEL FILE DA LOCAL RESOURCES");
-				System.out.println("MESSAGGIO: " + f.getMessage());
-				System.out.println("CAUSA: " + f.getCause());
-			}
-			//
-		}
-		catch (FileNotFoundException e) {
+	    }catch (FileNotFoundException e) {
 			System.out.println("ERRORE: PROBLEMI CON LA GESTIONE DEI FILE");
 			System.out.println("MESSAGGIO: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
@@ -95,9 +66,33 @@ public class DownloadDomains {
 			System.out.println("ERRORE: OPERAZIONE INTERROTTA NELLA GESTIONE DEI FILE");
 			System.out.println("MESSAGGIO: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
-	        e.printStackTrace();
+
+
+			// provo a caricare da file locale le info sui domini
+			try{
+				String path_file = "C:\\Users\\becic\\IdeaProjects\\Progetto-OOP\\src\\main\\resources\\BackupData.txt";
+				Scanner in = new Scanner(new FileReader(path_file));
+
+				String inputLine;
+				while ((inputLine = in.nextLine()) != null) {
+
+					//analizzo tutta la risposta dell'api
+					JSONObject stats = (JSONObject) parser.parse(inputLine);
+					System.out.println(inputLine);
+					//vado a cercare domains nella risposta e lo casto a JSONArray
+					BuildDomains(stats, downloadedDomains);
+					//if(downloadedDomains == null)
+					//throw new NoConnectionException();
+				}
+					
+				in.close();
+			}catch(IOException | ParseException f) {
+				System.out.println("ERRORE: OPERAZIONE INTERROTTA NELLA GESTIONE DEL FILE DA LOCAL RESOURCES");
+				System.out.println("MESSAGGI: " + f.getMessage());
+				System.out.println("CAUSA: " + f.getCause());
+			}
 	    } 
-		catch (ParseException e) {
+		catch (Exception e) {
 			System.out.println("ERRORE GENERICO.");
 			System.out.println("MESSAGGIO: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
@@ -107,22 +102,37 @@ public class DownloadDomains {
 		return downloadedDomains;
 	}
 
+	/**
+	 * Metodo che effettua il get dei vari argomenti contenuti in ogni oggetto di stats
+	 * dalle classi di filtri e statistiche.
+	 * @throws NoDataException Eccezione personalizzata che carica il database da locale nel caso di mancata connessione
+	 * @param stats contiene l'oggetto da analizzare e smistare
+	 * @param downloadedDomains è un vettore di oggetti Domain
+	 */
 	private void BuildDomains(JSONObject stats, Vector<Domain> downloadedDomains) {
 		JSONArray a = (JSONArray) stats.get("domains");
 
-		for (Object o : a) {
+			for (Object o : a) {
+				try {
+				JSONObject domain = (JSONObject) o;
 
-			JSONObject domain = (JSONObject) o;
+				String name = (String) domain.get("domain");
+				String createDate = (String) domain.get("create_date");
+				String updateDate = (String) domain.get("update_date");
+				String country = (String) domain.get("country");
+				String isDead = (String) domain.get("isDead");
 
-			String name = (String) domain.get("domain");
-			String createDate = (String) domain.get("create_date");
-			String updateDate = (String) domain.get("update_date");
-			String country = (String) domain.get("country");
-			String isDead = (String) domain.get("isDead");
+				Domain d = new Domain(name, createDate, updateDate, country, isDead);
+				downloadedDomains.add(d);
 
-			Domain d= new Domain(name, createDate, updateDate, country, isDead);
-			downloadedDomains.add(d);
-		}
+				}catch (Exception e)
+				{
+					System.out.println("ERRORE GENERICO.");
+					System.out.println("MESSAGGIO: " + e.getMessage());
+					System.out.println("CAUSA: " + e.getCause());
+				}
+			}
+
 	}
 
 }

@@ -6,10 +6,10 @@ package it.univpm.ProgettoOOP.exception;
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph
  */
-public class NoConnectionException extends Exception{
+public class NoDataException extends Exception{
 
     // Eccezione
-    public NoConnectionException() {
-        super("ERRORE: CONNESSIONE ALL'API NON RIUSCITA, IL PROGRAMMA PROCEDE CON IL FILE DI DOMINI SALVATO IN LOCALE...");
+    public NoDataException() {
+        super("ERRORE: CONNESSIONE ALL'API NON RIUSCITA, IL PROGRAMMA NON HA ALCUN DATO DA ELABORARE");
     }
 }

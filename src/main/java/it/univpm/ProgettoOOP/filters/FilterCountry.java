@@ -11,12 +11,12 @@ public class FilterCountry extends Filter {
 	}
 	
 	public String toString() {
-		return "\ntipoEffettivo: FilterCountry \nvalue: "+value+"\nor: "+or;
+		return "\ntipoEffettivo: FilterCountry \nvalue: "+value+"\n";
 	}
 	
 	public void filtra(Vector<Domain> domainsToFilter) { //FILTRAGGIO AND
 		
-		Vector<Domain> domainsToRemove= new Vector<Domain>();
+		Vector<Domain> domainsToRemove= new Vector<>();
 			
 		for(Domain d: domainsToFilter) {
 			if(!d.getCountry().equals(value))
@@ -33,6 +33,4 @@ public class FilterCountry extends Filter {
 		}
 		
 	}
-
-	
 }

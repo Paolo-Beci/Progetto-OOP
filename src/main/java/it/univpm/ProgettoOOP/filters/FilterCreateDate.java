@@ -16,7 +16,7 @@ public class FilterCreateDate extends Filter {
 	
 	public void filtra(Vector<Domain> domainsToFilter) {
 
-		Vector<Domain> domainToRemove= new Vector<Domain>();
+		Vector<Domain> domainToRemove= new Vector<>();
 		
 		for(Domain d: domainsToFilter) {
 			if(!d.getCreateDate().contains(value))

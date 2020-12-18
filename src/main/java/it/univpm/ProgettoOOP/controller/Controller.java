@@ -2,7 +2,6 @@ package it.univpm.ProgettoOOP.controller;
 
 import it.univpm.ProgettoOOP.exception.BodyIsEmptyException;
 import org.json.simple.JSONObject;
-import it.univpm.ProgettoOOP.service.DownloadDomains;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,7 +59,7 @@ public class Controller{
 		try {
 			if(bodyFilter.isEmpty())
 				throw new BodyIsEmptyException();
-				url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=facebook&zone=com&limit=50";
+			url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=facebook&zone=com&limit=50";
 			return new ResponseEntity<>(d.getFilteredDomains(bodyFilter, url), HttpStatus.OK); // return filtri  formato:(JSONObject) ?
 
 		} catch (BodyIsEmptyException e) {

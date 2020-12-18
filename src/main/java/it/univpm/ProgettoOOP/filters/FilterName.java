@@ -3,8 +3,6 @@ package it.univpm.ProgettoOOP.filters;
 import java.util.Vector;
 
 import it.univpm.ProgettoOOP.model.Domain;
-import it.univpm.ProgettoOOP.service.DomainService;
-import it.univpm.ProgettoOOP.service.DomainServiceImpl;
 
 public class FilterName extends Filter {
 	
@@ -13,12 +11,12 @@ public class FilterName extends Filter {
 	}
 	
 	public String toString() {
-		return "\ntipoEffettivo: FilterName \nvalue: "+value+"\nor: "+or;
+		return "\ntipoEffettivo: FilterName \nvalue: "+value+"\n";
 	}
 	
 	public void filtra(Vector<Domain> domainsToFilter) { //FILTRAGGIO AND
 		
-		Vector<Domain> domainsToRemove= new Vector<Domain>();
+		Vector<Domain> domainsToRemove= new Vector<>();
 			
 		for(Domain d: domainsToFilter) {
 			if(!d.getName().contains(value))

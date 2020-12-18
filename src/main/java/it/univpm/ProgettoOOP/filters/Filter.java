@@ -8,11 +8,10 @@ import it.univpm.ProgettoOOP.model.Domain;
 
 public class Filter {
 	
-	protected Vector<Filter> filters= new Vector<Filter>();
-	protected Vector<Filter> filtriNome= new Vector<Filter>();
-	protected Vector<Filter> filtriCountry= new Vector<Filter>();
+	protected Vector<Filter> filters= new Vector<>();
+	protected Vector<Filter> filtriNome= new Vector<>();
+	protected Vector<Filter> filtriCountry= new Vector<>();
 	protected String value;
-	protected boolean or;
 		
 	public Filter() {}
 	
@@ -21,12 +20,11 @@ public class Filter {
 	}
 	
 	public void filtra(Vector<Domain> domainsToFilter) {}
-	
 	public void filtra(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) {}
 	
 	/**
 	 * Non è possibile inserire piu di un filtro dello stesso tipo
-	 * @param bodyFilter
+	 * @param bodyFilter description
 	 */
 	public void parsingFilters(JSONObject bodyFilter) {
 		
@@ -42,7 +40,7 @@ public class Filter {
 			Filter f= new Filter();
 			
 			for(String s: f.parseString((String)bodyFilter.get("country"))){
-				Filter f1= new FilterCountry(s);
+				Filter f1= new FilterCountry(s.toUpperCase());
 				filtriCountry.add(f1);
 			}
 		}	
@@ -80,9 +78,7 @@ public class Filter {
 	}
 
 	public String[] parseString(String riga) {
-		
-		String[] rigaSplitted= riga.split(";");	
-		return rigaSplitted;
+		return riga.split(";");
 	}
 	
 	public Vector<Filter> getFilters() {

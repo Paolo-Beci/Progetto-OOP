@@ -15,25 +15,28 @@ public class TempoMedioUpdate extends Stats{
 		return this.tMUDoms;
 	}
 
-	public void setTMU(int tMUDoms) {
-		this.tMUDoms = tMUDoms;
-	}
-
 	/**
 	 * Getter del tempo medio di update dei domini.
-	 * @return tempoMedioUpdate Ritorna il tempo medio di update dei domini.
+	 * tempoMedioUpdate Ritorna il tempo medio di update dei domini.
 	 */
     public void calcoloStatistica() {
     	LocalDateTime today = LocalDateTime.now();
     	long tUDom, tUDoms = 0;
-    	
-       	for(int i = 0; i < super.domainsStats.size(); i++) {
-       		LocalDateTime updateDate = LocalDateTime.parse(super.domainsStats.get(i).getCreateDate());
-       		tUDom = ChronoUnit.DAYS.between(updateDate, today);
-       		tUDoms += tUDom;
-        }
-       	this.tMUDoms = tUDoms / super.domainsStats.size();
+
+		for (it.univpm.ProgettoOOP.model.Domain domainsStat : super.domainsStats) {
+			if (domainsStat.getCreateDate() != null) {
+				LocalDateTime createDate = LocalDateTime.parse(domainsStat.getCreateDate());
+				tUDom = ChronoUnit.DAYS.between(createDate, today);
+			} else
+				tUDom = 0;
+			tUDoms += tUDom;
+		}
+		try{
+			this.tMUDoms = tUDoms / super.domainsStats.size();
+		}catch(ArithmeticException e) {
+			System.out.println("ERRORE: ARITMETICO");
+			System.out.println("MESSAGGI: " + e.getMessage());
+			System.out.println("CAUSA: " + e.getCause());
+		}
     }
-	
-	
 }

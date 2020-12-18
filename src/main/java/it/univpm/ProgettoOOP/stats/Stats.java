@@ -35,11 +35,9 @@ public class Stats {
     }
     
     //metodo che calcola una statistica
-
     public void calcoloStatistica(){}
     
-    
-    /** statistiche da elaborare:
+    /* statistiche da elaborare:
      * - Quantità di domini  (sono sempre 50)
      * - Tempo medio di vita
      * - Tempo medio di update
@@ -49,7 +47,4 @@ public class Stats {
      * Le statistiche vengono calcolate sul vettore dei domini (eventualmente filtrati)
      *
      */
-    
-    
-    
     }
