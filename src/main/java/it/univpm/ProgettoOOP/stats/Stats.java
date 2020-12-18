@@ -6,45 +6,70 @@ import org.json.simple.JSONObject;
 
 import java.util.Vector;
 
-public class Stats {
-
-    Vector<Domain> domainsStats= new Vector<>();
-
-    public void setVector(Vector<Domain> domainsStats)
-    {
-        this.domainsStats = domainsStats;
-
+/**
+ * <b>Superclasse</b> rappresentante la statistica da calcolare
+ * @author Beci Paolo
+ * @author Izzi Giuseppe
+ * @author Grieco Emilio Joseph
+ * @version 1.0
+ */
+public abstract class Stats {
+	
+	/**
+	 * <b>Vettore</b> che conterrà i domini sui quali effettuare statistica.
+	 */
+    Vector<Domain> domains = new Vector<>();
+    
+    /**
+     * <b>Costruttore</b> della classe stessa
+     * @param domains Vettore di domini sui quali efetture statistica.
+     */
+    public Stats(Vector<Domain> domains) {
+    	this.domains = domains;
     }
-
-    public Vector<Domain> getVector() {
-        return domainsStats;
+    
+    /**
+     * <b>Metodo</b> che restituisce il vettore di domini sui quali calcolare statistica.
+     * @return vettore di domini
+     */
+    public Vector<Domain> getDomains() {
+        return domains;
     }
-    //metodo che torna una statistica di tipo "intero"
+    
+    /**
+     * <b>Metodo</b> che modifica il vettore di domini sui quali verrà cacolata la statistica.
+     * @param domains Nuovo vettore di domini sui quali calcolare statistica. 
+     */
+    public void setDomains(Vector<Domain> domains) {
+    	this.domains = domains;
+    }
+    
+    /**
+     * <b>Metodo</b> che torna una statistica di tipo <code>int</code>.
+     * @return valore di default
+     */
     public int getInt() {
     	return 0;
     }
     
-    //metodo che torna una statistica di tipo "double"
+    /**
+     * <b>Metodo</b> che torna una statistica di tipo <code>double</code>.
+     * @return valore di default
+     */
     public double getDouble() {
     	return 0;
     }
     
-    //metodo che torna una statistica di tipo "struttura dati"
+    /**
+     * <b>Metodo</b> che torna una statistica di tipo <code>JSONObject</code>.
+     * @return valore di default
+     */
     public JSONObject getJSONObject() {
     	return null;
     }
     
-    //metodo che calcola una statistica
-    public void calcoloStatistica(){}
-    
-    /* statistiche da elaborare:
-     * - Quantità di domini  (sono sempre 50)
-     * - Tempo medio di vita
-     * - Tempo medio di update
-     * - Nazioni di hosting
-     * - Parole chiave più utilizzate
-     *
-     * Le statistiche vengono calcolate sul vettore dei domini (eventualmente filtrati)
-     *
+    /**
+     * <b>Metodo</b> astratto per il calcolo della statistica.
      */
+    public abstract void calculateStat();
     }

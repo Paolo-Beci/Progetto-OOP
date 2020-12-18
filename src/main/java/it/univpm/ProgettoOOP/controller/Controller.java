@@ -14,18 +14,26 @@ import it.univpm.ProgettoOOP.service.*;
  * @author Beci Paolo
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph
+ * @version 1.0
  * @throws BodyIsEmptyException Eccezione personalizzata la gestione del body vuoto nella richiesta di post
  */
 @RestController
 public class Controller{
 
+	/**
+	 * Stringa che conterrà l'URL delle API di facebook(default) oppure di qualsiasi altro sito a scelta.
+	 */
 	public String url;
+	
+	
 	@Autowired
 	DomainService d;
 
 	/**
-	 * Rotta per visualizzare i domini commerciali contenenti la parola chiave "facebook" (limite 50)
-	 * @return il Vector contenente i domain
+	 * <b>Rotta</b> per visualizzare i domini commerciali contenenti la parola chiave "facebook"
+	 * @param domain Parola chiave della quale l'utente vuole ottenere i domini.
+	 * @param zone Zona dalla quale l'utente vuole ottenere i domini.
+	 * @return Vettore di domini
 	 */
 	@GetMapping("/domains")
 		public ResponseEntity<Object> getDomains(@RequestParam(name = "domain", defaultValue = "facebook") String domain,
@@ -38,8 +46,10 @@ public class Controller{
 
 
 	/**
-	 * Rotta per visualizzare le statistiche elaborate sui domini forniti dall'API
-	 * @return Statistiche sui domini
+	 * <b>Rotta</b> per visualizzare le statistiche elaborate sui domini forniti dall'API.
+	 * @param domain Dominio sul quale eseguire statistica.
+	 * @param zone Zona sulla quale eseguire statistica.
+	 * @return <code>JSONObject</code> contenente la statistica calcolata.
 	 */
 	@GetMapping("/stats")
 		public ResponseEntity<Object> getStats(@RequestParam(name = "domain", defaultValue = "facebook") String domain,
@@ -51,7 +61,7 @@ public class Controller{
 		}
 
 	/**
-	 * Rotta per visualizzare i domini o le informazioni filtrate
+	 * <b>Rotta</b> per visualizzare le informazioni relative ai domini filtrati.
 	 * @return Filtri sui domini
 	 */
 	@PostMapping("/filter")
@@ -72,6 +82,12 @@ public class Controller{
 			return Error();
 		}
 	}
+	
+	/**
+	 * 
+	 * @param <Object>
+	 * @return
+	 */
 	public <Object> String Error()
 	{
 		return "IL BODY DELLA CHIAMATA POST NON CONTIENE NESSUN FILTRO";

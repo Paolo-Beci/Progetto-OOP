@@ -12,20 +12,36 @@ import it.univpm.ProgettoOOP.stats.*;
 
 
 /**
- * ...
+ * <b>Implemetazione</b> dell'interfaccia DomainService.
  * @author Beci Paolo
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph
+ * @version 1.0
  */
 
 @Service
 public class DomainServiceImpl implements DomainService {
-
+    
+	/**
+	 * <b>Vettore</b> che conterrà i domini ottenuti dall'API.
+	 */
 	private Vector<Domain> domains= new Vector<>();
+	
+	/**
+	 * <b>Vettore</b> che conterrà i domini filtrati.
+	 */
 	private Vector<Domain> filteredDomains= new Vector<>();
-
-	public DomainServiceImpl() { }
-
+	
+	/**
+	 * <b>Costruttore</b> vuoto della stessa
+	 */
+	public DomainServiceImpl() {}
+	
+	/**
+	 * <b>Metodo</b> che restituisce i domini.
+	 * @param url Url che consente l'accesso all'API. 
+	 * @return vettore di domini
+	 */
 	public Vector<Domain> getDomains(String url){
 		try {
 			DownloadDomains d = new DownloadDomains();
@@ -46,6 +62,12 @@ public class DomainServiceImpl implements DomainService {
 		return this.domains;
 	}
 
+	/**
+	 * <b>Metodo</b> che restituisce i domini filtrati.
+	 * @param bodyFilter <code>JSONObject</code> contenente i filtri scelti dall'utente.
+	 * @param url Url che consente l'accesso all'API. 
+	 * @return vettore di domini filtrati
+	 */
 	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url) {
 
 		Vector<Domain> domainsToFilter1 = new Vector<>();
@@ -117,6 +139,11 @@ public class DomainServiceImpl implements DomainService {
 		return filteredDomains;
 	}
 
+	/**
+	 * <b>Metodo</b> che restituisce le statistiche sui domini.
+	 * @param url Url che consente l'accesso all'API. 
+	 * @return <code>JSONObject</code> contenente la statistica elaborata.
+	 */
 	@SuppressWarnings("unchecked")
 	public JSONObject getStats(String url){
 
@@ -129,35 +156,30 @@ public class DomainServiceImpl implements DomainService {
 				throw new NoDataException();
 
 			//Quantità
-			q = new Quantita();
-			q.setVector(domains);
-			q.calcoloStatistica();
-			jo.put("Quantità", q.getInt());
+			q = new Quantity(domains);
+			q.calculateStat();
+			jo.put("Quantity", q.getInt());
 
 
 			//Tempo medio di vita
-			q = new TempoMedioVita();
-			q.setVector(domains);
-			q.calcoloStatistica();
-			jo.put("Tempo medio di vita(in giorni)", q.getDouble());
+			q = new AverageLifeTime(domains);
+			q.calculateStat();
+			jo.put("Average life time(days)", q.getDouble());
 
 			//Tempo medio di update
-			q = new TempoMedioUpdate();
-			q.setVector(domains);
-			q.calcoloStatistica();
-			jo.put("Tempo medio di update(in giorni)", q.getDouble());
+			q = new AverageUpdateTime(domains);
+			q.calculateStat();
+			jo.put("Average update time(days)", q.getDouble());
 
 			//Nazioni di Hosting
-			q = new NazioniHost();
-			q.setVector(domains);
-			q.calcoloStatistica();
-			jo.put("Nazioni di Hosting", q.getJSONObject());
+			q = new HostCountry(domains);
+			q.calculateStat();
+			jo.put("Host countries", q.getJSONObject());
 
 			//ParoleChiave
-			q = new ParoleChiave();
-			q.setVector(domains);
-			q.calcoloStatistica();
-			jo.put("Parole chiave", q.getJSONObject());
+			q = new KeyWord(domains);
+			q.calculateStat();
+			jo.put("Keywords", q.getJSONObject());
 		}catch(NoDataException e)
 		{
 			System.out.println("MESSAGGI: " + e.getMessage());
