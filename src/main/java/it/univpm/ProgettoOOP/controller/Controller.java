@@ -55,11 +55,15 @@ public class Controller{
 	 * @return Filtri sui domini
 	 */
 	@PostMapping("/filter")
-	public Object getFilteredDomains (@RequestBody JSONObject bodyFilter) {
+	public Object getFilteredDomains (@RequestBody JSONObject bodyFilter, @RequestParam(name = "domain", defaultValue = "facebook") String domain,
+	   		@RequestParam(name = "zone", defaultValue = "com") String zone) {
+
+		domain.toLowerCase();zone.toLowerCase();
+		url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
+		
 		try {
 			if(bodyFilter.isEmpty())
 				throw new BodyIsEmptyException();
-			url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=facebook&zone=com&limit=50";
 			return new ResponseEntity<>(d.getFilteredDomains(bodyFilter, url), HttpStatus.OK); // return filtri  formato:(JSONObject) ?
 
 		} catch (BodyIsEmptyException e) {
