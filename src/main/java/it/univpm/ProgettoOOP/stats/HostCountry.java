@@ -39,6 +39,7 @@ public class HostCountry extends Stats{
 	/**
 	 * <b>Metodo</b> che effettua il calcolo delle nazioni di hosting.
 	 * @return le nazioni di hosting dei domini.
+	 * @see Domain#getCountry()
 	 */
     @SuppressWarnings("unchecked")
 	public void calculateStat() {
