@@ -50,13 +50,13 @@ public class DomainServiceImpl implements DomainService {
 			DownloadDomains d = new DownloadDomains();
 			this.domains = d.Download(url);
 			System.out.println(this.domains);
-			if (this.domains == null)
+			if (this.domains == null || this.domains.contains("[]"))
 				throw new NoDataException();
 		}
 		catch(NoDataException e) {
 			System.out.println("ERRORE: NESSUN DOMINIO RICEVUTO.");
 			System.out.println("MESSAGGI: " + e.getMessage());
-			System.out.println("CAUSA: " + e.getCause());
+			System.out.println("CAUSA: POTRESTI AVER INSERITO UN CAMPO DOMINIO E ZONA CHE NON SONO PRESENTI NEL DATABASE...\n");
 		}
 		catch (Exception e)
 		{

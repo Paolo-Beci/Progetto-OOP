@@ -10,6 +10,6 @@ public class NoDataException extends Exception{
 
     // Eccezione
     public NoDataException() {
-        super("ERRORE: CONNESSIONE ALL'API NON RIUSCITA, IL PROGRAMMA NON HA ALCUN DATO DA ELABORARE");
+        super("ERRORE: IL PROGRAMMA NON HA ALCUN DATO DA ELABORARE");
     }
 }

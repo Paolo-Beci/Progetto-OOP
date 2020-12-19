@@ -57,16 +57,17 @@ public class DownloadDomains {
 				BuildDomains(stats, downloadedDomains);
 			}
 	        in.close();
-	    }catch (FileNotFoundException e) {
+	    }
+		catch (FileNotFoundException e) {
 			System.out.println("ERRORE: PROBLEMI CON LA GESTIONE DEI FILE");
 			System.out.println("MESSAGGIO: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
-	        e.printStackTrace();
+			return null;
 	    }
 		catch (IOException e) {
 			System.out.println("ERRORE: CONNESSIONE ALL'API NON RIUSCITA...PROCEDO CON IL DATABASE SALVATO IN LOCALE");
 			System.out.println("MESSAGGIO: " + e.getMessage());
-			System.out.println("CAUSA: L'URL E' CORROTTO" + e.getCause());
+			System.out.println("CAUSA: L'URL E' CORROTTO..." + e.getCause());
 
 			try{
 				// Carico il database predefinito dal file BackupData.txt

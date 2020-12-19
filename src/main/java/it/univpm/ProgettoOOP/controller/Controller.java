@@ -24,8 +24,7 @@ public class Controller{
 	 * Stringa che conterrà l'URL delle API di facebook(default) oppure di qualsiasi altro sito a scelta.
 	 */
 	public String url;
-	
-	
+
 	@Autowired
 	DomainService d;
 
@@ -42,7 +41,10 @@ public class Controller{
 		{
 			domain.toLowerCase();zone.toLowerCase();
 				url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
-			return new ResponseEntity<>(d.getDomains(url), HttpStatus.OK);
+			if(d.getDomains(url) == null)
+				return new ResponseEntity<>(DomainError(), HttpStatus.OK);
+			else
+				return new ResponseEntity<>(d.getDomains(url), HttpStatus.OK);
 		}
 
 
@@ -59,17 +61,20 @@ public class Controller{
 		{
 			domain.toLowerCase();zone.toLowerCase();
 			url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
-			return new ResponseEntity<>(d.getStats(url), HttpStatus.OK); // return statistiche  formato:(JSONObject)
+			return new ResponseEntity<>(d.getStats(url), HttpStatus.OK);
 		}
 
 	/**
 	 * <b>Rotta</b> per visualizzare le informazioni relative ai domini filtrati.
+	 * @param bodyFilter body contenente le richieste di filtro.
+	 * @param domain Dominio sul quale eseguire statistica.
+	 * @param zone Zona sulla quale eseguire statistica.
 	 * @return Filtri sui domini
 	 * @see DomainServiceImpl#getFilteredDomains(JSONObject, String) 
 	 */
 	@PostMapping("/filter")
 	public Object getFilteredDomains (@RequestBody JSONObject bodyFilter, @RequestParam(name = "domain", defaultValue = "facebook") String domain,
-	   		@RequestParam(name = "zone", defaultValue = "com") String zone) {
+	   										@RequestParam(name = "zone", defaultValue = "com") String zone) {
 
 		domain.toLowerCase();zone.toLowerCase();
 		url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
@@ -77,8 +82,10 @@ public class Controller{
 		try {
 			if(bodyFilter.isEmpty())
 				throw new BodyIsEmptyException();
-			return new ResponseEntity<>(d.getFilteredDomains(bodyFilter, url), HttpStatus.OK); // return filtri  formato:(JSONObject) ?
-
+			if(d.getFilteredDomains(bodyFilter, url) == null)
+				return new ResponseEntity<>(DomainError(), HttpStatus.OK);
+			else
+				return new ResponseEntity<>(d.getFilteredDomains(bodyFilter, url), HttpStatus.OK);
 		} catch (BodyIsEmptyException e) {
 			System.out.println("MESSAGGIO: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
@@ -87,12 +94,20 @@ public class Controller{
 	}
 	
 	/**
-	 * 
 	 * @param <Object>
-	 * @return messaggio errore
+	 * @return messaggio errore body richiesta vuoto
 	 */
 	public <Object> String Error()
 	{
 		return "IL BODY DELLA CHIAMATA POST NON CONTIENE NESSUN FILTRO";
+	}
+
+	/**
+	 * @param <Object>
+	 * @return messaggio errore richiesta non valida
+	 */
+	public <Object> String DomainError()
+	{
+		return "I CAMPI DELLA RICHISTA NON PRODUCONO ALCUN RISULTATO...\n Riprova con diversi campi domain e zone!";
 	}
 }
