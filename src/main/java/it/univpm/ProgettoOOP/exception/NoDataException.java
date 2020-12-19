@@ -1,7 +1,7 @@
 package it.univpm.ProgettoOOP.exception;
 
 /**
- * Eccezione che avvisa quando non sono presenti dati in memoria
+ * <b>Eccezione</b> che avvisa quando non sono presenti dati in memoria
  * @author Beci Paolo
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph

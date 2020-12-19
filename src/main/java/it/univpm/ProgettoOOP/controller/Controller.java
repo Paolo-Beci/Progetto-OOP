@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import it.univpm.ProgettoOOP.service.*;
 /**
- * Rappresenta la classe che gestisce tutte le chiamate al Server
+ * <b>Classe</b> che gestisce tutte le chiamate al Server
  * @author Beci Paolo
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph

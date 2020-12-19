@@ -18,7 +18,7 @@ import it.univpm.ProgettoOOP.model.Domain;
 import java.io.IOException;
 
 /**
- * Classe che gestisce il download e i relativi dati dei domini forniti dall'API
+ * <b>Classe</b> che gestisce il download e i relativi dati dei domini forniti dall'API
  * @author Beci Paolo
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph
@@ -26,7 +26,7 @@ import java.io.IOException;
 public class DownloadDomains {
 
 	/**
-	 * Metodo che effettua il download dei domini dall'api e che li elabora in formato stringa in modo tale da essere elaborati
+	 * <b>Metodo</b> che effettua il download dei domini dall'api e che li elabora in formato stringa in modo tale da essere elaborati
 	 * dalle classi di filtri e statistiche.
 	 * @param url è l'URL personalizzato della <b>API</b>
 	 * @return Ritorna il vettore downloadedDomains.
@@ -100,7 +100,7 @@ public class DownloadDomains {
 	}
 
 	/**
-	 * Metodo che effettua il get dei vari argomenti contenuti in ogni oggetto di stats
+	 * <b>Metodo</b> che effettua il get dei vari argomenti contenuti in ogni oggetto di stats
 	 * dalle classi di filtri e statistiche.
 	 * @param stats contiene l'oggetto da analizzare e smistare
 	 * @param downloadedDomains è un vettore di oggetti Domain
