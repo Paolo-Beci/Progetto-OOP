@@ -14,22 +14,16 @@ public class FilterName extends Filter {
 		return "\ntipoEffettivo: FilterName \nvalue: "+value+"\n";
 	}
 	
-	public void toFilter(Vector<Domain> domainsToFilter) { //FILTRAGGIO AND
-		
-		Vector<Domain> domainsToRemove= new Vector<>();
-			
-		for(Domain d: domainsToFilter) {
-			if(!d.getName().contains(value))
-				domainsToRemove.add(d);
-		}
-		domainsToFilter.removeAll(domainsToRemove);
-	}
-	
 	public void toFilter(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) { //FILTRAGGIO OR
 	
 		for(Domain d: domainsToFilter) {
 		 	 if(d.getName().contains(value) && !filteredDomains.contains(d))
-		 		filteredDomains.add(d);
+
+			try{
+				filteredDomains.add(d);
+			}catch(ClassCastException c){
+
+			}
 		}
 		
 	}

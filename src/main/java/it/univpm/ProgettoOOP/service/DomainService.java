@@ -30,7 +30,7 @@ public interface DomainService {
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return vettore di domini filtrati
 	 */
-	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url) throws NoDataException, NotClearException;
+	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url);
 	
 	/**
 	 * <b>Intestazione</b> del metodo che restituisce le statistiche sui domini.

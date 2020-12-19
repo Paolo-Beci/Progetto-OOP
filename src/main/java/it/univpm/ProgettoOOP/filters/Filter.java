@@ -75,7 +75,7 @@ public class Filter {
 		try{
 			splittedLine = line.split(";");
 		}catch(PatternSyntaxException p){
-			System.out.println("ERRORE: GENERICO");
+			System.out.println("ERRORE: GENERICO in parseString()");
 			System.out.println("MESSAGGI: " + p.getMessage());
 			System.out.println("CAUSA: " + p.getCause());
 		}

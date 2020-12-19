@@ -45,24 +45,19 @@ public class DomainServiceImpl implements DomainService {
 	 * @see DownloadDomains#Download(String)
 	 * @throws NoDataException
 	 */
-	public Vector<Domain> getDomains(String url){
+	public Vector<Domain> getDomains(String url) {
 		try {
 			DownloadDomains d = new DownloadDomains();
 			this.domains = d.Download(url);
 			//System.out.println(domains);
-			if(this.domains == null)
+			if (this.domains == null)
 				throw new NoDataException();
-		}catch(NoDataException e)
-		{
-			System.out.println("MESSAGGI: " + e.getMessage());
-			System.out.println("CAUSA: " + e.getCause());
 		}
 		catch (Exception e)
 		{
-			System.out.println("ERRORE: GENERICO getDomain");
+			System.out.println("ERRORE: GENERICO in getDomains().");
 			System.out.println("MESSAGGI: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
-			//System.out.println(domains);
 		}
 		return this.domains;
 	}
@@ -80,20 +75,20 @@ public class DomainServiceImpl implements DomainService {
 	 * @throws NoDataException
 	 * @throws NotClearException
 	 */
-	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url) throws NoDataException, NotClearException {
-
-		Vector<Domain> domainsToFilter1 = new Vector<>();
-		Vector<Domain> domainsToFilter2 = new Vector<>();
-		DownloadDomains d = new DownloadDomains();
-		domainsToFilter1 = d.Download(url);
-		if(domainsToFilter1 == null)
-				throw new NoDataException();
-
-		this.filteredDomains.clear();
-		if(filteredDomains.size()!=0)
-			throw new NotClearException();
-
+	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url) {
 		try{
+			Vector<Domain> domainsToFilter1 = new Vector<>();
+			Vector<Domain> domainsToFilter2 = new Vector<>();
+			DownloadDomains d = new DownloadDomains();
+			domainsToFilter1 = d.Download(url);
+			if(domainsToFilter1 == null)
+					throw new NoDataException();
+
+			this.filteredDomains.clear();
+			if(filteredDomains.size()!=0)
+				throw new NotClearException();
+
+
 			Filter f0 = new Filter();
 
 			f0.parsingFilters(bodyFilter);
@@ -135,8 +130,9 @@ public class DomainServiceImpl implements DomainService {
 				System.out.println(f);
 				f.toFilter(filteredDomains);
 			}
-		}catch(Exception e){
-			System.out.println("ERRORE: GENERICO");
+		}
+		catch(Exception e){
+			System.out.println("ERRORE: GENERICO in getFilteredDomains().");
 			System.out.println("MESSAGGI: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
 		}
@@ -197,7 +193,7 @@ public class DomainServiceImpl implements DomainService {
 			System.out.println("CAUSA: " + e.getCause());
 		}catch(Exception e)
 		{
-			System.out.println("ERRORE GENERICO.");
+			System.out.println("ERRORE GENERICO in getStats().");
 			System.out.println("MESSAGGIO: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
 		}
