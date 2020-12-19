@@ -39,6 +39,7 @@ public class KeyWord extends Stats{
 	/**
 	 * <b>Metodo</b> che effettua il calcolo delle parole chiave.
 	 * @return le parole chiave dei domini.
+	 * @see Domain#getName()
 	 */
     @SuppressWarnings("unchecked")
 	public void calculateStat() {
