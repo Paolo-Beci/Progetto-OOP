@@ -1,5 +1,5 @@
-# Progetto-OOP
-Progetto per esame di Programmazione ad Oggetti A.A. 2020/2021
+# Progetto-OOP A.A. 2020/2021
+L'applicazione sviluppata è una Rest Api che, prendendo dei Domini da un'[API](https://api.domainsdb.info/v1/), ne effettui l'analisi sulle parole chiave, sull'host e su altri parametri. Supporta anche le funzionalità di filtraggio e statistica sui domini presi dal database.
 
 # Come Usare l'Applicazione
 Inserimento immagini e istruzioni varie
