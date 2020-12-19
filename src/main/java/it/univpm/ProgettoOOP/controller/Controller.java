@@ -1,7 +1,6 @@
 package it.univpm.ProgettoOOP.controller;
 
 import it.univpm.ProgettoOOP.exception.BodyIsEmptyException;
-import it.univpm.ProgettoOOP.exception.NoDataException;
 import org.json.simple.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;

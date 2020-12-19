@@ -38,7 +38,7 @@ public class AverageLifeTime extends Stats{
 
 	/**
 	 * <b>Metodo</b> che effettua il calcolo del tempo di vita medio dei domini.
-	 * @return il tempo di vita medio dei domini.
+	 * @see Domain#getCreateDate()
 	 */
    public void calculateStat() {
 	LocalDateTime today = LocalDateTime.now();

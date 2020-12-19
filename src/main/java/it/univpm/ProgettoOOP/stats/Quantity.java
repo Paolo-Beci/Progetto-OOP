@@ -36,7 +36,7 @@ public class Quantity extends Stats{
 
 	/**
 	 * <b>Metodo</b> setter della quantità
-	 * @param quantita
+	 * @param quantity quantità
 	 */
 	public void setQuantita(int quantity) {
 		this.quantity = quantity;
