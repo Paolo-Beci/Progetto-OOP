@@ -34,6 +34,7 @@ public class Controller{
 	 * @param domain Parola chiave della quale l'utente vuole ottenere i domini.
 	 * @param zone Zona dalla quale l'utente vuole ottenere i domini.
 	 * @return Vettore di domini
+	 * @see getDomains
 	 */
 	@GetMapping("/domains")
 		public ResponseEntity<Object> getDomains(@RequestParam(name = "domain", defaultValue = "facebook") String domain,
@@ -49,7 +50,8 @@ public class Controller{
 	 * <b>Rotta</b> per visualizzare le statistiche elaborate sui domini forniti dall'API.
 	 * @param domain Dominio sul quale eseguire statistica.
 	 * @param zone Zona sulla quale eseguire statistica.
-	 * @return <code>JSONObject</code> contenente la statistica calcolata.
+	 * @return <code>JSONObject</code> contenente la statistica calcolata
+	 * @see getStats
 	 */
 	@GetMapping("/stats")
 		public ResponseEntity<Object> getStats(@RequestParam(name = "domain", defaultValue = "facebook") String domain,

@@ -41,6 +41,8 @@ public class DomainServiceImpl implements DomainService {
 	 * <b>Metodo</b> che restituisce i domini.
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return vettore di domini
+	 * @see DownloadDomains#Download(String)
+	 * @throws NoDataException
 	 */
 	public Vector<Domain> getDomains(String url){
 		try {
@@ -142,7 +144,14 @@ public class DomainServiceImpl implements DomainService {
 	/**
 	 * <b>Metodo</b> che restituisce le statistiche sui domini.
 	 * @param url Url che consente l'accesso all'API. 
-	 * @return <code>JSONObject</code> contenente la statistica elaborata.
+	 * @return <code>JSONObject</code> contenente la statistica elaborata
+	 * @see DownloadDomains#Download(String)
+	 * @see Quantity#calculateStat()
+	 * @see AverageLifeTime#calculateStat()
+	 * @see AverageUpdateTime#calculateStat()
+	 * @see HostCountry#calculateStat()
+	 * @see KeyWord#calculateStat()
+	 * @throws NoDataException
 	 */
 	@SuppressWarnings("unchecked")
 	public JSONObject getStats(String url){
