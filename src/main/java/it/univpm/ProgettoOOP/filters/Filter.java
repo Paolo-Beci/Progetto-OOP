@@ -1,6 +1,7 @@
 package it.univpm.ProgettoOOP.filters;
 
 import java.util.Vector;
+import java.util.regex.PatternSyntaxException;
 
 import org.json.simple.JSONObject;
 
@@ -9,8 +10,8 @@ import it.univpm.ProgettoOOP.model.Domain;
 public class Filter {
 	
 	protected Vector<Filter> filters= new Vector<>();
-	protected Vector<Filter> filtriNome= new Vector<>();
-	protected Vector<Filter> filtriCountry= new Vector<>();
+	protected Vector<Filter> filtersName= new Vector<>();
+	protected Vector<Filter> filtersCountry= new Vector<>();
 	protected String value;
 		
 	public Filter() {}
@@ -32,7 +33,7 @@ public class Filter {
 			Filter f= new Filter();
 			for(String s: f.parseString((String)bodyFilter.get("name"))){
 				Filter f1= new FilterName(s);
-				filtriNome.add(f1);
+				filtersName.add(f1);
 			}
 		}	
 		
@@ -41,7 +42,7 @@ public class Filter {
 			
 			for(String s: f.parseString((String)bodyFilter.get("country"))){
 				Filter f1= new FilterCountry(s);
-				filtriCountry.add(f1);
+				filtersCountry.add(f1);
 			}
 		}	
 			
@@ -69,22 +70,30 @@ public class Filter {
 		}
 	}
 
-	public Vector<Filter> getFiltriNome() {
-		return filtriNome;
-	}
-
-	public Vector<Filter> getFiltriCountry() {
-		return filtriCountry;
-	}
-
-	public String[] parseString(String riga) {
-		return riga.split(";");
+	public String[] parseString(String line) {
+		String[] splittedLine= null;
+		try{
+			splittedLine = line.split(";");
+		}catch(PatternSyntaxException p){
+			System.out.println("ERRORE: GENERICO");
+			System.out.println("MESSAGGI: " + p.getMessage());
+			System.out.println("CAUSA: " + p.getCause());
+		}
+		return splittedLine;
 	}
 	
 	public Vector<Filter> getFilters() {
-		return this.filters;
+		return filters;
 	}
-	
+
+	public Vector<Filter> getFiltersName() {
+		return filtersName;
+	}
+
+	public Vector<Filter> getFiltersCountry() {
+		return filtersCountry;
+	}
+
 	public String getValue() {
 		return this.value;
 	}

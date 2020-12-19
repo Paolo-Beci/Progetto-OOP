@@ -3,6 +3,7 @@ package it.univpm.ProgettoOOP.service;
 import java.util.Vector;
 
 import it.univpm.ProgettoOOP.exception.NoDataException;
+import it.univpm.ProgettoOOP.exception.NotClearException;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -71,62 +72,61 @@ public class DomainServiceImpl implements DomainService {
 	 * @param bodyFilter <code>JSONObject</code> contenente i filtri scelti dall'utente.
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return vettore di domini filtrati
+	 * @see DownloadDomains#Download(String)
+	 * @see Filter#parsingFilters(JSONObject)
+	 * @see Filter#getFiltersName()
+	 * @see Filter#getFiltersCountry()
+	 * @see Filter#getFilters()
+	 * @throws NoDataException
+	 * @throws NotClearException
 	 */
-	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url){
+	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url) throws NoDataException, NotClearException {
 
 		Vector<Domain> domainsToFilter1 = new Vector<>();
 		Vector<Domain> domainsToFilter2 = new Vector<>();
-		try {
-			DownloadDomains d = new DownloadDomains();
-			domainsToFilter1 = d.Download(url);
-			if(domainsToFilter1 == null)
+		DownloadDomains d = new DownloadDomains();
+		domainsToFilter1 = d.Download(url);
+		if(domainsToFilter1 == null)
 				throw new NoDataException();
-		}catch(NoDataException e)
-		{
-			System.out.println("MESSAGGI: " + e.getMessage());
-			System.out.println("CAUSA: " + e.getCause());
-		}
-		try {
-			this.filteredDomains.clear();
-		} catch (NullPointerException e) {
-			System.out.println("PROBLEMA CON LA PULIZIA DEL VETTORE FILTEREDDOMAINS");
-			System.out.println("MESSAGGIO: " + e.getMessage());
-			System.out.println("CAUSA: " + e.getCause());
-		}
+
+		this.filteredDomains.clear();
+		if(filteredDomains.size()!=0)
+			throw new NotClearException();
+
 		try{
 			Filter f0 = new Filter();
 
 			f0.parsingFilters(bodyFilter);
 
 			//Aggiungo in OR tutti i Domini con quei nomi
-			if (f0.getFiltriNome().size() != 0 && f0.getFiltriCountry().size() != 0) {
+			if (f0.getFiltersName().size() != 0 && f0.getFiltersCountry().size() != 0) {
 
 				System.out.println("## CASO 1");
-				for (Filter f : f0.getFiltriNome()) {
+				for (Filter f : f0.getFiltersName()) {
 					System.out.println(f);
 					f.toFilter(domainsToFilter1, domainsToFilter2);
 				}
 				//Aggiungo in OR tutti i Domini con quei country
-				for (Filter f : f0.getFiltriCountry()) {
+				for (Filter f : f0.getFiltersCountry()) {
 					System.out.println(f);
 					f.toFilter(domainsToFilter2, filteredDomains);
 				}
 			}
-			if (f0.getFiltriNome().size() == 0 && f0.getFiltriCountry().size() != 0) {
+			if (f0.getFiltersName().size() == 0 && f0.getFiltersCountry().size() != 0) {
 				System.out.println("## CASO 2");
-				for (Filter f : f0.getFiltriCountry()) {
+				for (Filter f : f0.getFiltersCountry()) {
 					System.out.println(f);
 					f.toFilter(domainsToFilter1, filteredDomains);
 				}
 			}
-			if (f0.getFiltriNome().size() != 0 && f0.getFiltriCountry().size() == 0) {
+			if (f0.getFiltersName().size() != 0 && f0.getFiltersCountry().size() == 0) {
 				System.out.println("## CASO 3");
-				for (Filter f : f0.getFiltriNome()) {
+				for (Filter f : f0.getFiltersName()) {
 					System.out.println(f);
 					f.toFilter(domainsToFilter1, filteredDomains);
 				}
 			}
-			if (f0.getFiltriNome().size() == 0 && f0.getFiltriCountry().size() == 0) {
+			if (f0.getFiltersName().size() == 0 && f0.getFiltersCountry().size() == 0) {
 				System.out.println("## CASO 4");
 				filteredDomains = domainsToFilter1;
 			}
@@ -158,7 +158,7 @@ public class DomainServiceImpl implements DomainService {
 	@SuppressWarnings("unchecked")
 	public JSONObject getStats(String url){
 
-		JSONObject jo = new JSONObject();
+		JSONObject Stat= new JSONObject();
 		Stats q;
 		try {
 			DownloadDomains d = new DownloadDomains();
@@ -169,28 +169,28 @@ public class DomainServiceImpl implements DomainService {
 			//Quantità
 			q = new Quantity(domains);
 			q.calculateStat();
-			jo.put("Quantity", q.getInt());
+			Stat.put("Quantity", q.getInt());
 
 
 			//Tempo medio di vita
 			q = new AverageLifeTime(domains);
 			q.calculateStat();
-			jo.put("Average life time(days)", q.getDouble());
+			Stat.put("Average life time(days)", q.getDouble());
 
 			//Tempo medio di update
 			q = new AverageUpdateTime(domains);
 			q.calculateStat();
-			jo.put("Average update time(days)", q.getDouble());
+			Stat.put("Average update time(days)", q.getDouble());
 
 			//Nazioni di Hosting
 			q = new HostCountry(domains);
 			q.calculateStat();
-			jo.put("Host countries", q.getJSONObject());
+			Stat.put("Host countries", q.getJSONObject());
 
 			//ParoleChiave
 			q = new KeyWord(domains);
 			q.calculateStat();
-			jo.put("Keywords", q.getJSONObject());
+			Stat.put("Keywords", q.getJSONObject());
 		}catch(NoDataException e)
 		{
 			System.out.println("MESSAGGI: " + e.getMessage());
@@ -201,6 +201,6 @@ public class DomainServiceImpl implements DomainService {
 			System.out.println("MESSAGGIO: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
 		}
-	    return jo;
+	    return Stat;
 	}
 }
