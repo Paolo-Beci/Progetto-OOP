@@ -40,6 +40,7 @@ public class AverageUpdateTime extends Stats{
 	/**
 	 * <b>Metodo</b> che effettua il calcolo del tempo medio di update dei domini.
 	 * @return il tempo medio di update dei domini.
+	 * @see Domain#getCreateDate()
 	 */
     public void calculateStat() {
     	LocalDateTime today = LocalDateTime.now();

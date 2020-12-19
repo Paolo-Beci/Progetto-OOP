@@ -48,6 +48,7 @@ public class DomainServiceImpl implements DomainService {
 		try {
 			DownloadDomains d = new DownloadDomains();
 			this.domains = d.Download(url);
+			//System.out.println(domains);
 			if(this.domains == null)
 				throw new NoDataException();
 		}catch(NoDataException e)
@@ -60,6 +61,7 @@ public class DomainServiceImpl implements DomainService {
 			System.out.println("ERRORE: GENERICO getDomain");
 			System.out.println("MESSAGGI: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
+			//System.out.println(domains);
 		}
 		return this.domains;
 	}
@@ -70,7 +72,7 @@ public class DomainServiceImpl implements DomainService {
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return vettore di domini filtrati
 	 */
-	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url) {
+	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url){
 
 		Vector<Domain> domainsToFilter1 = new Vector<>();
 		Vector<Domain> domainsToFilter2 = new Vector<>();

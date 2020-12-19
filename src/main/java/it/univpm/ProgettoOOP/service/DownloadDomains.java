@@ -2,7 +2,6 @@ package it.univpm.ProgettoOOP.service;
 
 import java.io.*;
 import java.net.URL;
-//import java.net.http.HttpTimeoutException;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -29,12 +28,13 @@ public class DownloadDomains {
 	/**
 	 * Metodo che effettua il download dei domini dall'api e che li elabora in formato stringa in modo tale da essere elaborati
 	 * dalle classi di filtri e statistiche.
+	 * @param url è l'URL personalizzato della <b>API</b>
 	 * @return Ritorna il vettore downloadedDomains.
 	 * @throws NoDataException Eccezione personalizzata che carica il database da locale nel caso di mancata connessione
-	 * @see
+	 * @see DownloadDomains#BuildDomains(JSONObject, Vector)
 	 */
-	public Vector<Domain> Download(String url) {
-		Vector<Domain> downloadedDomains= new Vector<Domain>();
+	public Vector<Domain> Download(String url) throws NoDataException{
+		Vector<Domain> downloadedDomains= new Vector<>();
 		JSONParser parser = new JSONParser();
 
 		try {
@@ -53,8 +53,6 @@ public class DownloadDomains {
 
 	        	//vado a cercare domains nella risposta e lo casto a JSONArray
 				BuildDomains(stats, downloadedDomains);
-				//if(downloadedDomains == null)
-					//throw new NoConnectionException();
 			}
 	        in.close();
 	    }catch (FileNotFoundException e) {
@@ -64,39 +62,39 @@ public class DownloadDomains {
 	        e.printStackTrace();
 	    }
 		catch (IOException e) {
-			System.out.println("ERRORE: OPERAZIONE INTERROTTA NELLA GESTIONE DEI FILE");
+			System.out.println("ERRORE: CONNESSIONE ALL'API NON RIUSCITA...PROCEDO CON IL DATABASE SALVATO IN LOCALE");
 			System.out.println("MESSAGGIO: " + e.getMessage());
-			System.out.println("CAUSA: " + e.getCause());
+			System.out.println("CAUSA: L'URL E' CORROTTO" + e.getCause());
 
-
-			// provo a caricare da file locale le info sui domini
 			try{
-				String path_file = "C:\\Users\\becic\\IdeaProjects\\Progetto-OOP\\src\\main\\resources\\BackupData.txt";
+				// Carico il database predefinito dal file BackupData.txt
+				String nome_file = "BackupData.txt";
+				File f = new File(nome_file);
+				String path_file = f.getAbsolutePath();
 				Scanner in = new Scanner(new FileReader(path_file));
 
 				String inputLine;
-				while ((inputLine = in.nextLine()) != null) {
-
-					//analizzo tutta la risposta dell'api
+				while (in.hasNext()) {
+					inputLine = in.nextLine();
 					JSONObject stats = (JSONObject) parser.parse(inputLine);
-					//vado a cercare domains nella risposta e lo casto a JSONArray
 					BuildDomains(stats, downloadedDomains);
-
-					for(Domain d :downloadedDomains)
-					{
-						System.out.println(d);
-					}
+					System.out.println(downloadedDomains);
 				}
-				in.close();
-			}catch(IOException | ParseException f) {
+			}catch(FileNotFoundException | ParseException f) {
 				System.out.println("ERRORE: OPERAZIONE INTERROTTA NELLA GESTIONE DEL FILE DA LOCAL RESOURCES");
 				System.out.println("MESSAGGI: " + f.getMessage());
 				System.out.println("CAUSA: " + f.getCause());
 			}
 	    }
 		catch (ParseException e) {
-			System.out.println("ERRORE: ParseException line 99");
+			System.out.println("ERRORE: ParseException");
 			e.printStackTrace();
+		}
+		catch (Exception e)
+		{
+			System.out.println("ERRORE GENERICO.");
+			System.out.println("MESSAGGIO: " + e.getMessage());
+			System.out.println("CAUSA: " + e.getCause());
 		}
 		return downloadedDomains;
 	}
@@ -104,9 +102,9 @@ public class DownloadDomains {
 	/**
 	 * Metodo che effettua il get dei vari argomenti contenuti in ogni oggetto di stats
 	 * dalle classi di filtri e statistiche.
-	 * @throws NoDataException Eccezione personalizzata che carica il database da locale nel caso di mancata connessione
 	 * @param stats contiene l'oggetto da analizzare e smistare
 	 * @param downloadedDomains è un vettore di oggetti Domain
+	 * @see DownloadDomains#Download(String)
 	 */
 	private void BuildDomains(JSONObject stats, Vector<Domain> downloadedDomains) {
 		JSONArray a = (JSONArray) stats.get("domains");

@@ -1,6 +1,7 @@
 package it.univpm.ProgettoOOP.controller;
 
 import it.univpm.ProgettoOOP.exception.BodyIsEmptyException;
+import it.univpm.ProgettoOOP.exception.NoDataException;
 import org.json.simple.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class Controller{
 	 * @param domain Parola chiave della quale l'utente vuole ottenere i domini.
 	 * @param zone Zona dalla quale l'utente vuole ottenere i domini.
 	 * @return Vettore di domini
-	 * @see getDomains
+	 * @see DomainServiceImpl#getDomains(String) 
 	 */
 	@GetMapping("/domains")
 		public ResponseEntity<Object> getDomains(@RequestParam(name = "domain", defaultValue = "facebook") String domain,
@@ -51,7 +52,7 @@ public class Controller{
 	 * @param domain Dominio sul quale eseguire statistica.
 	 * @param zone Zona sulla quale eseguire statistica.
 	 * @return <code>JSONObject</code> contenente la statistica calcolata
-	 * @see getStats
+	 * @see DomainServiceImpl#getStats(String) 
 	 */
 	@GetMapping("/stats")
 		public ResponseEntity<Object> getStats(@RequestParam(name = "domain", defaultValue = "facebook") String domain,
@@ -65,6 +66,7 @@ public class Controller{
 	/**
 	 * <b>Rotta</b> per visualizzare le informazioni relative ai domini filtrati.
 	 * @return Filtri sui domini
+	 * @see DomainServiceImpl#getFilteredDomains(JSONObject, String) 
 	 */
 	@PostMapping("/filter")
 	public Object getFilteredDomains (@RequestBody JSONObject bodyFilter, @RequestParam(name = "domain", defaultValue = "facebook") String domain,
@@ -88,7 +90,7 @@ public class Controller{
 	/**
 	 * 
 	 * @param <Object>
-	 * @return
+	 * @return messaggio errore
 	 */
 	public <Object> String Error()
 	{
