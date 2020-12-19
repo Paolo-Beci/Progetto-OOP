@@ -49,9 +49,14 @@ public class DomainServiceImpl implements DomainService {
 		try {
 			DownloadDomains d = new DownloadDomains();
 			this.domains = d.Download(url);
-			//System.out.println(domains);
+			System.out.println(this.domains);
 			if (this.domains == null)
 				throw new NoDataException();
+		}
+		catch(NoDataException e) {
+			System.out.println("ERRORE: NESSUN DOMINIO RICEVUTO.");
+			System.out.println("MESSAGGI: " + e.getMessage());
+			System.out.println("CAUSA: " + e.getCause());
 		}
 		catch (Exception e)
 		{
@@ -161,32 +166,7 @@ public class DomainServiceImpl implements DomainService {
 			domains= d.Download(url);
 			if(this.domains == null)
 				throw new NoDataException();
-
-			//Quantità
-			q = new Quantity(domains);
-			q.calculateStat();
-			Stat.put("Quantity", q.getInt());
-
-
-			//Tempo medio di vita
-			q = new AverageLifeTime(domains);
-			q.calculateStat();
-			Stat.put("Average life time(days)", q.getDouble());
-
-			//Tempo medio di update
-			q = new AverageUpdateTime(domains);
-			q.calculateStat();
-			Stat.put("Average update time(days)", q.getDouble());
-
-			//Nazioni di Hosting
-			q = new HostCountry(domains);
-			q.calculateStat();
-			Stat.put("Host countries", q.getJSONObject());
-
-			//ParoleChiave
-			q = new KeyWord(domains);
-			q.calculateStat();
-			Stat.put("Keywords", q.getJSONObject());
+			
 		}catch(NoDataException e)
 		{
 			System.out.println("MESSAGGI: " + e.getMessage());
@@ -197,6 +177,33 @@ public class DomainServiceImpl implements DomainService {
 			System.out.println("MESSAGGIO: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
 		}
+		
+		//Quantità
+		q = new Quantity(domains);
+		q.calculateStat();
+		Stat.put("Quantity", q.getInt());
+
+
+		//Tempo medio di vita
+		q = new AverageLifeTime(domains);
+		q.calculateStat();
+		Stat.put("Average life time(days)", q.getDouble());
+
+		//Tempo medio di update
+		q = new AverageUpdateTime(domains);
+		q.calculateStat();
+		Stat.put("Average update time(days)", q.getDouble());
+
+		//Nazioni di Hosting
+		q = new HostCountry(domains);
+		q.calculateStat();
+		Stat.put("Host countries", q.getJSONObject());
+
+		//ParoleChiave
+		q = new KeyWord(domains);
+		q.calculateStat();
+		Stat.put("Keywords", q.getJSONObject());
+		
 	    return Stat;
 	}
 }

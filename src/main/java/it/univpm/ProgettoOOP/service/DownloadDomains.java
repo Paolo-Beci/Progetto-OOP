@@ -22,12 +22,14 @@ import java.io.IOException;
  * @author Beci Paolo
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph
+ * @version 1.0
  */
 public class DownloadDomains {
 
 	/**
-	 * <b>Metodo</b> che effettua il download dei domini dall'api e che li elabora in formato stringa in modo tale da essere elaborati
-	 * dalle classi di filtri e statistiche.
+	 * <p>
+	 * <b>Metodo</b> che effettua il download dei domini dall'api e che li elabora in formato stringa per essere utilizzati
+	 * dalle classi di filtri e statistiche.</p>
 	 * @param url è l'URL personalizzato della <b>API</b>
 	 * @return Ritorna il vettore downloadedDomains.
 	 * @throws NoDataException Eccezione personalizzata che carica il database da locale nel caso di mancata connessione
