@@ -16,13 +16,13 @@ import java.util.Vector;
 public abstract class Stats {
 	
 	/**
-	 * <b>Vettore</b> che conterrà i domini sui quali effettuare statistica.
+	 * <b>Vettore</b> che conterra' i domini sui quali effettuare statistica.
 	 */
     Vector<Domain> domains = new Vector<>();
     
     /**
      * <b>Costruttore</b> della classe stessa
-     * @param domains Vettore di domini sui quali efetture statistica.
+     * @param domains Vettore di domini sui quali effetture statistica
      */
     public Stats(Vector<Domain> domains) {
     	this.domains = domains;
@@ -30,15 +30,15 @@ public abstract class Stats {
     
     /**
      * <b>Metodo</b> che restituisce il vettore di domini sui quali calcolare statistica.
-     * @return vettore di domini
+     * @return Vettore di domini
      */
     public Vector<Domain> getDomains() {
         return domains;
     }
     
     /**
-     * <b>Metodo</b> che modifica il vettore di domini sui quali verrà cacolata la statistica.
-     * @param domains Nuovo vettore di domini sui quali calcolare statistica. 
+     * <b>Metodo</b> che modifica il vettore di domini sui quali verra' calcolata la statistica.
+     * @param domains Nuovo vettore di domini sui quali calcolare statistica 
      */
     public void setDomains(Vector<Domain> domains) {
     	this.domains = domains;
@@ -46,7 +46,7 @@ public abstract class Stats {
     
     /**
      * <b>Metodo</b> che torna una statistica di tipo <code>int</code>.
-     * @return valore di default
+     * @return Valore di default
      */
     public int getInt() {
     	return 0;
@@ -54,7 +54,7 @@ public abstract class Stats {
     
     /**
      * <b>Metodo</b> che torna una statistica di tipo <code>double</code>.
-     * @return valore di default
+     * @return Valore di default
      */
     public double getDouble() {
     	return 0;
@@ -62,7 +62,7 @@ public abstract class Stats {
     
     /**
      * <b>Metodo</b> che torna una statistica di tipo <code>JSONObject</code>.
-     * @return valore di default
+     * @return Valore di default
      */
     public JSONObject getJSONObject() {
     	return null;

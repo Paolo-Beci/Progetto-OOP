@@ -13,7 +13,7 @@ import it.univpm.ProgettoOOP.stats.*;
 
 
 /**
- * <b>Implemetazione</b> dell'interfaccia DomainService.
+ * <b>Implemetazione</b> dell'interfaccia DomainService
  * @author Beci Paolo
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph

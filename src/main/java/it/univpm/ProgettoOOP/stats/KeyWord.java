@@ -22,7 +22,7 @@ public class KeyWord extends Stats{
 	
 	/**
      * <b>Costruttore</b> della classe stessa
-     * @param domains Vettore di domini sui quali effetture statistica. 
+     * @param domains vettore di domini sui quali effetture statistica 
      */
 	public KeyWord(Vector<Domain> domains) {
 			super(domains);
@@ -38,7 +38,7 @@ public class KeyWord extends Stats{
 
 	/**
 	 * <b>Metodo</b> che effettua il calcolo delle parole chiave.
-	 * @return le parole chiave dei domini.
+	 * @return Parole chiave dei domini
 	 * @see Domain#getName()
 	 */
     @SuppressWarnings("unchecked")

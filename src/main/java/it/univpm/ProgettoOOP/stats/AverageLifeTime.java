@@ -3,6 +3,9 @@ package it.univpm.ProgettoOOP.stats;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Vector;
+
+import org.json.simple.parser.ParseException;
+
 import it.univpm.ProgettoOOP.model.Domain;
 
 /**
@@ -21,7 +24,7 @@ public class AverageLifeTime extends Stats{
 	
 	/**
      * <b>Costruttore</b> della classe stessa
-     * @param domains Vettore di domini sui quali effetture statistica. 
+     * @param domains vettore di domini sui quali effetture statistica 
      */
 	public AverageLifeTime(Vector<Domain> domains) {
 		super(domains);
@@ -45,12 +48,12 @@ public class AverageLifeTime extends Stats{
 	long lifeTime, lifeTimes = 0;
 
 	   for (Domain domainsStat : super.domains) {
-		   if (domainsStat.getCreateDate() == null) {
-			   lifeTime = 0;
-		   } else {
+		   if (domainsStat.getCreateDate() != null) {
 			   LocalDateTime createDate = LocalDateTime.parse(domainsStat.getCreateDate());
-			   lifeTime = ChronoUnit.DAYS.between(createDate, today);
-		   }
+			   lifeTime = ChronoUnit.DAYS.between(createDate, today); 
+		   } else
+			   lifeTime = 0;
+			   
 		   lifeTimes += lifeTime;
 	   }
 		try {

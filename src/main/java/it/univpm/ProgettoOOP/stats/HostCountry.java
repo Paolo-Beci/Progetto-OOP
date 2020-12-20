@@ -7,7 +7,7 @@ import org.json.simple.JSONObject;
 import it.univpm.ProgettoOOP.model.Domain;
 
 /**
- * <b>Sottoclasse</b> rappresenta la statistica nazioni di hosting 
+ * <b>Sottoclasse</b> rappresentante la statistica nazioni di hosting 
  * @author Beci Paolo
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph
@@ -38,7 +38,7 @@ public class HostCountry extends Stats{
 	
 	/**
 	 * <b>Metodo</b> che effettua il calcolo delle nazioni di hosting.
-	 * @return le nazioni di hosting dei domini.
+	 * @return Nazioni di hosting dei domini
 	 * @see Domain#getCountry()
 	 */
     @SuppressWarnings("unchecked")
@@ -68,7 +68,8 @@ public class HostCountry extends Stats{
     		case "IT": contIT++;
     		           break;
                        
-    		case "null": contNull++;           
+    		case "null": contNull++;
+    		             break;
                        
     		default:  contAltro++; 
     		}

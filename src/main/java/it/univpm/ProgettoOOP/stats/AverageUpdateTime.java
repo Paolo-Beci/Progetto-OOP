@@ -22,7 +22,7 @@ public class AverageUpdateTime extends Stats{
 	
 	/**
      * <b>Costruttore</b> della classe stessa
-     * @param domains Vettore di domini sui quali effetture statistica. 
+     * @param domains vettore di domini sui quali effetture statistica 
      */
 	public AverageUpdateTime(Vector<Domain> domains) {
 		super(domains);
