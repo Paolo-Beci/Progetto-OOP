@@ -8,7 +8,9 @@ package it.univpm.ProgettoOOP.exception;
  */
 public class NoDataException extends Exception{
 
-    // Eccezione
+    /**
+     * <b>Costruttore</b>
+     */
     public NoDataException() {
         super("ERRORE: IL PROGRAMMA NON HA ALCUN DATO DA ELABORARE");
     }

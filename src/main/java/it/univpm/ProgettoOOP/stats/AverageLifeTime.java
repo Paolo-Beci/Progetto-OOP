@@ -9,7 +9,7 @@ import org.json.simple.parser.ParseException;
 import it.univpm.ProgettoOOP.model.Domain;
 
 /**
- * <b>Sottoclasse</b> rappresenta la statistica tempo medio di vita 
+ * <b>Sottoclasse</b> che rappresenta la statistica tempo medio di vita
  * @author Beci Paolo
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph

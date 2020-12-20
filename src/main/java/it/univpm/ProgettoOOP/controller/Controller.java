@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import it.univpm.ProgettoOOP.service.*;
 /**
- * <b>Classe</b> che gestisce tutte le chiamate al Server
+ * <b>Classe</b> controller che gestisce tutte le chiamate al Server
  * @author Beci Paolo
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph
  * @version 1.0
- * @throws BodyIsEmptyException Eccezione personalizzata la gestione del body vuoto nella richiesta di post
  */
 @RestController
 public class Controller{
@@ -39,7 +38,7 @@ public class Controller{
 		public ResponseEntity<Object> getDomains(@RequestParam(name = "domain", defaultValue = "facebook") String domain,
 												 	@RequestParam(name = "zone", defaultValue = "com") String zone)
 		{
-			domain.toLowerCase();zone.toLowerCase();
+			domain= domain.toLowerCase();zone= zone.toLowerCase();
 				url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
 			if(d.getDomains(url) == null)
 				return new ResponseEntity<>(DomainError(), HttpStatus.OK);
@@ -59,24 +58,24 @@ public class Controller{
 		public ResponseEntity<Object> getStats(@RequestParam(name = "domain", defaultValue = "facebook") String domain,
 											   		@RequestParam(name = "zone", defaultValue = "com") String zone)
 		{
-			domain.toLowerCase();zone.toLowerCase();
+			domain= domain.toLowerCase();zone= zone.toLowerCase();
 			url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
 			return new ResponseEntity<>(d.getStats(url), HttpStatus.OK);
 		}
 
 	/**
-	 * <b>Rotta</b> per visualizzare le informazioni relative ai domini filtrati.
-	 * @param bodyFilter body contenente le richieste di filtro.
+	 * <b>Rotta</b> per visualizzare i domini filtrati.
+	 * @param bodyFilter contiene i filtri inseriti dall'utente in fase di chiamata
 	 * @param domain Dominio sul quale eseguire statistica.
 	 * @param zone Zona sulla quale eseguire statistica.
-	 * @return Filtri sui domini
-	 * @see DomainServiceImpl#getFilteredDomains(JSONObject, String) 
+	 * @return vettore di domini filtrati
+	 * @see DomainServiceImpl#getFilteredDomains(JSONObject, String)
 	 */
 	@PostMapping("/filter")
 	public Object getFilteredDomains (@RequestBody JSONObject bodyFilter, @RequestParam(name = "domain", defaultValue = "facebook") String domain,
 	   										@RequestParam(name = "zone", defaultValue = "com") String zone) {
 
-		domain.toLowerCase();zone.toLowerCase();
+		domain= domain.toLowerCase();zone= zone.toLowerCase();
 		url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
 		
 		try {
@@ -94,7 +93,7 @@ public class Controller{
 	}
 	
 	/**
-	 * @param <Object>
+	 * @param <Object> //sicuri sia un parametro??
 	 * @return messaggio errore body richiesta vuoto
 	 */
 	public <Object> String Error()
@@ -103,7 +102,7 @@ public class Controller{
 	}
 
 	/**
-	 * @param <Object>
+	 * @param <Object> //sicuri sia un parametro??
 	 * @return messaggio errore richiesta non valida
 	 */
 	public <Object> String DomainError()

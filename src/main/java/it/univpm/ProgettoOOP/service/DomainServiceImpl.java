@@ -3,7 +3,6 @@ package it.univpm.ProgettoOOP.service;
 import java.util.Vector;
 
 import it.univpm.ProgettoOOP.exception.NoDataException;
-import it.univpm.ProgettoOOP.exception.NotClearException;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +12,7 @@ import it.univpm.ProgettoOOP.stats.*;
 
 
 /**
- * <b>Implemetazione</b> dell'interfaccia DomainService
+ * <b>Classe</b> che implementa l'interfaccia DomainService
  * @author Beci Paolo
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph
@@ -24,17 +23,17 @@ import it.univpm.ProgettoOOP.stats.*;
 public class DomainServiceImpl implements DomainService {
     
 	/**
-	 * <b>Vettore</b> che conterrà i domini ottenuti dall'API.
+	 * <b>Vettore</b> di domini ottenuti dall'API.
 	 */
 	private Vector<Domain> domains= new Vector<>();
 	
 	/**
-	 * <b>Vettore</b> che conterrà i domini filtrati.
+	 * <b>Vettore</b> di domini filtrati.
 	 */
 	private Vector<Domain> filteredDomains= new Vector<>();
 	
 	/**
-	 * <b>Costruttore</b> vuoto della stessa
+	 * <b>Costruttore</b> senza parametri
 	 */
 	public DomainServiceImpl() {}
 	
@@ -43,20 +42,15 @@ public class DomainServiceImpl implements DomainService {
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return vettore di domini
 	 * @see DownloadDomains#Download(String)
-	 * @throws NoDataException
+	 * @throws NoDataException se il vettore domains non contiene nessun elemento
 	 */
 	public Vector<Domain> getDomains(String url) {
 		try {
 			DownloadDomains d = new DownloadDomains();
 			this.domains = d.Download(url);
 			System.out.println(this.domains);
-			if (this.domains == null || this.domains.contains("[]"))
+			if (this.domains == null || this.domains.contains("[]")) //Se domains contiene oggetti Domain come fa a contenere "[]"??
 				throw new NoDataException();
-		}
-		catch(NoDataException e) {
-			System.out.println("ERRORE: NESSUN DOMINIO RICEVUTO.");
-			System.out.println("MESSAGGI: " + e.getMessage());
-			System.out.println("CAUSA: POTRESTI AVER INSERITO UN CAMPO DOMINIO E ZONA CHE NON SONO PRESENTI NEL DATABASE...\n");
 		}
 		catch (Exception e)
 		{
@@ -73,66 +67,52 @@ public class DomainServiceImpl implements DomainService {
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return vettore di domini filtrati
 	 * @see DownloadDomains#Download(String)
+	 * @see Vector#clear()
+	 * @see Vector#size()
 	 * @see Filter#parsingFilters(JSONObject)
 	 * @see Filter#getFiltersName()
 	 * @see Filter#getFiltersCountry()
 	 * @see Filter#getFilters()
-	 * @throws NoDataException
-	 * @throws NotClearException
+	 * @see Filter#toFilter(Vector)
+	 * @see Filter#toFilter(Vector, Vector)
+	 * @throws NoDataException quando il vettore da filtrare non contiene alcun elemento
 	 */
 	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url) {
 		try{
-			Vector<Domain> domainsToFilter1 = new Vector<>();
-			Vector<Domain> domainsToFilter2 = new Vector<>();
 			DownloadDomains d = new DownloadDomains();
-			domainsToFilter1 = d.Download(url);
+			Vector<Domain> domainsToFilter1 = d.Download(url);
+			Vector<Domain> domainsToFilter2 = new Vector<>();
+
 			if(domainsToFilter1 == null)
 					throw new NoDataException();
 
 			this.filteredDomains.clear();
-			if(filteredDomains.size()!=0)
-				throw new NotClearException();
-
 
 			Filter f0 = new Filter();
-
 			f0.parsingFilters(bodyFilter);
 
-			//Aggiungo in OR tutti i Domini con quei nomi
 			if (f0.getFiltersName().size() != 0 && f0.getFiltersCountry().size() != 0) {
-
-				System.out.println("## CASO 1");
 				for (Filter f : f0.getFiltersName()) {
-					System.out.println(f);
 					f.toFilter(domainsToFilter1, domainsToFilter2);
 				}
-				//Aggiungo in OR tutti i Domini con quei country
 				for (Filter f : f0.getFiltersCountry()) {
-					System.out.println(f);
 					f.toFilter(domainsToFilter2, filteredDomains);
 				}
 			}
 			if (f0.getFiltersName().size() == 0 && f0.getFiltersCountry().size() != 0) {
-				System.out.println("## CASO 2");
 				for (Filter f : f0.getFiltersCountry()) {
-					System.out.println(f);
 					f.toFilter(domainsToFilter1, filteredDomains);
 				}
 			}
 			if (f0.getFiltersName().size() != 0 && f0.getFiltersCountry().size() == 0) {
-				System.out.println("## CASO 3");
 				for (Filter f : f0.getFiltersName()) {
-					System.out.println(f);
 					f.toFilter(domainsToFilter1, filteredDomains);
 				}
 			}
 			if (f0.getFiltersName().size() == 0 && f0.getFiltersCountry().size() == 0) {
-				System.out.println("## CASO 4");
 				filteredDomains = domainsToFilter1;
 			}
-
 			for (Filter f : f0.getFilters()) {
-				System.out.println(f);
 				f.toFilter(filteredDomains);
 			}
 		}
@@ -154,7 +134,7 @@ public class DomainServiceImpl implements DomainService {
 	 * @see AverageUpdateTime#calculateStat()
 	 * @see HostCountry#calculateStat()
 	 * @see KeyWord#calculateStat()
-	 * @throws NoDataException
+	 * @throws NoDataException se il vettore di domini sui cui calcolare la statistica non contiene alcun elemento
 	 */
 	@SuppressWarnings("unchecked")
 	public JSONObject getStats(String url){
@@ -166,11 +146,6 @@ public class DomainServiceImpl implements DomainService {
 			domains= d.Download(url);
 			if(this.domains == null)
 				throw new NoDataException();
-			
-		}catch(NoDataException e)
-		{
-			System.out.println("MESSAGGI: " + e.getMessage());
-			System.out.println("CAUSA: " + e.getCause());
 		}catch(Exception e)
 		{
 			System.out.println("ERRORE GENERICO in getStats().");

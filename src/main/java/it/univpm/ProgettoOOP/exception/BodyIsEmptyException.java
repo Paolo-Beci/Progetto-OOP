@@ -8,7 +8,9 @@ package it.univpm.ProgettoOOP.exception;
  */
 public class BodyIsEmptyException extends Exception{
 
-    // Eccezione
+    /**
+     * <b>Costruttore</b>
+     */
     public BodyIsEmptyException() {
         super("Il body del post non contiene nulla");
     }

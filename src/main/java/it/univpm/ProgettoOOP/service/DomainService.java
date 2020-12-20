@@ -2,14 +2,12 @@ package it.univpm.ProgettoOOP.service;
 
 import java.util.Vector;
 
-import it.univpm.ProgettoOOP.exception.NoDataException;
-import it.univpm.ProgettoOOP.exception.NotClearException;
 import org.json.simple.JSONObject;
 
 import it.univpm.ProgettoOOP.model.Domain;
 
 /**
- * <b>Interfaccia</b> per gestire le possibili operazioni sui domini.
+ * <b>Interfaccia</b> di servizio per gestire le operazioni sui domini.
  * @author Beci Paolo
  * @author Izzi Giuseppe
  * @author Grieco Emilio Joseph
@@ -22,7 +20,7 @@ public interface DomainService {
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return vettore di domini
 	 */
-	public Vector<Domain> getDomains(String url);
+	Vector<Domain> getDomains(String url);
 	
 	/**
 	 * <b>Intestazione</b> del metodo che restituisce i domini filtrati.
@@ -30,12 +28,12 @@ public interface DomainService {
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return vettore di domini filtrati
 	 */
-	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url);
+	Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url);
 	
 	/**
 	 * <b>Intestazione</b> del metodo che restituisce le statistiche sui domini.
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return <code>JSONObject</code> contenente la statistica elaborata.
 	 */
-	public JSONObject getStats(String url);
+	JSONObject getStats(String url);
 }
