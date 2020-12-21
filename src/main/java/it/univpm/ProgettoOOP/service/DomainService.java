@@ -2,6 +2,7 @@ package it.univpm.ProgettoOOP.service;
 
 import java.util.Vector;
 
+import it.univpm.ProgettoOOP.exception.NoDataException;
 import org.json.simple.JSONObject;
 
 import it.univpm.ProgettoOOP.model.Domain;
@@ -20,7 +21,7 @@ public interface DomainService {
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return vettore di domini
 	 */
-	Vector<Domain> getDomains(String url);
+	Vector<Domain> getDomains(String url) throws NoDataException;
 	
 	/**
 	 * <b>Intestazione</b> del metodo che restituisce i domini filtrati.

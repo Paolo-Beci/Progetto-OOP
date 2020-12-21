@@ -44,20 +44,12 @@ public class DomainServiceImpl implements DomainService {
 	 * @see DownloadDomains#Download(String)
 	 * @throws NoDataException se il vettore domains non contiene nessun elemento
 	 */
-	public Vector<Domain> getDomains(String url) {
-		try {
+	public Vector<Domain> getDomains(String url) throws NoDataException{
 			DownloadDomains d = new DownloadDomains();
 			this.domains = d.Download(url);
 			System.out.println(this.domains);
-			if (this.domains == null || this.domains.contains("[]")) //Se domains contiene oggetti Domain come fa a contenere "[]"??
+			if (this.domains == null || this.domains.contains("[]"))
 				throw new NoDataException();
-		}
-		catch (Exception e)
-		{
-			System.out.println("ERRORE: GENERICO in getDomains().");
-			System.out.println("MESSAGGI: " + e.getMessage());
-			System.out.println("CAUSA: " + e.getCause());
-		}
 		return this.domains;
 	}
 

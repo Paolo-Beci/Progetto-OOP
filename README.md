@@ -6,12 +6,18 @@ Inserimento immagini e istruzioni varie
 
 # Rotte Applicazione
 
+```json
+{
+  json
+}
+```
+
 # Eccezioni
 Descrizione delle eccezioni create 
 
 # UML
 - Use Case Diagram
-    ![OOPUseCaseDiagram](https://user-images.githubusercontent.com/71789321/102722973-246db880-4305-11eb-8a3c-f29db64780ec.PNG)
+    ![OOpUseCaseDiagram](https://user-images.githubusercontent.com/71789321/102777122-47917a00-4390-11eb-8aa2-23429d168bec.png)    
 
 - Class Diagram
     ![OOPClassDiagram](https://user-images.githubusercontent.com/71789321/102722996-4bc48580-4305-11eb-9372-71790f4426d8.PNG)

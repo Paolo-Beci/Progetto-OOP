@@ -1,6 +1,7 @@
 package it.univpm.ProgettoOOP.controller;
 
 import it.univpm.ProgettoOOP.exception.BodyIsEmptyException;
+import it.univpm.ProgettoOOP.exception.NoDataException;
 import org.json.simple.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +37,10 @@ public class Controller{
 	 */
 	@GetMapping("/domains")
 		public ResponseEntity<Object> getDomains(@RequestParam(name = "domain", defaultValue = "facebook") String domain,
-												 	@RequestParam(name = "zone", defaultValue = "com") String zone)
+												 	@RequestParam(name = "zone", defaultValue = "com") String zone) throws NoDataException
 		{
 			domain= domain.toLowerCase();zone= zone.toLowerCase();
 				url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
-			if(d.getDomains(url) == null)
-				return new ResponseEntity<>(DomainError(), HttpStatus.OK);
-			else
 				return new ResponseEntity<>(d.getDomains(url), HttpStatus.OK);
 		}
 
@@ -73,40 +71,49 @@ public class Controller{
 	 */
 	@PostMapping("/filter")
 	public Object getFilteredDomains (@RequestBody JSONObject bodyFilter, @RequestParam(name = "domain", defaultValue = "facebook") String domain,
-	   										@RequestParam(name = "zone", defaultValue = "com") String zone) {
+	   										@RequestParam(name = "zone", defaultValue = "com") String zone) throws BodyIsEmptyException{
 
 		domain= domain.toLowerCase();zone= zone.toLowerCase();
 		url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
-		
-		try {
 			if(bodyFilter.isEmpty())
 				throw new BodyIsEmptyException();
-			if(d.getFilteredDomains(bodyFilter, url) == null)
-				return new ResponseEntity<>(DomainError(), HttpStatus.OK);
-			else
-				return new ResponseEntity<>(d.getFilteredDomains(bodyFilter, url), HttpStatus.OK);
-		} catch (BodyIsEmptyException e) {
-			System.out.println("MESSAGGIO: " + e.getMessage());
-			System.out.println("CAUSA: " + e.getCause());
-			return Error();
-		}
-	}
-	
-	/**
-	 * @param <Object> //sicuri sia un parametro??
-	 * @return messaggio errore body richiesta vuoto
-	 */
-	public <Object> String Error()
-	{
-		return "IL BODY DELLA CHIAMATA POST NON CONTIENE NESSUN FILTRO";
+			return new ResponseEntity<>(d.getFilteredDomains(bodyFilter, url), HttpStatus.OK);
 	}
 
 	/**
-	 * @param <Object> //sicuri sia un parametro??
+	 * Metodo per gestire la NoDataException
+	 * @param e eccezione da gestire
+	 * @return errore cattiva richiesta
+	 */
+	@ExceptionHandler(NoDataException.class)
+	public ResponseEntity<Object> handleIOException(NoDataException e) {
+		return new ResponseEntity<>(DomainError(), HttpStatus.BAD_REQUEST);
+	}
+	/**
 	 * @return messaggio errore richiesta non valida
 	 */
 	public <Object> String DomainError()
 	{
 		return "I CAMPI DELLA RICHISTA NON PRODUCONO ALCUN RISULTATO...\n Riprova con diversi campi domain e zone!";
 	}
+
+	/**
+	 * Metodo per gestire la BodyIsEmptyException
+	 * @param e eccezione da gestire
+	 * @return errore body vuoto (BodyError)
+	 */
+	@ExceptionHandler({BodyIsEmptyException.class})
+	public ResponseEntity<Object> handleIOException(BodyIsEmptyException e) {
+		return new ResponseEntity<>(BodyError(), HttpStatus.BAD_REQUEST);
+	}
+	/**
+	 * @return messaggio errore body richiesta vuoto
+	 */
+	public <Object> String BodyError()
+	{
+		return "IL BODY DELLA CHIAMATA POST NON CONTIENE NESSUN FILTRO";
+	}
+
+
+
 }

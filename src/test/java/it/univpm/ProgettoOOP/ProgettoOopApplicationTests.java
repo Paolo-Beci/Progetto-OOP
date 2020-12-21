@@ -1,9 +1,6 @@
 package it.univpm.ProgettoOOP;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 import it.univpm.ProgettoOOP.service.DownloadDomains;
 
@@ -14,10 +11,11 @@ import it.univpm.ProgettoOOP.service.DownloadDomains;
  * @author Grieco Emilio Joseph
  */
 @SpringBootTest
+@Timeout(30)
 class ProgettoOopApplicationTests {
 
 	/**
-	 * Inizializza i componenti del test.
+	 * Inizializza i componenti prima di ogni Test.
 	 * @throws Exception Possibile Eccezione.
 	 */
 	@BeforeEach
@@ -27,7 +25,7 @@ class ProgettoOopApplicationTests {
 	}
 
 	/**
-	 * Distrugge i componenti del test.
+	 * Distrugge i componenti dopo ogni Test.
 	 * @throws Exception Possibile Eccezione.
 	 */
 	@AfterEach
