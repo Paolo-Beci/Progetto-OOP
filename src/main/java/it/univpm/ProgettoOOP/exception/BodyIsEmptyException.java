@@ -9,6 +9,11 @@ package it.univpm.ProgettoOOP.exception;
 public class BodyIsEmptyException extends Exception{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * <b>Costruttore</b>
      */
     public BodyIsEmptyException() {
