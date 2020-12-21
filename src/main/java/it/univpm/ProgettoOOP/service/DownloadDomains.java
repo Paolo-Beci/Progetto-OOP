@@ -33,9 +33,9 @@ public class DownloadDomains {
 	 * @param url è l'URL personalizzato della <b>API</b>
 	 * @return Ritorna il vettore downloadedDomains.
 	 * @throws NoDataException Eccezione personalizzata che carica il database da locale nel caso di mancata connessione
-	 * @see DownloadDomains#BuildDomains(JSONObject, Vector)
+	 * @see DownloadDomains#buildDomains(JSONObject, Vector)
 	 */
-	public Vector<Domain> Download(String url) throws NoDataException{
+	public Vector<Domain> download(String url) throws NoDataException{
 		Vector<Domain> downloadedDomains= new Vector<>();
 		JSONParser parser = new JSONParser();
 
@@ -54,7 +54,7 @@ public class DownloadDomains {
 	        	JSONObject stats = (JSONObject) parser.parse(inputLine);
 
 	        	//vado a cercare domains nella risposta e lo casto a JSONArray
-				BuildDomains(stats, downloadedDomains);
+				buildDomains(stats, downloadedDomains);
 			}
 	        in.close();
 	    }
@@ -71,16 +71,14 @@ public class DownloadDomains {
 
 			try{
 				// Carico il database predefinito dal file BackupData.txt
-				String nome_file = "BackupData.txt";
-				File f = new File(nome_file);
-				String path_file = f.getAbsolutePath();
-				Scanner in = new Scanner(new FileReader(path_file));
+				String nome_file = "resources\\BackupData.txt";
+				Scanner in = new Scanner(new FileReader(nome_file));
 
 				String inputLine;
 				while (in.hasNext()) {
 					inputLine = in.nextLine();
 					JSONObject stats = (JSONObject) parser.parse(inputLine);
-					BuildDomains(stats, downloadedDomains);
+					buildDomains(stats, downloadedDomains);
 					System.out.println(downloadedDomains);
 				}
 			}catch(FileNotFoundException | ParseException f) {
@@ -107,9 +105,9 @@ public class DownloadDomains {
 	 * dalle classi di filtri e statistiche.
 	 * @param stats contiene l'oggetto da analizzare e smistare
 	 * @param downloadedDomains è un vettore di oggetti Domain
-	 * @see DownloadDomains#Download(String)
+	 * @see DownloadDomains#download(String)
 	 */
-	private void BuildDomains(JSONObject stats, Vector<Domain> downloadedDomains) {
+	private void buildDomains(JSONObject stats, Vector<Domain> downloadedDomains) {
 		JSONArray a = (JSONArray) stats.get("domains");
 
 			for (Object o : a) {

@@ -58,7 +58,7 @@ public class Controller{
 		{
 			domain= domain.toLowerCase();zone= zone.toLowerCase();
 			url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
-			return new ResponseEntity<>(d.getStats(url), HttpStatus.OK);
+				return new ResponseEntity<>(d.getStats(url), HttpStatus.OK);
 		}
 
 	/**
@@ -102,7 +102,7 @@ public class Controller{
 	 * @param e eccezione da gestire
 	 * @return errore body vuoto (BodyError)
 	 */
-	@ExceptionHandler({BodyIsEmptyException.class})
+	@ExceptionHandler(BodyIsEmptyException.class)
 	public ResponseEntity<Object> handleIOException(BodyIsEmptyException e) {
 		return new ResponseEntity<>(BodyError(), HttpStatus.BAD_REQUEST);
 	}

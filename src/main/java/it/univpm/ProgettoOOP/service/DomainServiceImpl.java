@@ -41,12 +41,12 @@ public class DomainServiceImpl implements DomainService {
 	 * <b>Metodo</b> che restituisce i domini.
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return vettore di domini
-	 * @see DownloadDomains#Download(String)
+	 * @see DownloadDomains#download(String)
 	 * @throws NoDataException se il vettore domains non contiene nessun elemento
 	 */
 	public Vector<Domain> getDomains(String url) throws NoDataException{
 			DownloadDomains d = new DownloadDomains();
-			this.domains = d.Download(url);
+			this.domains = d.download(url);
 			System.out.println(this.domains);
 			if (this.domains == null || this.domains.contains("[]"))
 				throw new NoDataException();
@@ -58,7 +58,7 @@ public class DomainServiceImpl implements DomainService {
 	 * @param bodyFilter <code>JSONObject</code> contenente i filtri scelti dall'utente.
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return vettore di domini filtrati
-	 * @see DownloadDomains#Download(String)
+	 * @see DownloadDomains#download(String)
 	 * @see Vector#clear()
 	 * @see Vector#size()
 	 * @see Filter#parsingFilters(JSONObject)
@@ -72,7 +72,7 @@ public class DomainServiceImpl implements DomainService {
 	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url) {
 		try{
 			DownloadDomains d = new DownloadDomains();
-			Vector<Domain> domainsToFilter1 = d.Download(url);
+			Vector<Domain> domainsToFilter1 = d.download(url);
 			Vector<Domain> domainsToFilter2 = new Vector<>();
 
 			if(domainsToFilter1 == null)
@@ -120,7 +120,7 @@ public class DomainServiceImpl implements DomainService {
 	 * <b>Metodo</b> che restituisce le statistiche sui domini.
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return <code>JSONObject</code> contenente la statistica elaborata
-	 * @see DownloadDomains#Download(String)
+	 * @see DownloadDomains#download(String)
 	 * @see Quantity#calculateStat()
 	 * @see AverageLifeTime#calculateStat()
 	 * @see AverageUpdateTime#calculateStat()
@@ -135,7 +135,7 @@ public class DomainServiceImpl implements DomainService {
 		Stats q;
 		try {
 			DownloadDomains d = new DownloadDomains();
-			domains= d.Download(url);
+			domains= d.download(url);
 			if(this.domains == null)
 				throw new NoDataException();
 		}catch(Exception e)

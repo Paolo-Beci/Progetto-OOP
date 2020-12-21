@@ -1,17 +1,87 @@
 # Progetto-OOP A.A. 2020/2021
-L'applicazione sviluppata è una Rest Api che, prendendo dei Domini da un'[API](https://api.domainsdb.info/v1/), ne effettui l'analisi sulle parole chiave, sull'host e su altri parametri. Supporta anche le funzionalità di filtraggio e statistica sui domini presi dal database.
+L'applicazione sviluppata è una Rest Api che, prendendo dei Domini da un'[API](https://api.domainsdb.info/v1/), ne effettui l'analisi sulle 
+parole chiave, sull'host e su altri parametri. Supporta anche le funzionalità di filtraggio e statistica sui domini presi dal database.
 
 # Come Usare l'Applicazione
 Inserimento immagini e istruzioni varie
 
 # Rotte Applicazione
 
+Tipo | Rotta | Descrizione
+---- | ---- | ----  
+GET | /domains | Effettua l'analisi su un gruppo di domini.
+GET | /stats | Calcola la statistica su un gruppo di domini.
+POST | /filter | Effettua il filtraggio dei domini rispettando le condizioni specificate nel body della richiesta.
+
+### Parametri
+Nelle rotte è possibile inserire dei parametri del tipo "domain" e "zone" per definire il gruppo di domini. 
+Di default i campi saranno riempiti con "domain" = "facebook" e "zone" = "com"
+- Esempio di chiamata GET dei /domains con parametri diversi da facebook e com ("google" e "it")
+
+![parametri](https://user-images.githubusercontent.com/71789321/102786635-233d9980-43a0-11eb-88ae-a3c80fa3106a.png)
+
+## GET /domains
 ```json
 {
-  json
+"name": "your-facebook-address.com",
+"createDate": "2020-07-25T06:07:00.044377",
+"updateDate": "2020-07-25T06:07:00.044380",
+"country": "US",
+"isDead": "False"
 }
 ```
+ // descrizione  del formato JSON//
+#### Risultato chiamata rotta GET /domains su Postman
+![esempio_domains](https://user-images.githubusercontent.com/71789321/102786405-b9bd8b00-439f-11eb-8ee2-5be9bce01673.png)
 
+### GET /stats
+Le statistiche che abbiamo elaborato si dividono in diversi campi:
+```json
+{
+  "Host countries": {
+    "DE": 0,
+    "null": 3,
+    "JP": 0,
+    "IT": 6,
+    "US": 10,
+    "NL": 0,
+    "TR": 0,
+    "altro": 3
+  },
+  "Keywords": {
+    "marketing": 1,
+    "pages": 0,
+    "business": 1,
+    "login": 0,
+    "vacances": 0,
+    "altro": 20
+  },
+  "Average update time(days)": 69.0,
+  "Average life time(days)": 69.0,
+  "Quantity": 22
+}
+```
+// descrizione  del formato JSON//
+
+### Risultato della chiamata GET /stats su Postman
+![esempio_stats](https://user-images.githubusercontent.com/71789321/102786411-bb874e80-439f-11eb-8188-d014b3d53bc0.png)
+### POST /filter
+I filtri desiderati vanno inseriti nel Body dell chiamata il formato JSON nel seguente modo:
+```json
+{
+  "name":"cash;business",
+  "country":"us;DE;it",
+  "createDate":"2020-07-25T14",
+  "updateDate": "2020-08-01",
+  "isDead":"false"
+}
+```
+I filtri Name e country permettono di ospitare più valori contemporaneamente e il filtro di questi sarà con logica OR mentre
+gli altri ne possono ospitare uno solo, il filtraggio tra i diversi campi (es:name, country, ecc..) avviene con logica AND.
+
+I valori dei campi, come da esempio, possono essere indicati indifferentemente con maiuscole o minuscole, il programma sarà in
+grado di distinguerle. E'importante non inserire spazi tra i parametri del campo, ma solo ";". Le date di  createDate e updateDate
+vanno necessariamente inserite nel formato AAAA-MM-GGTORA.
 # Eccezioni
 Descrizione delle eccezioni create 
 
