@@ -169,7 +169,7 @@ Viene visualizzato il seguente messaggio di errore:
 
 
 ## Class Diagram
-![(MAIN)OOPClassDiagram](https://user-images.githubusercontent.com/71789321/102722996-4bc48580-4305-11eb-9372-71790f4426d8.PNG)
+![OOPClassDiagram](https://user-images.githubusercontent.com/74923049/102898029-36686c00-4469-11eb-8b8c-14e2483e9026.PNG)
 
 ![(CONTROLLER)OOPClassDiagram-Controller](https://user-images.githubusercontent.com/71789321/102723003-5c74fb80-4305-11eb-8ca8-9a9a30a1ccb7.PNG)
 ![(EXCEPTION)OOPClassDiagram-Exception](https://user-images.githubusercontent.com/71789321/102723004-5e3ebf00-4305-11eb-9692-e81fb8a83736.PNG)
