@@ -121,9 +121,9 @@ I campi restanti, invece, come `createDate`, `updateDate` e `isDead`, possono co
 I valori relativi a campi differenti vengono applicati come filtri con logica AND.
 
 ### Condizioni da rispettare
-- I valori dei campi `country` e `isDead` possono essere indicati indifferentemente con maiuscole o minuscole, gli altri no.
+- I valori dei campi `name`,`country` e `isDead` possono essere indicati indifferentemente con maiuscole o minuscole, gli altri no.
 - I valori dei campi `name` e `country` devono essere separati da ";", senza spazi.
-- Le date nei domini hanno una formattazzione del tipo **aaaa-mm-ggTore:minuti:secondi:millisecondi** quindi i valori inseriti nei campi `createDate` e `updateDate` devono rispettarla. E' possibile tuttavia inserire delle sottostringhe (es: `"createDate":"mm-ggTore"` oppure `"updateDate":"Tore:minuti"`).
+- Le date nei domini hanno una formattazione del tipo **aaaa-mm-ggTore:minuti:secondi:millisecondi** quindi i valori inseriti nei campi `createDate` e `updateDate` devono rispettarla. E' possibile tuttavia inserire delle sottostringhe (es: `"createDate":"mm-ggTore"` oppure `"updateDate":"Tore:minuti"`).
 
 ### Risultato chiamata su Postman
 ![esempio_filter](https://user-images.githubusercontent.com/71789321/102865766-8a0d9200-4436-11eb-85f1-2483b27fc517.png)
