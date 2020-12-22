@@ -195,8 +195,8 @@ Viene visualizzato il seguente messaggio di errore:
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 # Plus del programma
--[x] Filtri multipli e sovrapponibili
--[x] Backup dei dati da locale in caso di url corrotto
+:white_check_mark: Filtri multipli e sovrapponibili \n
+:white_check_mark: Backup dei dati da locale in caso di url corrotto \n
 -[x] Testing JUNIT
 -[X] Personalizzazione dei parametri durante la richiesta all'API
 
