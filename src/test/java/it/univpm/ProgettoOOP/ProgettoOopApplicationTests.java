@@ -98,7 +98,7 @@ class ProgettoOopApplicationTests {
 	void tearDown() throws Exception{}
 
 	/**
-	 * <b>Test</b> che verifica se il vettore domains è nullo.
+	 * <b>Test</b> che verifica se il vettore domains non è null.
 	 */
 	@Test
 	@DisplayName("Test 1: Vettore dei domini non è null")
