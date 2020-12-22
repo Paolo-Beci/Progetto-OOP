@@ -3,12 +3,12 @@ package it.univpm.ProgettoOOP.service;
 import java.util.Vector;
 
 import it.univpm.ProgettoOOP.exception.NoDataException;
+import it.univpm.ProgettoOOP.stats.*;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import it.univpm.ProgettoOOP.filters.Filter;
 import it.univpm.ProgettoOOP.model.Domain;
-import it.univpm.ProgettoOOP.stats.*;
 
 
 /**
@@ -83,7 +83,7 @@ public class DomainServiceImpl implements DomainService {
 			Filter f0 = new Filter();
 			f0.parsingFilters(bodyFilter);
 
-			if (f0.getFiltersName().size() != 0 && f0.getFiltersCountry().size() != 0) {
+			if (!f0.getFiltersName().isEmpty() && !f0.getFiltersCountry().isEmpty()) {
 				for (Filter f : f0.getFiltersName()) {
 					f.toFilter(domainsToFilter1, domainsToFilter2);
 				}
@@ -91,17 +91,17 @@ public class DomainServiceImpl implements DomainService {
 					f.toFilter(domainsToFilter2, filteredDomains);
 				}
 			}
-			if (f0.getFiltersName().size() == 0 && f0.getFiltersCountry().size() != 0) {
+			if (f0.getFiltersName().isEmpty() && !f0.getFiltersCountry().isEmpty()) {
 				for (Filter f : f0.getFiltersCountry()) {
 					f.toFilter(domainsToFilter1, filteredDomains);
 				}
 			}
-			if (f0.getFiltersName().size() != 0 && f0.getFiltersCountry().size() == 0) {
+			if (!f0.getFiltersName().isEmpty() && f0.getFiltersCountry().isEmpty()) {
 				for (Filter f : f0.getFiltersName()) {
 					f.toFilter(domainsToFilter1, filteredDomains);
 				}
 			}
-			if (f0.getFiltersName().size() == 0 && f0.getFiltersCountry().size() == 0) {
+			if (f0.getFiltersName().isEmpty() && f0.getFiltersCountry().isEmpty()) {
 				filteredDomains = domainsToFilter1;
 			}
 			for (Filter f : f0.getFilters()) {

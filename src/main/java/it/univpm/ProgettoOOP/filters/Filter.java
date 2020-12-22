@@ -3,7 +3,6 @@ package it.univpm.ProgettoOOP.filters;
 import java.util.Vector;
 import java.util.regex.PatternSyntaxException;
 
-import it.univpm.ProgettoOOP.exception.BodyIsEmptyException;
 import org.json.simple.JSONObject;
 
 import it.univpm.ProgettoOOP.model.Domain;

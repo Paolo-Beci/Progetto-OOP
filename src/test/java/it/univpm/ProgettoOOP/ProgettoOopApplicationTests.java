@@ -3,6 +3,7 @@ package it.univpm.ProgettoOOP;
 import it.univpm.ProgettoOOP.filters.Filter;
 import it.univpm.ProgettoOOP.filters.FilterCountry;
 import it.univpm.ProgettoOOP.model.Domain;
+import it.univpm.ProgettoOOP.service.DomainService;
 import it.univpm.ProgettoOOP.service.DownloadDomains;
 
 import org.junit.jupiter.api.*;
@@ -25,7 +26,6 @@ class ProgettoOopApplicationTests {
 	private Vector<Domain> domains = null;
 	private Vector<Domain> domainsFiltered = null;
 	DownloadDomains d = new DownloadDomains();
-	//Filter f = new FilterCountry("US");
 
 	static final String url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=facebook&zone=us&limit=50";
 
@@ -40,8 +40,11 @@ class ProgettoOopApplicationTests {
 	@BeforeEach
 	void setUp() throws Exception
 	{
+		domains= new Vector<>();
 		domains = d.download(url);
 
+		domainsFiltered= new Vector<>();
+		
 		// Test 2
 		domainsFiltered.add(d1);
 		domainsFiltered.add(d2);

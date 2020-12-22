@@ -7,9 +7,10 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 import it.univpm.ProgettoOOP.service.*;
+import org.springframework.web.bind.annotation.*;
+
 /**
  * <b>Classe</b> controller che gestisce tutte le chiamate al Server
  * @author Beci Paolo
@@ -71,7 +72,7 @@ public class Controller{
 	 */
 	@PostMapping("/filter")
 	public Object getFilteredDomains (@RequestBody JSONObject bodyFilter, @RequestParam(name = "domain", defaultValue = "facebook") String domain,
-	   										@RequestParam(name = "zone", defaultValue = "com") String zone) throws BodyIsEmptyException{
+									  @RequestParam(name = "zone", defaultValue = "com") String zone) throws BodyIsEmptyException{
 
 		domain= domain.toLowerCase();zone= zone.toLowerCase();
 		url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
@@ -94,7 +95,7 @@ public class Controller{
 	 */
 	public <Object> String DomainError()
 	{
-		return "I CAMPI DELLA RICHISTA NON PRODUCONO ALCUN RISULTATO...\n Riprova con diversi campi domain e zone!";
+		return "I CAMPI DELLA RICHIESTA NON PRODUCONO ALCUN RISULTATO...\n Riprova con diversi campi domain e zone!";
 	}
 
 	/**
@@ -113,7 +114,4 @@ public class Controller{
 	{
 		return "IL BODY DELLA CHIAMATA POST NON CONTIENE NESSUN FILTRO";
 	}
-
-
-
 }
