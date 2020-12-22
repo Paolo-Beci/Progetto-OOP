@@ -9,7 +9,7 @@ al Web Service [Tomcat](http://tomcat.apache.org/) integrato nel Framework [Spri
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-# Rotte Applicazione
+# Rotte Applicazione :globe_with_meridians:
 Tipo | Rotta | Descrizione
 ---- | ---- | ----  
 GET | /domains | Effettua l'analisi su un gruppo di domini.
@@ -115,7 +115,7 @@ sempre rispettando questo formato (Es.: T05).
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-# Eccezioni
+# Eccezioni :x:
 Il programma può lanciare eccezioni standard e personalizzate
  > Eccezioni personalizzate:
 - **NoDataException**
@@ -146,7 +146,7 @@ Viene visualizzato il seguente messaggio di errore:
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-# UML
+# UML :bar_chart:
 ### Use Case Diagram
 ![OOpUseCaseDiagram](https://user-images.githubusercontent.com/71789321/102777122-47917a00-4390-11eb-8aa2-23429d168bec.png)
 
@@ -178,7 +178,7 @@ Viene visualizzato il seguente messaggio di errore:
   ![OOPSequenceDiagram-Stats](https://user-images.githubusercontent.com/71789321/102723028-7f9fab00-4305-11eb-90a6-03edb3db9fa9.PNG)
 
 ----------------------------------------------------------------------------------------------------------------------------------------
-# Test JUNIT
+# Test JUNIT :warning:
 >Nel programma è presente anche una sezione di testing: 
 - **Test 1**
   
@@ -195,7 +195,7 @@ Viene visualizzato il seguente messaggio di errore:
     
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-# Plus del programma
+# Plus del programma :heavy_plus_sign:
 :white_check_mark: Filtri multipli e sovrapponibili 
 
 :white_check_mark: Backup dei dati da locale in caso di url corrotto 
@@ -204,7 +204,7 @@ Viene visualizzato il seguente messaggio di errore:
 
 :white_check_mark: Personalizzazione dei parametri durante la richiesta all'API
 
-# Autori
+# Autori :two_men_holding_hands:
 - [Paolo Beci](https://github.com/Paolo-Beci)
 - [Emilio Grieco Joseph](https://github.com/emi-2205)
 - [Giuseppe Izzi](https://github.com/IzziGiuseppe)
