@@ -119,7 +119,8 @@ I valori relativi a campi differenti vengono applicati come filtri con logica AN
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 # Eccezioni
- > Il programma può lanciare due eccezioni personalizzate:
+Il programma può lanciare eccezioni standard e personalizzate
+ > Eccezioni personalizzate:
 - **NoDataException**
   
     Viene richiamata quando il programma riconosce che il vettore domains non contiene alcun dominio.
@@ -135,7 +136,7 @@ Viene visualizzato il seguente messaggio di errore:
 ```
     IL BODY DELLA CHIAMATA POST NON CONTIENE NESSUN FILTRO
 ```
- Inoltre possono essere lanciate le seguenti eccezioni standard:
+ > Eccezioni standard:
 - **Exception**
   - IOException
     - FileNotFoundException
@@ -198,10 +199,13 @@ Viene visualizzato il seguente messaggio di errore:
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 # Plus del programma
-:white_check_mark: Filtri multipli e sovrapponibili \n
-:white_check_mark: Backup dei dati da locale in caso di url corrotto \n
--[x] Testing JUNIT
--[X] Personalizzazione dei parametri durante la richiesta all'API
+:white_check_mark: Filtri multipli e sovrapponibili 
+
+:white_check_mark: Backup dei dati da locale in caso di url corrotto 
+
+:white_check_mark: Testing JUNIT
+
+:white_check_mark: Personalizzazione dei parametri durante la richiesta all'API
 
 # Autori
 - [Paolo Beci](https://github.com/Paolo-Beci)
