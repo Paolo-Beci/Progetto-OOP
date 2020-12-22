@@ -207,7 +207,7 @@ Viene visualizzato il seguente messaggio di errore:
   Verifica se l'eccezione NoDataException viene lanciata correttamente.
 
 
-# Autori :stuck_out_tongue_closed_eyes: :simple_smile: :wink:
+# Autori :stuck_out_tongue_closed_eyes: :smile: :wink:
 - [Paolo Beci](https://github.com/Paolo-Beci)
 - [Emilio Grieco Joseph](https://github.com/emi-2205)
 - [Giuseppe Izzi](https://github.com/IzziGiuseppe)
