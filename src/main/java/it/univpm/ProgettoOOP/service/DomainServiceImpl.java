@@ -129,7 +129,7 @@ public class DomainServiceImpl implements DomainService {
 	 * @throws NoDataException se il vettore di domini sui cui calcolare la statistica non contiene alcun elemento
 	 */
 	@SuppressWarnings("unchecked")
-	public JSONObject getStats(String url){
+	public JSONObject getStats(String url) throws NoDataException {
 
 		JSONObject Stat= new JSONObject();
 		Stats q;
@@ -143,6 +143,7 @@ public class DomainServiceImpl implements DomainService {
 			System.out.println("ERRORE GENERICO in getStats().");
 			System.out.println("MESSAGGIO: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
+			throw new NoDataException();
 		}
 		
 		//Quantità

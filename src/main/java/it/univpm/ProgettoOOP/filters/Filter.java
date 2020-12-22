@@ -1,5 +1,6 @@
 package it.univpm.ProgettoOOP.filters;
 
+import java.util.Locale;
 import java.util.Vector;
 import java.util.regex.PatternSyntaxException;
 
@@ -74,7 +75,9 @@ public class Filter {
 		
 		if(bodyFilter.containsKey("name")) {
 			Filter f= new Filter();
-			for(String s: f.parseString((String)bodyFilter.get("name"))){
+			String line = (String)bodyFilter.get("name");
+			line = line.toLowerCase();
+			for(String s: f.parseString(line)){
 				Filter f1= new FilterName(s);
 				filtersName.add(f1);
 			}
@@ -82,8 +85,9 @@ public class Filter {
 		
 		if(bodyFilter.containsKey("country")) {
 			Filter f= new Filter();
-			
-			for(String s: f.parseString((String)bodyFilter.get("country"))){
+			String line = (String)bodyFilter.get("country");
+			line = line.toUpperCase();
+			for(String s: f.parseString(line)){
 				Filter f1= new FilterCountry(s);
 				filtersCountry.add(f1);
 			}
@@ -102,10 +106,11 @@ public class Filter {
 		if(bodyFilter.containsKey("isDead")) {
 			String d = (String)bodyFilter.get("isDead");
 			// Controllo correttezza inserimento
-			if(d.contains("TRUE")||d.contains("true")){
+			d = d.toLowerCase();
+			if(d.equals("true")){
 				d = "True";
 			}
-			if(d.contains("FALSE")||d.contains("false")){
+			if(d.equals("false")){
 				d = "False";
 			}
 			Filter f= new FilterIsDead(d);

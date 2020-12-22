@@ -36,5 +36,5 @@ public interface DomainService {
 	 * @param url Url che consente l'accesso all'API. 
 	 * @return <code>JSONObject</code> contenente la statistica elaborata.
 	 */
-	JSONObject getStats(String url);
+	JSONObject getStats(String url) throws NoDataException;
 }

@@ -55,7 +55,7 @@ public class Controller{
 	 */
 	@GetMapping("/stats")
 		public ResponseEntity<Object> getStats(@RequestParam(name = "domain", defaultValue = "facebook") String domain,
-											   		@RequestParam(name = "zone", defaultValue = "com") String zone)
+											   		@RequestParam(name = "zone", defaultValue = "com") String zone) throws NoDataException
 		{
 			domain= domain.toLowerCase();zone= zone.toLowerCase();
 			url = "https://api.domainsdb.info/v1/domains/search?page=10&domain=" + domain + "&zone=" + zone + "&limit=50";
