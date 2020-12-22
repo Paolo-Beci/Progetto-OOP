@@ -31,9 +31,9 @@ public class DownloadDomains {
 	 * <b>Metodo</b> che effettua il download dei domini dall'api e che li elabora in formato stringa per essere utilizzati
 	 * dalle classi di filtri e statistiche.</p>
 	 * @param url è l'URL personalizzato della <b>API</b>
-	 * @return Ritorna il vettore downloadedDomains.
-	 * @throws NoDataException Eccezione personalizzata che carica il database da locale nel caso di mancata connessione
+	 * @return Vettore downloadedDomains
 	 * @see DownloadDomains#buildDomains(JSONObject, Vector)
+	 * @throws NoDataException Eccezione personalizzata che carica il database da locale nel caso di mancata connessione
 	 */
 	public Vector<Domain> download(String url) throws NoDataException{
 		Vector<Domain> downloadedDomains= new Vector<>();
