@@ -1,7 +1,7 @@
 # SprigBoot REST API Domains
 L' applicazione SpringBoot ha come obiettivo l'analisi e il monitoraggio dei domini presenti in rete.
 
-I dati relativi ai domini li otteniamo tramite la REST API [domainsdb](https://api.domainsdb.info/v1/).
+I dati relativi ai domini li otteniamo tramite la REST API [Domains-Index](https://api.domainsdb.info/v1/).
 
 Tra le funzioni di analisi abbiamo il filtraggio e il calcolo di statistiche.
 
