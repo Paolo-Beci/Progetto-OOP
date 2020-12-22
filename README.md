@@ -1,11 +1,10 @@
 # SprigBoot REST API Domains
 L' applicazione SpringBoot ha come obiettivo l'analisi e il monitoraggio dei domini presenti in rete.
-
 I dati relativi ai domini li otteniamo tramite la REST API [Domains-Index](https://api.domainsdb.info/v1/).
 
 Tra le funzioni di analisi abbiamo il filtraggio e il calcolo di statistiche.
 
-L' utente grazie al Client (ad esempio [Postman](https://www.postman.com/)) può accedere alle funzionalità dell'applicazione grazie
+L' utente, grazie al Client (ad esempio [Postman](https://www.postman.com/)), può accedere alle funzionalità dell'applicazione grazie
 al Web Service [Tomcat](http://tomcat.apache.org/) integrato nel Framework [Spring](https://spring.io/).
 
 
@@ -123,8 +122,8 @@ I valori relativi a campi differenti vengono applicati come filtri con logica AN
 
 ### Condizioni da rispettare
 - I valori dei campi `country` e `isDead` possono essere indicati indifferentemente con maiuscole o minuscole, gli altri no.
-- I valori dei campi `name` e `country` devono essere separati da ";" senza spazi.
-- Le date nei domini hanno una formattazzione del tipo aaaa-mm-ggTore:minuti:secondi:millisecondi quindi i valori inseriti nei campi `createDate` e `updateDate` devono rispettarla. E' possibile tuttavia inserire delle sottostringhe (es: `"createDate":"mm-ggTore"` oppure `"updateDate":"Tore:minuti"`).
+- I valori dei campi `name` e `country` devono essere separati da ";", senza spazi.
+- Le date nei domini hanno una formattazzione del tipo **aaaa-mm-ggTore:minuti:secondi:millisecondi** quindi i valori inseriti nei campi `createDate` e `updateDate` devono rispettarla. E' possibile tuttavia inserire delle sottostringhe (es: `"createDate":"mm-ggTore"` oppure `"updateDate":"Tore:minuti"`).
 
 ###Risultato chiamata su Postman
 ![esempio_filter](https://user-images.githubusercontent.com/71789321/102865766-8a0d9200-4436-11eb-85f1-2483b27fc517.png)
@@ -163,13 +162,13 @@ Viene visualizzato il seguente messaggio di errore:
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 # UML :bar_chart:
-### Use Case Diagram
+## Use Case Diagram
 ![OOpUseCaseDiagram](https://user-images.githubusercontent.com/71789321/102777122-47917a00-4390-11eb-8aa2-23429d168bec.png)
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 
-### Class Diagram
+## Class Diagram
 ![(MAIN)OOPClassDiagram](https://user-images.githubusercontent.com/71789321/102722996-4bc48580-4305-11eb-9372-71790f4426d8.PNG)
 
 ![(CONTROLLER)OOPClassDiagram-Controller](https://user-images.githubusercontent.com/71789321/102723003-5c74fb80-4305-11eb-8ca8-9a9a30a1ccb7.PNG)
@@ -183,14 +182,14 @@ Viene visualizzato il seguente messaggio di errore:
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-# Diagramma delle Sequenze
-- /domains
+## Sequence Diagram
+### /domains
   ![OOPSequenceDiagram-Domains](https://user-images.githubusercontent.com/71789321/102723023-7d3d5100-4305-11eb-85f3-1cbbdb126771.PNG)
   
-- /filter
+### /filter
   ![OOPSequenceDiagram-Filters](https://user-images.githubusercontent.com/71789321/102723025-7e6e7e00-4305-11eb-8fac-76e4f675dc7e.PNG)
   
-- /stats
+### /stats
   ![OOPSequenceDiagram-Stats](https://user-images.githubusercontent.com/71789321/102723028-7f9fab00-4305-11eb-90a6-03edb3db9fa9.PNG)
 
 ----------------------------------------------------------------------------------------------------------------------------------------
