@@ -154,7 +154,7 @@ public class DomainServiceImpl implements DomainService {
 		//Tempo medio di vita
 		q = new AverageLifeTime(domains);
 		q.calculateStat();
-		Stat.put("Average life time(days)", q.getDouble());
+		Stat.put("Average lifetime(days)", q.getDouble());
 
 		//Tempo medio di update
 		q = new AverageUpdateTime(domains);
