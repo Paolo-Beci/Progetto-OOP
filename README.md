@@ -213,6 +213,6 @@ Viene visualizzato il seguente messaggio di errore:
 
 Nome | LinkedIn | Contributo
 ---- | ---- | ----
-- [Paolo Beci](https://github.com/Paolo-Beci) | [Link](https://www.linkedin.com/in/paolo-beci-919a28199/) | 33,3%
-- [Emilio Grieco Joseph](https://github.com/emi-2205) | [Link](https://www.linkedin.com/in/emilio-joseph-grieco-8b0a53138/) | 33,3%
-- [Giuseppe Izzi](https://github.com/IzziGiuseppe) | [Link](https://www.linkedin.com/in/giuseppe-izzi-81bb301b8/) | 33,3%
+[Paolo Beci](https://github.com/Paolo-Beci) | [Link](https://www.linkedin.com/in/paolo-beci-919a28199/) | 33,3%
+[Emilio Grieco Joseph](https://github.com/emi-2205) | [Link](https://www.linkedin.com/in/emilio-joseph-grieco-8b0a53138/) | 33,3%
+[Giuseppe Izzi](https://github.com/IzziGiuseppe) | [Link](https://www.linkedin.com/in/giuseppe-izzi-81bb301b8/) | 33,3%
