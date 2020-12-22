@@ -7,6 +7,16 @@ Tra le funzioni di analisi abbiamo il filtraggio e il calcolo di statistiche.
 L' utente grazie al Client (ad esempio [Postman](https://www.postman.com/)) può accedere alle funzionalità dell'applicazione grazie
 al Web Service [Tomcat](http://tomcat.apache.org/) integrato nel Framework [Spring](https://spring.io/).
 
+
+## Plus del programma :heavy_plus_sign:
+:white_check_mark: Filtri multipli e sovrapponibili
+
+:white_check_mark: Backup dei dati da locale in caso di url corrotto
+
+:white_check_mark: Testing JUNIT
+
+:white_check_mark: Personalizzazione dei parametri durante la richiesta all'API
+
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 # Rotte Applicazione :globe_with_meridians:
@@ -195,19 +205,9 @@ Viene visualizzato il seguente messaggio di errore:
 - **Test 4**
 
   Verifica se l'eccezione NoDataException viene lanciata correttamente.
-    
-----------------------------------------------------------------------------------------------------------------------------------------
 
-# Plus del programma :heavy_plus_sign:
-:white_check_mark: Filtri multipli e sovrapponibili 
 
-:white_check_mark: Backup dei dati da locale in caso di url corrotto 
-
-:white_check_mark: Testing JUNIT
-
-:white_check_mark: Personalizzazione dei parametri durante la richiesta all'API
-
-# Autori :two_men_holding_hands:
+# Autori :stuck_out_tongue_closed_eyes: :simple_smile: :wink:
 - [Paolo Beci](https://github.com/Paolo-Beci)
 - [Emilio Grieco Joseph](https://github.com/emi-2205)
 - [Giuseppe Izzi](https://github.com/IzziGiuseppe)
