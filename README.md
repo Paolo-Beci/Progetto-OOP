@@ -125,7 +125,7 @@ I valori relativi a campi differenti vengono applicati come filtri con logica AN
 - I valori dei campi `name` e `country` devono essere separati da ";", senza spazi.
 - Le date nei domini hanno una formattazzione del tipo **aaaa-mm-ggTore:minuti:secondi:millisecondi** quindi i valori inseriti nei campi `createDate` e `updateDate` devono rispettarla. E' possibile tuttavia inserire delle sottostringhe (es: `"createDate":"mm-ggTore"` oppure `"updateDate":"Tore:minuti"`).
 
-###Risultato chiamata su Postman
+### Risultato chiamata su Postman
 ![esempio_filter](https://user-images.githubusercontent.com/71789321/102865766-8a0d9200-4436-11eb-85f1-2483b27fc517.png)
   
 ----------------------------------------------------------------------------------------------------------------------------------------
@@ -169,7 +169,7 @@ Viene visualizzato il seguente messaggio di errore:
 
 
 ## Class Diagram
-![(MAIN)OOPClassDiagram](https://user-images.githubusercontent.com/71789321/102722996-4bc48580-4305-11eb-9372-71790f4426d8.PNG)
+![OOPClassDiagram](https://user-images.githubusercontent.com/74923049/102898029-36686c00-4469-11eb-8b8c-14e2483e9026.PNG)
 
 ![(CONTROLLER)OOPClassDiagram-Controller](https://user-images.githubusercontent.com/71789321/102723003-5c74fb80-4305-11eb-8ca8-9a9a30a1ccb7.PNG)
 ![(EXCEPTION)OOPClassDiagram-Exception](https://user-images.githubusercontent.com/71789321/102723004-5e3ebf00-4305-11eb-9692-e81fb8a83736.PNG)
@@ -209,7 +209,7 @@ Viene visualizzato il seguente messaggio di errore:
   Verifica se l'eccezione NoDataException viene lanciata correttamente.
 
 
-# Autori :stuck_out_tongue_closed_eyes: :smile: :wink:
-- [Paolo Beci](https://github.com/Paolo-Beci)
-- [Emilio Grieco Joseph](https://github.com/emi-2205)
-- [Giuseppe Izzi](https://github.com/IzziGiuseppe)
+# Autori :see_no_evil: :hear_no_evil: :speak_no_evil:
+- [Paolo Beci](https://github.com/Paolo-Beci) 33,3%
+- [Emilio Grieco Joseph](https://github.com/emi-2205) 33,3%
+- [Giuseppe Izzi](https://github.com/IzziGiuseppe) 33,3%
