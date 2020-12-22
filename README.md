@@ -1,6 +1,6 @@
 # SprigBoot REST API Domains
-L' applicazione SpringBoot ha come obiettivo l'analisi e il monitoraggio dei domini presenti in rete. I dati relativi ai 
-domini li otteniamo tramite una [REST API](https://api.domainsdb.info/v1/).
+L' applicazione SpringBoot ha come obiettivo l'analisi e il monitoraggio dei domini presenti in rete.
+I dati relativi ai domini li otteniamo tramite la REST API[domainsdb](https://api.domainsdb.info/v1/).
 
 Tra le funzioni di analisi abbiamo il filtraggio e il calcolo di statistiche.
 
@@ -9,13 +9,13 @@ al Web Service [Tomcat](http://tomcat.apache.org/) integrato nel Framework [Spri
 
 
 ## Plus del programma :heavy_plus_sign:
-:white_check_mark: Filtri multipli e sovrapponibili
+:white_check_mark: Personalizzazione dei parametri durante la richiesta all'API
 
 :white_check_mark: Backup dei dati da locale in caso di url corrotto
 
-:white_check_mark: Testing JUNIT
+:white_check_mark: Filtri multipli e sovrapponibili
 
-:white_check_mark: Personalizzazione dei parametri durante la richiesta all'API
+:white_check_mark: Testing JUNIT
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -28,9 +28,9 @@ POST | /filter | Effettua il filtraggio dei domini rispettando le condizioni spe
 
 ### Parametri
 Nelle rotte è possibile inserire dei parametri del tipo "domain" e "zone" per definire il gruppo di domini. 
-Di default i campi saranno riempiti con "domain" = "facebook" e "zone" = "com"
-- Esempio di chiamata GET dei /domains con parametri diversi da facebook e com ("google" e "it")
+Di default i campi saranno riempiti con "domain" = "facebook" e "zone" = "com".
 
+- Esempio di chiamata con parametri non di default "domain" = "google" e "zone" = "it".
 ![parametri](https://user-images.githubusercontent.com/71789321/102865774-8b3ebf00-4436-11eb-85bb-40463371bb38.png)
 
 ## GET /domains
@@ -44,7 +44,7 @@ Di default i campi saranno riempiti con "domain" = "facebook" e "zone" = "com"
 "isDead": "False"
 }
 ```
- Il JSON sopra riportato indica la rappresentazione utilizzata  per indicare un **dominio**. 
+ Il JSON sopra riportato indica la rappresentazione utilizzata per indicare un **dominio**. 
  I campi rappresentano:
  1) **name** = nome.
  2) **createDate** = data creazione.
@@ -52,7 +52,7 @@ Di default i campi saranno riempiti con "domain" = "facebook" e "zone" = "com"
  4) **country** = paese di hosting.
  5) **isDead** = scadenza.
 
-### Risultato chiamata rotta GET /domains su Postman
+### Risultato chiamata su Postman
   ![esempio_domains](https://user-images.githubusercontent.com/71789321/102865765-8974fb80-4436-11eb-8e02-a36bfd29494b.png)
   Il programma restituisce i domini elaborati sotto forma di un JSONArray.
   
@@ -90,9 +90,11 @@ I campi rappresentano:
 3) **Average update time(days)** = media dei giorni trascorsi dall'ultimo update.
 4) **Average lifetime(days)** = media dei giorni trascorsi dalla creazione.
 5) **Quantity** = numero di domini analizzati.
-### Risultato chiamata rotta GET /stats su Postman
+
+### Risultato chiamata su Postman
 ![esempio_stats](https://user-images.githubusercontent.com/71789321/102865770-8aa62880-4436-11eb-9c3f-f481dc6e6eea.png)
 Il programma restituisce le statistiche elaborate sotto forma di un JSONObject.
+
 ## POST /filter
 ### Modello
 ```json
@@ -123,7 +125,7 @@ I valori relativi a campi differenti vengono applicati come filtri con logica AN
 - I valori dei campi `name` e `country` devono essere separati da ";" senza spazi.
 - Le date nei domini hanno una formattazzione del tipo aaaa-mm-ggTore:minuti:secondi:millisecondi quindi i valori inseriti nei campi `createDate` e `updateDate` devono rispettarla. E' possibile tuttavia inserire delle sottostringhe (es: `"createDate":"mm-ggTore"` oppure `"updateDate":"Tore:minuti"`).
 
-###Risultato chiamata rotta POST /filter su Postman
+###Risultato chiamata su Postman
 ![esempio_filter](https://user-images.githubusercontent.com/71789321/102865766-8a0d9200-4436-11eb-85f1-2483b27fc517.png)
   
 ----------------------------------------------------------------------------------------------------------------------------------------
