@@ -34,7 +34,7 @@ Di default i campi saranno riempiti con "domain" = "facebook" e "zone" = "com"
 ![parametri](https://user-images.githubusercontent.com/71789321/102865774-8b3ebf00-4436-11eb-85bb-40463371bb38.png)
 
 ## GET /domains
-- Modello
+### Modello
 ```json
 {
 "name": "your-facebook-address.com",
@@ -52,12 +52,12 @@ Di default i campi saranno riempiti con "domain" = "facebook" e "zone" = "com"
  4) **country** = paese di hosting.
  5) **isDead** = scadenza.
 
-- Risultato chiamata rotta GET /domains su Postman
+### Risultato chiamata rotta GET /domains su Postman
   ![esempio_domains](https://user-images.githubusercontent.com/71789321/102865765-8974fb80-4436-11eb-8e02-a36bfd29494b.png)
   Il programma restituisce i domini elaborati sotto forma di un JSONArray.
   
 ## GET /stats
-- Modello
+### Modello
 ```json
 {
   "Host countries": {
@@ -90,11 +90,11 @@ I campi rappresentano:
 3) **Average update time(days)** = media dei giorni trascorsi dall'ultimo update.
 4) **Average lifetime(days)** = media dei giorni trascorsi dalla creazione.
 5) **Quantity** = numero di domini analizzati.
-- Risultato chiamata rotta GET /stats su Postman
+### Risultato chiamata rotta GET /stats su Postman
 ![esempio_stats](https://user-images.githubusercontent.com/71789321/102865770-8aa62880-4436-11eb-9c3f-f481dc6e6eea.png)
 Il programma restituisce le statistiche elaborate sotto forma di un JSONObject.
 ## POST /filter
-- Modello
+### Modello
 ```json
 {
   "name":"xn;cash;business",
@@ -118,12 +118,12 @@ I campi restanti, invece, come `createDate`, `updateDate` e `isDead`, possono co
 
 I valori relativi a campi differenti vengono applicati come filtri con logica AND.
 
-### Attenzione
+### Condizioni da rispettare
 - I valori dei campi `country` e `isDead` possono essere indicati indifferentemente con maiuscole o minuscole, gli altri no.
 - I valori dei campi `name` e `country` devono essere separati da ";" senza spazi.
-- Le date nei domini hanno una formatazzione del tipo aaaa-mm-ggTore:minuti:secondi:millisecondi quindi i valori inseriti nei campi `createDate` e `updateDate` devono rispettarla. E' possibile tuttavia inserire delle sottostrinche (es: `"createDate":"mm-ggTore"` oppure `"updateDate":"Tore:minuti"`)
+- Le date nei domini hanno una formattazzione del tipo aaaa-mm-ggTore:minuti:secondi:millisecondi quindi i valori inseriti nei campi `createDate` e `updateDate` devono rispettarla. E' possibile tuttavia inserire delle sottostringhe (es: `"createDate":"mm-ggTore"` oppure `"updateDate":"Tore:minuti"`).
 
-- Risultato chiamata rotta POST /filter su Postman
+###Risultato chiamata rotta POST /filter su Postman
 ![esempio_filter](https://user-images.githubusercontent.com/71789321/102865766-8a0d9200-4436-11eb-85f1-2483b27fc517.png)
   
 ----------------------------------------------------------------------------------------------------------------------------------------
