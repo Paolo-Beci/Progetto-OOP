@@ -1,5 +1,6 @@
 package it.univpm.ProgettoOOP.stats;
 
+import java.util.List;
 import java.util.Vector;
 
 import org.json.simple.JSONObject;
@@ -24,7 +25,7 @@ public class HostCountry extends Stats{
      * <b>Costruttore</b> della classe stessa
      * @param domains Vettore di domini sui quali effetture statistica. 
      */
-	public HostCountry(Vector<Domain> domains) {
+	public HostCountry(List<Domain> domains) {
 		super(domains);
 	}
 	

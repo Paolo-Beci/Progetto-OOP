@@ -1,5 +1,6 @@
 package it.univpm.ProgettoOOP.service;
 
+import java.util.List;
 import java.util.Vector;
 
 import it.univpm.ProgettoOOP.exception.NoDataException;
@@ -25,12 +26,12 @@ public class DomainServiceImpl implements DomainService {
 	/**
 	 * <b>Vettore</b> di domini ottenuti dall'API.
 	 */
-	private Vector<Domain> domains= new Vector<>();
+	private List<Domain> domains= new Vector<>();
 	
 	/**
 	 * <b>Vettore</b> di domini filtrati.
 	 */
-	private Vector<Domain> filteredDomains= new Vector<>();
+	private List<Domain> filteredDomains= new Vector<>();
 	
 	/**
 	 * <b>Costruttore</b> senza parametri
@@ -44,7 +45,7 @@ public class DomainServiceImpl implements DomainService {
 	 * @see DownloadDomains#download(String)
 	 * @throws NoDataException se il vettore domains non contiene nessun elemento
 	 */
-	public Vector<Domain> getDomains(String url) throws NoDataException{
+	public List<Domain> getDomains(String url) throws NoDataException{
 			DownloadDomains d = new DownloadDomains();
 			this.domains = d.download(url);
 			System.out.println(this.domains);
@@ -65,15 +66,15 @@ public class DomainServiceImpl implements DomainService {
 	 * @see Filter#getFiltersName()
 	 * @see Filter#getFiltersCountry()
 	 * @see Filter#getFilters()
-	 * @see Filter#toFilter(Vector)
-	 * @see Filter#toFilter(Vector, Vector)
+	 * @see Filter#toFilter(List)
+	 * @see Filter#toFilter(List, List)
 	 * @throws NoDataException quando il vettore da filtrare non contiene alcun elemento
 	 */
-	public Vector<Domain> getFilteredDomains(JSONObject bodyFilter, String url) {
+	public List<Domain> getFilteredDomains(JSONObject bodyFilter, String url) {
 		try{
 			DownloadDomains d = new DownloadDomains();
-			Vector<Domain> domainsToFilter1 = d.download(url);
-			Vector<Domain> domainsToFilter2 = new Vector<>();
+			List<Domain> domainsToFilter1= d.download(url);
+			List <Domain> domainsToFilter2 = new Vector<>();
 
 			if(domainsToFilter1 == null)
 					throw new NoDataException();

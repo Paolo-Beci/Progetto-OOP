@@ -1,5 +1,6 @@
 package it.univpm.ProgettoOOP.filters;
 
+import java.util.List;
 import java.util.Vector;
 
 import it.univpm.ProgettoOOP.model.Domain;
@@ -39,7 +40,7 @@ public class FilterCountry extends Filter {
 	 * @see Vector#add(Object)
 	 */
 	@Override
-	public void toFilter(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) { //FILTRAGGIO OR
+	public void toFilter(List<Domain> domainsToFilter, List<Domain> filteredDomains) { //FILTRAGGIO OR
 	
 		for(Domain d: domainsToFilter) {
 		 	 if(d.getCountry().equals(value) && !filteredDomains.contains(d))

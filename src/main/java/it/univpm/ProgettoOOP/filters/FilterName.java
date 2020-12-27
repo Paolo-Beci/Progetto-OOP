@@ -1,5 +1,6 @@
 package it.univpm.ProgettoOOP.filters;
 
+import java.util.List;
 import java.util.Vector;
 
 import it.univpm.ProgettoOOP.model.Domain;
@@ -38,7 +39,7 @@ public class FilterName extends Filter {
 	 * @see Vector#add(Object)
 	 */
 	@Override
-	public void toFilter(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) {
+	public void toFilter(List<Domain> domainsToFilter, List<Domain> filteredDomains) {
 	
 		for(Domain d: domainsToFilter) {
 		 	 if(d.getName().contains(value) && !filteredDomains.contains(d))

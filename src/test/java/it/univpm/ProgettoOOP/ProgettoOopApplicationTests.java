@@ -21,6 +21,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -36,12 +37,12 @@ class ProgettoOopApplicationTests {
 	/**
 	 * Vettore che conterra' i domini.
 	 */
-	private Vector<Domain> domains = null;
+	private List<Domain> domains = null;
 	
 	/**
 	 * Vettore che conterra' i domini filtrati.
 	 */
-	private Vector<Domain> domainsFiltered = null;
+	private List<Domain> domainsFiltered = null;
 	
 	/**
 	 * Url che consente il collegameto alle API.
@@ -66,7 +67,7 @@ class ProgettoOopApplicationTests {
 	/**
 	 * <b>Metodo</b> che inizializza i componenti prima di ogni Test.
 	 * @see DownloadDomains#download(String)
-	 * @see Filter#toFilter(Vector, Vector)
+	 * @see Filter#toFilter(java.util.List, java.util.List)
 	 * @see Quantity#calculateStat()
 	 * @throws Exception Possibile Eccezione
 	 */

@@ -2,6 +2,7 @@ package it.univpm.ProgettoOOP.stats;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Vector;
 
 import org.json.simple.parser.ParseException;
@@ -26,7 +27,7 @@ public class AverageLifeTime extends Stats{
      * <b>Costruttore</b> della classe stessa
      * @param domains vettore di domini sui quali effetture statistica 
      */
-	public AverageLifeTime(Vector<Domain> domains) {
+	public AverageLifeTime(List<Domain> domains) {
 		super(domains);
 		this.averageLifeTime = 0;
 	}

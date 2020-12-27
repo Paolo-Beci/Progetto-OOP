@@ -2,6 +2,7 @@ package it.univpm.ProgettoOOP.stats;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Vector;
 
 import it.univpm.ProgettoOOP.model.Domain;
@@ -24,7 +25,7 @@ public class AverageUpdateTime extends Stats{
      * <b>Costruttore</b> della classe stessa
      * @param domains vettore di domini sui quali effetture statistica 
      */
-	public AverageUpdateTime(Vector<Domain> domains) {
+	public AverageUpdateTime(List<Domain> domains) {
 		super(domains);
 		this.averageUpdateTime = 0;
 	}

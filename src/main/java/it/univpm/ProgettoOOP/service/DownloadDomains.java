@@ -2,6 +2,7 @@ package it.univpm.ProgettoOOP.service;
 
 import java.io.*;
 import java.net.URL;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -32,11 +33,11 @@ public class DownloadDomains {
 	 * dalle classi di filtri e statistiche.</p>
 	 * @param url è l'URL personalizzato della <b>API</b>
 	 * @return Vettore downloadedDomains
-	 * @see DownloadDomains#buildDomains(JSONObject, Vector)
+	 * @see DownloadDomains#buildDomains(JSONObject, List)
 	 * @throws NoDataException Eccezione personalizzata che carica il database da locale nel caso di mancata connessione
 	 */
-	public Vector<Domain> download(String url) throws NoDataException{
-		Vector<Domain> downloadedDomains= new Vector<>();
+	public List<Domain> download(String url) throws NoDataException{
+		List<Domain> downloadedDomains= new Vector<>();
 		JSONParser parser = new JSONParser();
 
 		try {
@@ -107,7 +108,7 @@ public class DownloadDomains {
 	 * @param downloadedDomains è un vettore di oggetti Domain
 	 * @see DownloadDomains#download(String)
 	 */
-	private void buildDomains(JSONObject stats, Vector<Domain> downloadedDomains) {
+	private void buildDomains(JSONObject stats, List<Domain> downloadedDomains) {
 		JSONArray a = (JSONArray) stats.get("domains");
 
 			for (Object o : a) {

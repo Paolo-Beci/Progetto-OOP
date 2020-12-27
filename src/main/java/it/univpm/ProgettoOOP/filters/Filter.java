@@ -1,6 +1,6 @@
 package it.univpm.ProgettoOOP.filters;
 
-import java.util.Locale;
+import java.util.List;
 import java.util.Vector;
 import java.util.regex.PatternSyntaxException;
 
@@ -20,17 +20,17 @@ public class Filter {
 	/**
 	 * <b>Vettore</b> che contiene filtri del tipo: FilterUpdateDate, FilterCreateDate, FilterIsDead
 	 */
-	protected Vector<Filter> filters= new Vector<>();
+	protected List<Filter> filters= new Vector<>();
 
 	/**
 	 * <b>Vettore</b> che contiene filtri del tipo FilterName
 	 */
-	protected Vector<Filter> filtersName= new Vector<>();
+	protected List<Filter> filtersName= new Vector<>();
 
 	/**
 	 * <b>Vettore</b> che contiene filtri del tipo FilterCountry
 	 */
-	protected Vector<Filter> filtersCountry= new Vector<>();
+	protected List<Filter> filtersCountry= new Vector<>();
 
 	/**
 	 * indica il valore del filtro
@@ -54,14 +54,14 @@ public class Filter {
 	 * <b>Metodo</b> che filtra con logica AND
 	 * @param domainsToFilter indica il vettore da filtrare
 	 */
-	public void toFilter(Vector<Domain> domainsToFilter) {}
+	public void toFilter(List<Domain> domainsToFilter) {}
 
 	/**
 	 * <b>Metodo</b> che filtra con logica OR
 	 * @param domainsToFilter indica il vettore da filtrare
 	 * @param filteredDomains indica il vettore filtrato
 	 */
-	public void toFilter(Vector<Domain> domainsToFilter, Vector<Domain> filteredDomains) {}
+	public void toFilter(List<Domain> domainsToFilter, List<Domain> filteredDomains) {}
 	
 	/**
 	 * <b>Metodo</b> che analizza i filtri inseriti dall'utente, li riconosce, e li aggiunge al vettore di riferimento
@@ -139,7 +139,7 @@ public class Filter {
 	 * <b>Metodo</b> getter del vettore filters
 	 * @return vettore contenente filtri del tipo: FilterUpdateDate, FilterCreateDate, FilterIsDead
 	 */
-	public Vector<Filter> getFilters() {
+	public List<Filter> getFilters() {
 		return filters;
 	}
 
@@ -147,7 +147,7 @@ public class Filter {
 	 * <b>Metodo</b> getter del vettore filtersName
 	 * @return vettore contenente filtri del tipo FilterName
 	 */
-	public Vector<Filter> getFiltersName() {
+	public List<Filter> getFiltersName() {
 		return filtersName;
 	}
 
@@ -155,7 +155,7 @@ public class Filter {
 	 * <b>Metodo</b> getter del vettore filtersCountry
 	 * @return vettore contenente filtri del tipo FilterName
 	 */
-	public Vector<Filter> getFiltersCountry() {
+	public List<Filter> getFiltersCountry() {
 		return filtersCountry;
 	}
 

@@ -2,6 +2,7 @@ package it.univpm.ProgettoOOP.stats;
 
 import it.univpm.ProgettoOOP.model.Domain;
 
+import java.util.List;
 import java.util.Vector;
 
 import org.json.simple.JSONObject;
@@ -24,7 +25,7 @@ public class KeyWord extends Stats{
      * <b>Costruttore</b> della classe stessa
      * @param domains vettore di domini sui quali effetture statistica 
      */
-	public KeyWord(Vector<Domain> domains) {
+	public KeyWord(List<Domain> domains) {
 			super(domains);
 	}
 

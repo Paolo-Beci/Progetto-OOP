@@ -1,6 +1,8 @@
 package it.univpm.ProgettoOOP.stats;
 
 import it.univpm.ProgettoOOP.model.Domain;
+
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -21,7 +23,7 @@ public class Quantity extends Stats{
      * <b>Costruttore</b> della classe stessa
      * @param domains Vettore di domini sui quali effetture statistica 
      */
-	public Quantity(Vector<Domain> domains) {
+	public Quantity(List<Domain> domains) {
 		super(domains);
 		this.quantity = 0;
 	}
@@ -38,7 +40,7 @@ public class Quantity extends Stats{
 	 * <b>Metodo</b> setter della quantita'.
 	 * @param quantity Quantita'
 	 */
-	public void setQuantita(int quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 	

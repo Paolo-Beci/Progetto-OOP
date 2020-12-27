@@ -4,6 +4,7 @@ import it.univpm.ProgettoOOP.model.Domain;
 
 import org.json.simple.JSONObject;
 
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -18,13 +19,13 @@ public abstract class Stats {
 	/**
 	 * <b>Vettore</b> che conterra' i domini sui quali effettuare statistica.
 	 */
-    Vector<Domain> domains = new Vector<>();
+    List<Domain> domains;
     
     /**
      * <b>Costruttore</b> della classe stessa
      * @param domains Vettore di domini sui quali effetture statistica
      */
-    public Stats(Vector<Domain> domains) {
+    public Stats(List<Domain> domains) {
     	this.domains = domains;
     }
     
@@ -32,7 +33,7 @@ public abstract class Stats {
      * <b>Metodo</b> che restituisce il vettore di domini sui quali calcolare statistica.
      * @return Vettore di domini
      */
-    public Vector<Domain> getDomains() {
+    public List<Domain> getDomains() {
         return domains;
     }
     
@@ -40,7 +41,7 @@ public abstract class Stats {
      * <b>Metodo</b> che modifica il vettore di domini sui quali verra' calcolata la statistica.
      * @param domains Nuovo vettore di domini sui quali calcolare statistica 
      */
-    public void setDomains(Vector<Domain> domains) {
+    public void setDomains(List<Domain> domains) {
     	this.domains = domains;
     }
     
