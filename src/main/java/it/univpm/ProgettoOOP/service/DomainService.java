@@ -1,7 +1,6 @@
 package it.univpm.ProgettoOOP.service;
 
 import java.util.List;
-import java.util.Vector;
 
 import it.univpm.ProgettoOOP.exception.NoDataException;
 import org.json.simple.JSONObject;
