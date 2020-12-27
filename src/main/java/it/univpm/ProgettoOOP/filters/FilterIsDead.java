@@ -1,6 +1,7 @@
 package it.univpm.ProgettoOOP.filters;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Vector;
 
 import it.univpm.ProgettoOOP.model.Domain;
@@ -37,7 +38,7 @@ public class FilterIsDead extends Filter {
 	 * @see Vector#add(Object)
 	 * @see Vector#removeAll(Collection)
 	 */
-	public void toFilter(Vector<Domain> domainsToFilter) {
+	public void toFilter(List<Domain> domainsToFilter) {
 		Vector<Domain> domainToRemove= new Vector<>();
 		for(Domain d: domainsToFilter) {
 			if(!d.getIsDead().contains(value))

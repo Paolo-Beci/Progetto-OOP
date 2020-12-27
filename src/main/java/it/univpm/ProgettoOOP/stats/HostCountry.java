@@ -1,7 +1,6 @@
 package it.univpm.ProgettoOOP.stats;
 
 import java.util.List;
-import java.util.Vector;
 
 import org.json.simple.JSONObject;
 
@@ -39,7 +38,6 @@ public class HostCountry extends Stats{
 	
 	/**
 	 * <b>Metodo</b> che effettua il calcolo delle nazioni di hosting.
-	 * @return Nazioni di hosting dei domini
 	 * @see Domain#getCountry()
 	 */
     @SuppressWarnings("unchecked")

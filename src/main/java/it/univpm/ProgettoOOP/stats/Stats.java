@@ -5,7 +5,6 @@ import it.univpm.ProgettoOOP.model.Domain;
 import org.json.simple.JSONObject;
 
 import java.util.List;
-import java.util.Vector;
 
 /**
  * <b>Superclasse</b> rappresentante la statistica da calcolare

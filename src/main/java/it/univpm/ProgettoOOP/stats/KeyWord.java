@@ -3,8 +3,6 @@ package it.univpm.ProgettoOOP.stats;
 import it.univpm.ProgettoOOP.model.Domain;
 
 import java.util.List;
-import java.util.Vector;
-
 import org.json.simple.JSONObject;
 
 /**
@@ -39,7 +37,6 @@ public class KeyWord extends Stats{
 
 	/**
 	 * <b>Metodo</b> che effettua il calcolo delle parole chiave.
-	 * @return Parole chiave dei domini
 	 * @see Domain#getName()
 	 */
     @SuppressWarnings("unchecked")

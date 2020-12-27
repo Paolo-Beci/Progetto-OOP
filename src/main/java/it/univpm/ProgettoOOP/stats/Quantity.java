@@ -3,7 +3,6 @@ package it.univpm.ProgettoOOP.stats;
 import it.univpm.ProgettoOOP.model.Domain;
 
 import java.util.List;
-import java.util.Vector;
 
 /**
  * <b>Sottoclasse</b> rappresenta la statistica quantita' 
@@ -46,7 +45,6 @@ public class Quantity extends Stats{
 	
 	/**
 	 * <b>Metodo</b> che effettua il calcolo della quantita' di domini.
-	 * @return Numero dei domini
 	 */
     public void calculateStat() {
     	this.quantity = super.domains.size();

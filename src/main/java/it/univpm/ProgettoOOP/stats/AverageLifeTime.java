@@ -3,9 +3,6 @@ package it.univpm.ProgettoOOP.stats;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Vector;
-
-import org.json.simple.parser.ParseException;
 
 import it.univpm.ProgettoOOP.model.Domain;
 
