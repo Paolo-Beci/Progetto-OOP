@@ -110,9 +110,7 @@ public class Domain {
 	 * @return Nazione di hosting del dominio
 	 */
 	public String getCountry() {
-		if(this.country!=null)
-			return country;
-		return "null";
+		return this.country;
 	}
 
 	/**

@@ -119,8 +119,9 @@ public class DownloadDomains {
 				String createDate = (String) domain.get("create_date");
 				String updateDate = (String) domain.get("update_date");
 				String country = (String) domain.get("country");
+				if(country==null)
+					country="null";
 				String isDead = (String) domain.get("isDead");
-
 				Domain d = new Domain(name, createDate, updateDate, country, isDead);
 				downloadedDomains.add(d);
 

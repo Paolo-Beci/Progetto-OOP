@@ -94,6 +94,7 @@ public class DomainServiceImpl implements DomainService {
 			}
 			if (f0.getFiltersName().isEmpty() && !f0.getFiltersCountry().isEmpty()) {
 				for (Filter f : f0.getFiltersCountry()) {
+					System.out.println(f);
 					f.toFilter(domainsToFilter1, filteredDomains);
 				}
 			}
@@ -114,6 +115,8 @@ public class DomainServiceImpl implements DomainService {
 			System.out.println("MESSAGGI: " + e.getMessage());
 			System.out.println("CAUSA: " + e.getCause());
 		}
+		for(Domain d:filteredDomains)
+			System.out.println(d);
 		return filteredDomains;
 	}
 

@@ -1,6 +1,7 @@
 package it.univpm.ProgettoOOP.filters;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Vector;
 import java.util.regex.PatternSyntaxException;
 
@@ -88,7 +89,9 @@ public class Filter {
 			String line = (String)bodyFilter.get("country");
 			line = line.toUpperCase();
 			for(String s: f.parseString(line)){
-				Filter f1= new FilterCountry(s);
+				if(s.equals("NULL")||s.equals("Null"))
+					s = s.toLowerCase();
+				Filter f1 = new FilterCountry(s);
 				filtersCountry.add(f1);
 			}
 		}	

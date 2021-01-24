@@ -82,7 +82,7 @@ public class Controller{
 	}
 
 	/**
-	 * Metodo per gestire la NoDataException
+	 * <b>Metodo</b>  per gestire la NoDataException
 	 * @param e eccezione da gestire
 	 * @return errore cattiva richiesta
 	 */
@@ -99,7 +99,7 @@ public class Controller{
 	}
 
 	/**
-	 * Metodo per gestire la BodyIsEmptyException
+	 * <b>Metodo</b>  per gestire la BodyIsEmptyException
 	 * @param e eccezione da gestire
 	 * @return errore body vuoto (BodyError)
 	 */

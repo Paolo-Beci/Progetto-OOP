@@ -7,10 +7,6 @@ package it.univpm.ProgettoOOP.exception;
  * @author Grieco Emilio Joseph
  */
 public class BodyIsEmptyException extends Exception{
-
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
