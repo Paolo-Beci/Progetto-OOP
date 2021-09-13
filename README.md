@@ -1,4 +1,5 @@
 # SprigBoot REST API Domains
+### ITA
 L' applicazione SpringBoot ha come obiettivo l'analisi e il monitoraggio dei domini presenti in rete.
 I dati relativi ai domini li otteniamo tramite la REST API [Domains-Index](https://api.domainsdb.info/v1/).
 
@@ -7,6 +8,14 @@ Tra le funzioni di analisi abbiamo il filtraggio e il calcolo di statistiche.
 L' utente, grazie al Client (ad esempio [Postman](https://www.postman.com/)), può accedere alle funzionalità dell'applicazione grazie
 al Web Service [Tomcat](http://tomcat.apache.org/) integrato nel Framework [Spring](https://spring.io/).
 
+### ENG
+The SpringBoot application aims to analyze and monitor the domains present on the network.
+We obtain the data relating to the domains via the REST API [Domains-Index](https://api.domainsdb.info/v1/).
+
+Among the analysis functions we have the filtering and the calculation of statistics.
+
+The user, thanks to the Client (for example [Postman](https://www.postman.com/)), can access the application functionalities thanks
+to the Web Service [Tomcat](http://tomcat.apache.org/) integrated into the Framework [Spring](https://spring.io/). 
 
 ## Plus del programma :heavy_plus_sign:
 :white_check_mark: Personalizzazione dei parametri durante la richiesta all'API
